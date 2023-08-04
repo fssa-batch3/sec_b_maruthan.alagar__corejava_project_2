@@ -3,7 +3,10 @@
 
 ## Database Design
 
-- [ ] Create an ER diagram of the database [ER Diagram](https://photos.app.goo.gl/JDgqyFRscEsDjazL9)
+- [ ] Create an ER diagram of the database
+
+[![Ht3L7iG.md.png](https://iili.io/Ht3L7iG.md.png)](https://freeimage.host/i/Ht3L7iG)
+
 - [ ] Write Create table scripts [script](/src/main/resources/db/migration/V1__create_products.sql)
 
 
