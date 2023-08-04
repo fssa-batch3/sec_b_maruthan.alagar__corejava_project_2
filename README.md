@@ -4,7 +4,7 @@
 ## Database Design
 
 - [ ] Create an ER diagram of the database [ER Diagram](https://photos.app.goo.gl/JDgqyFRscEsDjazL9)
-- [ ] Write Create table scripts [script](https://photos.app.goo.gl/mkNJZyvP3bdkC7RY9)
+- [ ] Write Create table scripts [script](/src/main/resources/db/migration/V1__create_products.sql)
 
 
 
