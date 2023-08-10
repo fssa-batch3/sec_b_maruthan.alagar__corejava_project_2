@@ -19,7 +19,7 @@ public class TestUpdateProduct {
 	public void testUpdateProductWithValidData() {
 
 		Price price = new Price(6, 1, 0);
-		Product prod = new Product("Bun", 10000, QuantityType.nos, null, price);
+		Product prod = new Product("Bread", 10000, QuantityType.nos, null, price);
 
 		assertDoesNotThrow(() -> {
 			productService.update(prod, 1);
@@ -32,11 +32,11 @@ public class TestUpdateProduct {
 
 		
 		Price price = new Price(1200, 1, 0);
-		Product prod = new Product("Rice", 100, QuantityType.g, "Arisi", price);
+		Product prod = new Product("Rice", 200, QuantityType.g, "Arisi", price);
 		
 		
 		Exception exception = assertThrows(ValidationException.class, () -> {
-			productService.update(prod, 100);
+			productService.update(prod, 1);
 		});
 		String expectedMessage = "Product Doesn't Exists";
 		String actualMessage = exception.getMessage();
@@ -154,7 +154,7 @@ public class TestUpdateProduct {
 	public void testUpadetProductWithExistingProductDetails() {
 
 		Price price = new Price(1200, 1, 0);
-		Product prod = new Product("Rice", 1200, QuantityType.g, "Pachai Rice", price);
+		Product prod = new Product("Rice", 60, QuantityType.g, "Pachai Rice", price);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			productService.update(prod,12);
@@ -170,7 +170,7 @@ public class TestUpdateProduct {
 	public void testUpdateProductWithValidPrice() {
 
 		Price price = new Price(1200, 1, 0);
-		Product prod = new Product("Sugarsss", 1, QuantityType.g, "Arisi", price);
+		Product prod = new Product("Sugarsss", 3, QuantityType.g, "Arisi", price);
 
 		assertDoesNotThrow(() -> {
 			productService.update(prod,3);
@@ -197,7 +197,7 @@ public class TestUpdateProduct {
 	public void testUpdateProductWithInvalidMrp() {
 
 		Price price = new Price(-1, 1, 0);
-		Product prod = new Product("Riceeeeeeeeee", 1, QuantityType.g, "ArIsi", price);
+		Product prod = new Product("Riceeeeeeeeee", 109, QuantityType.g, "ArIsi", price);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			productService.update(prod,5);
@@ -229,7 +229,7 @@ public class TestUpdateProduct {
 	public void testUpdateProductWithInvalidDiscount() {
 
 		Price price = new Price(100, 1, -1);
-		Product prod = new Product("Ricee", 1000000, QuantityType.g, "Arisii", price);
+		Product prod = new Product("Ricee", 30, QuantityType.g, "Arisii", price);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			productService.update(prod,24);

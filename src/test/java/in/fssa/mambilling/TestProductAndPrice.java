@@ -28,7 +28,7 @@ public class TestProductAndPrice {
 	public void testFindProductWithPriceWithvalidProductID() {
 
 		assertDoesNotThrow(() -> {
-			productService.getProductDetail(29);
+			productService.getProductDetail(2);
 		});
 
 	}
