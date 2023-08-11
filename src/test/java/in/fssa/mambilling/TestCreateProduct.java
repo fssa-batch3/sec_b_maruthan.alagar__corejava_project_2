@@ -20,7 +20,7 @@ public class TestCreateProduct {
 	public void testCreateProductWithValidData() {
 
 		Price price = new Price(12, 1, 0);
-		Product prod = new Product("Soaps", 9, QuantityType.nos, null, price);
+		Product prod = new Product("Soaps", 45, QuantityType.nos, null, price);
 
 		assertDoesNotThrow(() -> {
 			productService.create(prod);
@@ -139,7 +139,7 @@ public class TestCreateProduct {
 	public void testCreateProductWithValidPrice() {
 
 		Price price = new Price(30, 1, 0);
-		Product prod = new Product("White Sugars", 71, QuantityType.g, null, price);
+		Product prod = new Product("jaggry", 71, QuantityType.g, null, price);
 
 		assertDoesNotThrow(() -> {
 			productService.create(prod);
