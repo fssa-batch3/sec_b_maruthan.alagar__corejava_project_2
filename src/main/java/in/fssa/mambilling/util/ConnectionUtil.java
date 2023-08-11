@@ -17,7 +17,9 @@ public class ConnectionUtil {
         String userName;
         String passWord;
 
-        if (System.getenv("CI") != null && System.getenv("CI") == "true") {
+        System.out.println(System.getenv("CI"));
+        
+        if (System.getenv("CI") != null) {
         	System.out.println("Consuming System.getenv() method");
             url = System.getenv("DATABASE_HOSTNAME");
             userName = System.getenv("DATABASE_USERNAME");
