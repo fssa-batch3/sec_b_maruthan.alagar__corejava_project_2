@@ -1,31 +1,32 @@
+use mam_billing;
+
+
 CREATE TABLE IF NOT EXISTS products (
 `id` int PRIMARY KEY auto_increment not null,
-product_name VARCHAR(100) not null,
+product_name VARCHAR(100) not null ,
 quantity int not null,
 special_name VARCHAR(100),
-quantity_type enum("mg","ml","nos")
+quantity_type enum("g","ml","nos"),
+is_active boolean default true
 );
 
-
 INSERT INTO products (product_name, quantity, special_name, quantity_type) VALUES
-('Rice', 500, NULL, 'mg'),
-('Sugar', 1000, 'Special Edition', 'mg'),
+('Rice', 500, NULL, 'g'),
+('Sugar', 1000, 'Special Edition', 'g'),
 ('Seasame Oil', 1000, NULL, 'ml'),
 ('Soap', 5, 'Limited Edition', 'nos'),
 ('Choculate', 5, NULL, 'nos');
-
 
 CREATE TABLE price (
     id INT PRIMARY KEY AUTO_INCREMENT,
     tax DECIMAL(10, 2) not null,
     mrp DECIMAL(10, 2) not null,
     discount DECIMAL(10, 2)not null,
-    start_date DATE,
-    end_date DATE,
+    start_date timestamp DEFAULT  current_timestamp,
+    end_date  timestamp ,
     product_id INT unique not null,
     FOREIGN KEY (product_id) REFERENCES products(id)
 );
-
 
 INSERT INTO price (tax, mrp, discount,start_date, end_date, product_id) VALUES
 (5.0, 100.00, 10.00,  '2023-08-01', '2023-08-15', 1),
@@ -34,5 +35,59 @@ INSERT INTO price (tax, mrp, discount,start_date, end_date, product_id) VALUES
 (4.5, 80.00, 15.00,  '2023-08-12', '2023-08-28', 5),
 (6.0, 120.00, 25.00,  '2023-08-03', '2023-08-18', 4);
 
-select * from price;
-select * from products;
+CREATE TABLE IF NOT EXISTS users (
+  `id` int PRIMARY KEY auto_increment not null,
+  name VARCHAR(50) not null,
+  phone_number BIGINT(10) unique,
+  email VARCHAR(150),
+  address VARCHAR(250)
+);
+
+INSERT INTO users (name, phone_number, email,address) VALUES
+("Maruthan",7810061572,"amaruthan@gmail.com","Pudukkottai"),
+("Ram",8978675645,"ramr@gmail.com","Selam"),
+("Vignesh",6787879878,"srvn@gmail.com","Kumbakonam"),
+("Santhosh",9878675645,null,"Manalmedu"),
+("Mathi",6787878787,"mathip@gmail.com","PondyCheri");
+
+create TABLE IF NOT EXISTS bill (
+  `id` int PRIMARY KEY auto_increment not null,
+  timestamp timestamp DEFAULT  current_timestamp not null,
+	 user_id INT unique not null,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+INSERT INTO bill (user_id) VALUES
+(1),
+(2),
+(3),
+(4),
+(5);
+
+CREATE TABLE IF NOT EXISTS bill_details (
+  `id` int PRIMARY KEY auto_increment not null,
+   bill_id INT unique not null,
+   product_id INT unique not null,
+   price_id INT unique not null,
+   quantity int not null,
+   quantity_type enum("g","ml","nos"),
+    FOREIGN KEY (bill_id) REFERENCES bill(id),
+    FOREIGN KEY (product_id) REFERENCES products(id),
+    FOREIGN KEY (price_id) REFERENCES price(id)
+);
+
+INSERT INTO bill_details (bill_id,product_id,price_id,quantity,quantity_type) VALUES
+(1,1,1,100,'g'),
+(2,2,2,100,'g'),
+(3,3,3,100,'ml'),
+(4,4,4,100,'nos'),
+(5,5,5,100,'nos');
+
+
+Select * from users;
+Select * from products;
+Select * from price;
+Select * from bill;
+Select * from bill_details;
+
+
