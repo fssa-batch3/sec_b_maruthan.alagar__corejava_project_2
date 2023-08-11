@@ -1,6 +1,8 @@
 
 # M A M Billing  Checklist
 
+ #### [Milestones](https://github.com/fssa-batch3/sec_b_maruthan.alagar__corejava_project_2/milestones)
+
 ## Database Design
 
 - [ ] Create an ER diagram of the database
