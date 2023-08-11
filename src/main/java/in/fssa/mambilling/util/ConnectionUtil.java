@@ -17,11 +17,13 @@ public class ConnectionUtil {
         String userName;
         String passWord;
 
-        if (System.getenv("CI") != null) {
+        if (System.getenv("CI") != null && System.getenv("CI") == "true") {
+        	System.out.println("Consuming System.getenv() method");
             url = System.getenv("DATABASE_HOSTNAME");
             userName = System.getenv("DATABASE_USERNAME");
             passWord = System.getenv("DATABASE_PASSWORD");
         } else {
+        	System.out.println("Consuming Dotenv.load() method");
             Dotenv env = Dotenv.load();
             url = env.get("DATABASE_HOSTNAME");
             userName = env.get("DATABASE_USERNAME");
