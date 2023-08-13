@@ -487,10 +487,14 @@ C  -- No -->  F[User Service: User Not Found ]
 - [ ] Time Stamp
 - [ ] Bill DTO ( null )
 
+##### Business Validation:
+
+- [ ] Check The Bill Table Exist or not.
 #### Messages: 
  -  Invalid User ID.
  -  User doesn't exists.
  -  Invalid Bill Details.
+ -  Bill Table Not Found
 
 #### Flow: 
 
@@ -499,8 +503,10 @@ C  -- No -->  F[User Service: User Not Found ]
 graph  TD;
 
 A[Bill Service: Create Bill]  -->  B[Form Validation]
-B  -- Yes -->  D[Bill DAO: Create Bill]
+B  -- Yes -->  C{Business Validation}
 B -- No --> F[Throws Exception]
+C -- Yes --> D[Bill DAO : Create Bill]
+C -- No --> G[Bill Service : Bill Table Not Found]
 D  -->  E[Bill Service: Bill Created ]
 
 ```
