@@ -7,7 +7,7 @@
 
 - [ ] Create an ER diagram of the database
 
-[![Ht3L7iG.md.png](https://iili.io/Ht3L7iG.md.png)](https://freeimage.host/i/Ht3L7iG)
+[![HD02Net.md.png](https://iili.io/HD02Net.md.png)](https://freeimage.host/i/HD02Net)
 
 - [ ] Write Create table scripts [script](/src/main/resources/db/migration/V1__create_products.sql)
 
