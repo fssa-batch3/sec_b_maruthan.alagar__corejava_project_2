@@ -23,7 +23,7 @@
 	- [ ] JUnit, 
 	- [ ] Dotenv
 
-## Module: Product (Milestone 1)
+## Module 1 : Product (Milestone 1)
 
 
 ### Feature 1: Product Creation 
