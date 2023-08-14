@@ -510,8 +510,34 @@ C -- No --> G[Bill Service : Bill Table Not Found]
 D  -->  E[Bill Service: Bill Created ]
 
 ```
+### Feature 2 : List All Bills
+#### User Story:
+ User can view the Bill List.
+#### Prerequisites:
+- [ ] Complete Bill Module Feature 1.
+- [ ] Implement Bill DAO (Find All)
 
-### Feature 2 : Find bills by user phone number
+#### Validations:
+#####   Business Validation:
+- [ ] Check the Bill table is already exists or not.
+#### Messages: 
+ -  Bill Table Not Found.
+
+#### Flow: 
+
+```mermaid
+graph  TD;
+
+A[Bill Service: Find All Bills] -->  B{Business Validation}
+
+B  -- Yes -->  C[Bill DAO: Read All Bills]
+
+C  -->  D[Bill Service: Display Bill Details ]
+
+B  -- No -->  F[Bill Service: Bill Table Doesn't Exists ]
+```
+
+### Feature 3 : Find bills by user phone number
 #### User Story:
 User can find bill details by using user phone number.
 #### Prerequisites:
@@ -559,7 +585,7 @@ I -- No --> M[Throws Exception]
 
 ```
 
-### Feature 3 : Find All Recent Bills
+### Feature 4 : Find All Recent Bills
 #### User Story:
  User can View the recent Bills.
 #### Prerequisites:
