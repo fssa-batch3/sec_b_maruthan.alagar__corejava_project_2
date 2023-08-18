@@ -24,7 +24,7 @@ public class TestUpdateProduct {
 		
 		 int min = 1; // Minimum value for the random number
 	        int max = 2000; // Maximum value for the random number
-	        int numberOfRandomNumbers = 100; // Set the number of random numbers you want to generate
+	        int numberOfRandomNumbers = 1000; // Set the number of random numbers you want to generate
 
 	        Random rand = new Random();
 	        int randomNumber = 0;
