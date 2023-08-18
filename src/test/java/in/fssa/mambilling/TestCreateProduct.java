@@ -27,7 +27,7 @@ public class TestCreateProduct {
 	public void testCreateProductWithValidData() {
 
 		Price price = new Price(12, 1, 0);
-		Product prod = new Product("Soaps", 78475, QuantityType.nos, null, price);
+		Product prod = new Product("Soaps", 10, QuantityType.nos, null, price);
 
 		assertDoesNotThrow(() -> {
 			productService.create(prod);
@@ -39,7 +39,7 @@ public class TestCreateProduct {
 	public void testCreateProductWithValidPrice() {
 
 		Price price = new Price(30, 1, 0);
-		Product prod = new Product("Jagguhy", 7661, QuantityType.g, null, price);
+		Product prod = new Product("Vellam", 7661, QuantityType.g, null, price);
 
 		assertDoesNotThrow(() -> {
 			productService.create(prod);
@@ -64,7 +64,7 @@ public class TestCreateProduct {
 	public void testCreateProductWithProductNameEmpty() {
 
 		Price price = new Price(1200, 1, 0);
-		Product prod = new Product("", 1000, QuantityType.g, "Pachai Rice", price);
+		Product prod = new Product("", 1090, QuantityType.g, "Pachai Rice", price);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			productService.create(prod);
@@ -98,7 +98,7 @@ public class TestCreateProduct {
 	public void testCreateProductWithSpecialNameEmpty() {
 
 		Price price = new Price(1200, 1, 0);
-		Product prod = new Product("Ricee", 1000, QuantityType.g, "", price);
+		Product prod = new Product("RRicee", 1000, QuantityType.g, "", price);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			productService.create(prod);
@@ -115,7 +115,7 @@ public class TestCreateProduct {
 	public void testCreateProductWithInvalidQuantity() {
 
 		Price price = new Price(1200, 1, 0);
-		Product prod = new Product("Riceee", 0, QuantityType.g, "Arisi", price);
+		Product prod = new Product("Ricce", 0, QuantityType.g, "Arisi", price);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			productService.create(prod);
@@ -132,7 +132,7 @@ public class TestCreateProduct {
 	public void testCreateProductWithQuantityTypeNull() {
 
 		Price price = new Price(1200, 1, 0);
-		Product prod = new Product("Riceee", 1, null, "Arisi", price);
+		Product prod = new Product("Ricceee", 1, null, "Arisi", price);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			productService.create(prod);
@@ -149,7 +149,7 @@ public class TestCreateProduct {
 	public void testCreateProductWithExistingProductDetails() {
 
 		Price price = new Price(1200, 1, 0);
-		Product prod = new Product("Rice", 1000, QuantityType.g, "Pachai Rice", price);
+		Product prod = new Product("Ricce", 1000, QuantityType.g, "Pachai Rice", price);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			productService.create(prod);
@@ -167,7 +167,7 @@ public class TestCreateProduct {
 	@Order(10)
 	public void testCreateProductWithPriceNull() {
 
-		Product prod = new Product("Tea Powder", 1782, QuantityType.g, null, null);
+		Product prod = new Product("TeaPPowder", 1782, QuantityType.g, null, null);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			productService.create(prod);
@@ -184,7 +184,7 @@ public class TestCreateProduct {
 	public void testCreateProductWithInvalidMrp() {
 
 		Price price = new Price(-1, 1, 0);
-		Product prod = new Product("Notes", 71, QuantityType.nos, null, price);
+		Product prod = new Product("NNotes", 71, QuantityType.nos, null, price);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			productService.create(prod);
@@ -201,7 +201,7 @@ public class TestCreateProduct {
 	public void testCreateProductWithInvalidTax() {
 
 		Price price = new Price(100, -1, 1);
-		Product prod = new Product("Boooooooooook", 13, QuantityType.g, "StoRy Book", price);
+		Product prod = new Product("Booooeoooooook", 13, QuantityType.g, "StoRy Book", price);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			productService.create(prod);
@@ -218,7 +218,7 @@ public class TestCreateProduct {
 	public void testCreateProductWithInvalidDiscount() {
 
 		Price price = new Price(100, 1, -1);
-		Product prod = new Product("Basmati Rice", 144, QuantityType.g, "Basmathi Arisi", price);
+		Product prod = new Product("Basmati RRRice", 144, QuantityType.g, "BasmathiArisi", price);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			productService.create(prod);
