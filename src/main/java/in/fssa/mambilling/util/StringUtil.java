@@ -7,7 +7,12 @@ import in.fssa.mambilling.Exception.ValidationException;
 
 
 public class StringUtil {
-
+	/**
+	 * 
+	 * @param input
+	 * @param inputName
+	 * @throws ValidationException
+	 */
 	public static void rejectIfInvalidString(String input, String inputName) throws ValidationException {
 		if (input == null || "".equals(input.trim())) {
 			throw new ValidationException(inputName.concat(" cannot be Null or Empty"));
@@ -18,7 +23,12 @@ public class StringUtil {
 		
 		
 	}
-	
+	/**
+	 * 
+	 * @param name
+	 * @param nameInput
+	 * @throws ValidationException
+	 */
 	public static void rejectIfInvalidName(String name,String nameInput) throws ValidationException {
 
 		String regexPattern = "[A-Za-z]+(\\s[A-Za-z]+)*";
@@ -34,7 +44,11 @@ public class StringUtil {
 		}
 	}
 
-
+	/**
+	 * 
+	 * @param newString
+	 * @return
+	 */
 	public static boolean isValidString(String newString) {
 
 		if (newString == null || "".equals(newString.trim())) {
@@ -44,7 +58,11 @@ public class StringUtil {
 		return true;
 
 	}
-
+	/**
+	 * 
+	 * @param newString
+	 * @return
+	 */
 	public static boolean isInvalidString(String newString) {
 
 		if (!isValidString(newString)) {

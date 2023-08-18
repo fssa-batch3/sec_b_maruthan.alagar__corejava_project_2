@@ -13,6 +13,11 @@ public class UserService {
 
 	UserDAO userdao = new UserDAO();
 
+	/**
+	 * 
+	 * @return
+	 * @throws ServiceException
+	 */
 	public List<User> getAllUsers() throws ServiceException {
 
 		try {
@@ -22,7 +27,12 @@ public class UserService {
 		}
 
 	}
-
+	/**
+	 * 
+	 * @param user
+	 * @throws ValidationException
+	 * @throws ServiceException
+	 */
 	public void create(User user) throws ValidationException, ServiceException {
 		try {
 			UserValidator.validate(user);
@@ -32,7 +42,13 @@ public class UserService {
 		}
 
 	}
-
+	/**
+	 * 
+	 * @param phoneNumber
+	 * @return
+	 * @throws ValidationException
+	 * @throws ServiceException
+	 */
 	public User findByPhoneNumber(long phoneNumber) throws ValidationException, ServiceException {
 
 		try {
@@ -44,7 +60,13 @@ public class UserService {
 		}
 
 	}
-
+	/**
+	 * 
+	 * @param phoneNumber
+	 * @param newUser
+	 * @throws ValidationException
+	 * @throws ServiceException
+	 */
 	public void update(long phoneNumber, User newUser) throws ValidationException, ServiceException {
 
 		try {

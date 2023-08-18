@@ -16,6 +16,12 @@ public class ProductService {
 	ProductDAO productdao = new ProductDAO();
 	PriceService priceservice = new PriceService();
 
+	/**
+	 * 
+	 * @param newProduct
+	 * @throws ValidationException
+	 * @throws ServiceException
+	 */
 	public void create(Product newProduct) throws ValidationException, ServiceException {
 
 		int productId = 0;
@@ -40,7 +46,13 @@ public class ProductService {
 		}
 
 	}
-
+	/**
+	 * 
+	 * @param newProduct
+	 * @param id
+	 * @throws ValidationException
+	 * @throws ServiceException
+	 */
 	public void update(Product newProduct, int id) throws ValidationException, ServiceException {
 
 		try {
@@ -53,7 +65,11 @@ public class ProductService {
 		}
 
 	}
-
+	/**
+	 * 
+	 * @return
+	 * @throws ServiceException
+	 */
 	public List<Product> getAll() throws ServiceException {
 
 		try {
@@ -64,7 +80,12 @@ public class ProductService {
 		}
 
 	}
-
+	/**
+	 * 
+	 * @param productId
+	 * @throws ValidationException
+	 * @throws ServiceException
+	 */
 	public void delete(int productId) throws ValidationException, ServiceException {
 		try {
 
@@ -75,7 +96,13 @@ public class ProductService {
 			throw new ServiceException(e.getMessage());
 		}
 	}
-
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @throws ValidationException
+	 * @throws ServiceException
+	 */
 	public ProductDTO getProductDetail(int id) throws ValidationException, ServiceException {
 		try {
 			PriceValidator.validateId(id);
@@ -84,7 +111,12 @@ public class ProductService {
 			throw new ServiceException("Failed to create Price");
 		}
 	}
-
+	/**
+	 * 
+	 * @param productId
+	 * @throws ServiceException
+	 * @throws ValidationException
+	 */
 	public void removeRow(int productId) throws ServiceException, ValidationException {
 
 		try {

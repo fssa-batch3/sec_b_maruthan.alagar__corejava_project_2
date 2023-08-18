@@ -14,7 +14,11 @@ import in.fssa.mambilling.model.Product.QuantityType;
 import in.fssa.mambilling.util.ConnectionUtil;
 
 public class ProductDAO {
-
+	/**
+	 * 
+	 * @return
+	 * @throws PersistanceException
+	 */
 	public List<Product> findAll() throws PersistanceException {
 
 		Connection con = null;
@@ -46,7 +50,12 @@ public class ProductDAO {
 		return productList;
 
 	}
-
+	/**
+	 * 
+	 * @param newProduct
+	 * @return
+	 * @throws PersistanceException
+	 */
 	public int create(Product newProduct) throws PersistanceException {
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -86,7 +95,12 @@ public class ProductDAO {
 
 		return productId;
 	}
-
+	/**
+	 * 
+	 * @param newProduct
+	 * @param id
+	 * @throws PersistanceException
+	 */
 	public void update(Product newProduct, int id) throws PersistanceException {
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -114,7 +128,12 @@ public class ProductDAO {
 		}
 
 	}
-
+	/**
+	 * 
+	 * @param newProduct
+	 * @return
+	 * @throws PersistanceException
+	 */
 	public Product isProductAlreadyExistsCreate(Product newProduct) throws PersistanceException {
 
 		Connection con = null;
@@ -153,7 +172,12 @@ public class ProductDAO {
 		return product;
 
 	}
-
+	/**
+	 * 
+	 * @param productId
+	 * @return
+	 * @throws PersistanceException
+	 */
 	public Product isProductAlreadyExists(int productId) throws PersistanceException {
 
 		Connection con = null;
@@ -190,7 +214,12 @@ public class ProductDAO {
 		return product;
 
 	}
-
+	/**
+	 * 
+	 * @param productId
+	 * @return
+	 * @throws PersistanceException
+	 */
 	public ProductDTO findProductDetail(int productId) throws PersistanceException {
 
 		Connection con = null;
@@ -229,7 +258,11 @@ public class ProductDAO {
 		return product;
 
 	}
-
+	/**
+	 * 
+	 * @param newId
+	 * @throws PersistanceException
+	 */
 	public void delete(int newId) throws PersistanceException {
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -254,7 +287,11 @@ public class ProductDAO {
 		}
 
 	}
-
+	/**
+	 * 
+	 * @param newId
+	 * @throws PersistanceException
+	 */
 	public void dropRow(int newId) throws PersistanceException {
 		Connection con = null;
 		PreparedStatement ps = null;

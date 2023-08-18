@@ -10,7 +10,11 @@ import in.fssa.mambilling.model.User;
 import in.fssa.mambilling.util.StringUtil;
 
 public class UserValidator {
-
+	/**
+	 * 
+	 * @param newUser
+	 * @throws ValidationException
+	 */
 	public static void validate(User newUser) throws ValidationException {
 
 		if (newUser == null) {
@@ -40,7 +44,12 @@ public class UserValidator {
 		}
 
 	}
-
+	/**
+	 * 
+	 * @param phoneNumber
+	 * @param newUser
+	 * @throws ValidationException
+	 */
 	public static void validateUpdate(long phoneNumber, User newUser) throws ValidationException {
 
 		if (newUser == null) {
@@ -83,7 +92,12 @@ public class UserValidator {
 		}
 
 	}
-
+	/**
+	 * 
+	 * @param phoneNumber
+	 * @param inputName
+	 * @throws ValidationException
+	 */
 	public static void validatePhoneNumber(long phoneNumber, String inputName) throws ValidationException {
 		String regexPattern = "^[6-9]\\d{9}$";
 
@@ -94,7 +108,12 @@ public class UserValidator {
 			throw new ValidationException(inputName.concat(" doesn't match the Pattern"));
 		}
 	}
-
+	/**
+	 * 
+	 * @param address
+	 * @param inputName
+	 * @throws ValidationException
+	 */
 	public static void ValidateAddress(String address, String inputName) throws ValidationException {
 		if ("".equals(address.trim())) {
 			throw new ValidationException(inputName.concat(" cannot be Empty"));
@@ -112,7 +131,12 @@ public class UserValidator {
 		}
 
 	}
-
+	/**
+	 * 
+	 * @param email
+	 * @param inputName
+	 * @throws ValidationException
+	 */
 	public static void ValidateEmail(String email, String inputName) throws ValidationException {
 
 		if ("".equals(email.trim())) {

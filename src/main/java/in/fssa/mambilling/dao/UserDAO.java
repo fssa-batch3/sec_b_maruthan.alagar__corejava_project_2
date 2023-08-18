@@ -13,6 +13,12 @@ import in.fssa.mambilling.util.ConnectionUtil;
 
 
 public class UserDAO {
+	
+	/**
+	 * 
+	 * @return
+	 * @throws PersistanceException
+	 */
 	public List<User> findAll() throws PersistanceException {
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -40,6 +46,11 @@ public class UserDAO {
 
 	}
 
+	/**
+	 * 
+	 * @param user
+	 * @throws PersistanceException
+	 */
 	public void create(User user) throws PersistanceException {
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -71,7 +82,12 @@ public class UserDAO {
 		}
 
 	}
-	
+	/**
+	 * 
+	 * @param phoneNumber
+	 * @return
+	 * @throws PersistanceException
+	 */
 	public User findByPhoneNumber(long phoneNumber) throws PersistanceException {
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -104,6 +120,12 @@ public class UserDAO {
 		return user;
 	}
 	
+	/**
+	 * 
+	 * @param phoneNumber
+	 * @param newUser
+	 * @throws PersistanceException
+	 */
 	public void update(long phoneNumber, User newUser) throws PersistanceException {
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -132,7 +154,12 @@ public class UserDAO {
 
 		
 	}
-	
+	/**
+	 * 
+	 * @param userId
+	 * @return
+	 * @throws PersistanceException
+	 */
 	public User findById(int userId) throws PersistanceException {
 		Connection con = null;
 		PreparedStatement ps = null;

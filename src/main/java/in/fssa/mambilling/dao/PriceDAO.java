@@ -14,7 +14,12 @@ import in.fssa.mambilling.model.Product.QuantityType;
 import in.fssa.mambilling.util.ConnectionUtil;
 
 public class PriceDAO {
-
+	/**
+	 * 
+	 * @param newPrice
+	 * @param productID
+	 * @throws PersistanceException
+	 */
 	public void create(Price newPrice, int productID) throws PersistanceException {
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -42,6 +47,12 @@ public class PriceDAO {
 		}
 	}
 
+	/**
+	 * 
+	 * @param newPrice
+	 * @param productID
+	 * @throws PersistanceException
+	 */
 	public void update(Price newPrice, int productID) throws PersistanceException {
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -69,7 +80,11 @@ public class PriceDAO {
 			ConnectionUtil.close(con, ps);
 		}
 	}
-
+	/**
+	 * 
+	 * @return
+	 * @throws PersistanceException
+	 */
 	public List<Price> findAll() throws PersistanceException {
 
 		Connection con = null;

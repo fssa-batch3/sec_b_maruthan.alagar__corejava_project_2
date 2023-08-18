@@ -7,7 +7,11 @@ import in.fssa.mambilling.model.Product;
 import in.fssa.mambilling.util.StringUtil;
 
 public class ProductValidator {
-
+	/**
+	 * 
+	 * @param newProduct
+	 * @throws ValidationException
+	 */
 	public static void validateCreate(Product newProduct) throws ValidationException {
 
 		if (newProduct == null) {
@@ -40,7 +44,12 @@ public class ProductValidator {
 		}
 
 	}
-
+	/**
+	 * 
+	 * @param newProduct
+	 * @param id
+	 * @throws ValidationException
+	 */
 	public static void validateUpdate(Product newProduct, int id) throws ValidationException {
 
 		if (newProduct == null) {

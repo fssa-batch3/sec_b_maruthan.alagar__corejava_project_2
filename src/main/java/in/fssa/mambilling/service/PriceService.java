@@ -13,6 +13,13 @@ public class PriceService {
 
 	PriceDAO pricedao = new PriceDAO();
 
+	/**
+	 * 
+	 * @param newPrice
+	 * @param productId
+	 * @throws ValidationException
+	 * @throws ServiceException
+	 */
 	public void create(Price newPrice, int productId) throws ValidationException, ServiceException {
 
 		try {
@@ -25,7 +32,13 @@ public class PriceService {
 		}
 
 	}
-
+	/**
+	 * 
+	 * @param newPrice
+	 * @param productId
+	 * @throws ValidationException
+	 * @throws ServiceException
+	 */
 	public void update(Price newPrice, int productId) throws ValidationException, ServiceException {
 		try {
 			PriceValidator.validateId(productId);
@@ -38,7 +51,11 @@ public class PriceService {
 		}
 
 	}
-
+	/**
+	 * 
+	 * @return
+	 * @throws ServiceException
+	 */
 	public List<Price> getAll() throws ServiceException {
 		try {
 			return pricedao.findAll();

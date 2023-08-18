@@ -17,7 +17,11 @@ import in.fssa.mambilling.model.User;
 import in.fssa.mambilling.util.ConnectionUtil;
 
 public class BillDAO {
-	
+	/**
+	 * 
+	 * @return
+	 * @throws PersistanceException
+	 */
 	public List<Bill> findAll() throws PersistanceException {
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -49,7 +53,13 @@ public class BillDAO {
 		return billList;
 
 	}
-
+	/**
+	 * 
+	 * @param userId
+	 * @return
+	 * @throws PersistanceException
+	 */
+	
 	public int create(int userId) throws PersistanceException {
 		Connection con = null;
 		PreparedStatement ps = null;
