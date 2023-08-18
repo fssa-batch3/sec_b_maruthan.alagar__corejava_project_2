@@ -218,7 +218,7 @@ public class TestUpdateProduct {
 		
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
-			productService.update(prod,13);
+			productService.update(prod,3);
 		});
 
 		String expectedMessage = "Product Already Exists";
