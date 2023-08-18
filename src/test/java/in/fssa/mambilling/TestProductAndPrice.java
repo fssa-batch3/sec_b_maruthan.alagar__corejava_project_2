@@ -36,7 +36,7 @@ public class TestProductAndPrice {
 	public void testFindProductWithPriceWithInvalidProductID() {
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
-			productService.getProductDetail(10);
+			productService.getProductDetail(1300);
 		});
 		String expectedMessage = "Invalid Product ID";
 		String actualMessage = exception.getMessage();

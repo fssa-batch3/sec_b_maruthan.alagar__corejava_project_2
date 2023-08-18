@@ -21,7 +21,7 @@ public class TestUpdateProduct {
 	public void testUpdateProductWithValidData() {
 
 		Price price = new Price(6, 1, 0);
-		Product prod = new Product("BreDDads", 19670, QuantityType.nos, null, price);
+		Product prod = new Product("BreDHDads", 19670, QuantityType.nos, null, price);
 
 		assertDoesNotThrow(() -> {
 			productService.update(prod, 1);
@@ -34,7 +34,7 @@ public class TestUpdateProduct {
 	public void testUpdateProductWithValidPrice() {
 
 		Price price = new Price(1200, 1, 0);
-		Product prod = new Product("mMilKKss", 590, QuantityType.ml, "Arisi", price);
+		Product prod = new Product("mMilFKKss", 590, QuantityType.ml, "Arisi", price);
 
 		assertDoesNotThrow(() -> {
 			productService.update(prod,3);
