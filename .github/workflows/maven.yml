@@ -42,7 +42,7 @@ jobs:
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=${{ env.PROJECT_KEY }}
 
       - name: Build with Maven
-        run: mvn clean verify
+        run: mvn clean verify -DskipTests
 
       - name: Archive production artifacts
         if: success() # This ensures that the step runs only if previous steps were successful.
