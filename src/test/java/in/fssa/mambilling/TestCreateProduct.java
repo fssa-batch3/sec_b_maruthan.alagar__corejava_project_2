@@ -27,7 +27,19 @@ public class TestCreateProduct {
 	public void testCreateProductWithValidData() {
 
 		Price price = new Price(12, 1, 0);
-		Product prod = new Product("Soaps", 785, QuantityType.nos, null, price);
+		Product prod = new Product("Soaps", 78475, QuantityType.nos, null, price);
+
+		assertDoesNotThrow(() -> {
+			productService.create(prod);
+		});
+
+	}
+	@Test
+	@Order(2)
+	public void testCreateProductWithValidPrice() {
+
+		Price price = new Price(30, 1, 0);
+		Product prod = new Product("Jagguhy", 7661, QuantityType.g, null, price);
 
 		assertDoesNotThrow(() -> {
 			productService.create(prod);
@@ -36,7 +48,7 @@ public class TestCreateProduct {
 	}
 
 	@Test
-	@Order(2)
+	@Order(3)
 	public void testCreateProductWithInvalidData() {
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
@@ -48,7 +60,7 @@ public class TestCreateProduct {
 	}
 
 	@Test
-	@Order(3)
+	@Order(4)
 	public void testCreateProductWithProductNameEmpty() {
 
 		Price price = new Price(1200, 1, 0);
@@ -65,7 +77,7 @@ public class TestCreateProduct {
 	}
 
 	@Test
-	@Order(4)
+	@Order(5)
 	public void testCreateProductWithProductNameNull() {
 
 		Price price = new Price(1200, 1, 0);
@@ -82,7 +94,7 @@ public class TestCreateProduct {
 	}
 
 	@Test
-	@Order(5)
+	@Order(6)
 	public void testCreateProductWithSpecialNameEmpty() {
 
 		Price price = new Price(1200, 1, 0);
@@ -99,7 +111,7 @@ public class TestCreateProduct {
 	}
 
 	@Test
-	@Order(6)
+	@Order(7)
 	public void testCreateProductWithInvalidQuantity() {
 
 		Price price = new Price(1200, 1, 0);
@@ -116,7 +128,7 @@ public class TestCreateProduct {
 	}
 
 	@Test
-	@Order(7)
+	@Order(8)
 	public void testCreateProductWithQuantityTypeNull() {
 
 		Price price = new Price(1200, 1, 0);
@@ -133,7 +145,7 @@ public class TestCreateProduct {
 	}
 
 	@Test
-	@Order(8)
+	@Order(9)
 	public void testCreateProductWithExistingProductDetails() {
 
 		Price price = new Price(1200, 1, 0);
@@ -149,18 +161,7 @@ public class TestCreateProduct {
 
 	}
 
-	@Test
-	@Order(9)
-	public void testCreateProductWithValidPrice() {
-
-		Price price = new Price(30, 1, 0);
-		Product prod = new Product("Jagguhy", 71, QuantityType.g, null, price);
-
-		assertDoesNotThrow(() -> {
-			productService.create(prod);
-		});
-
-	}
+	
 
 	@Test
 	@Order(10)
@@ -200,7 +201,7 @@ public class TestCreateProduct {
 	public void testCreateProductWithInvalidTax() {
 
 		Price price = new Price(100, -1, 1);
-		Product prod = new Product("Book", 13, QuantityType.g, "StoRy Book", price);
+		Product prod = new Product("Boooooooooook", 13, QuantityType.g, "StoRy Book", price);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			productService.create(prod);
@@ -217,7 +218,7 @@ public class TestCreateProduct {
 	public void testCreateProductWithInvalidDiscount() {
 
 		Price price = new Price(100, 1, -1);
-		Product prod = new Product("Basmati Rice", 14, QuantityType.g, "Basmathi Arisi", price);
+		Product prod = new Product("Basmati Rice", 144, QuantityType.g, "Basmathi Arisi", price);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			productService.create(prod);

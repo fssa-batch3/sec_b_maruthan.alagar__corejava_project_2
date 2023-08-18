@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 import in.fssa.mambilling.Exception.ValidationException;
@@ -16,10 +17,11 @@ public class TestUpdateProduct {
 	ProductService productService = new ProductService();
 
 	@Test
+	@Order(1)
 	public void testUpdateProductWithValidData() {
 
 		Price price = new Price(6, 1, 0);
-		Product prod = new Product("Breads", 1470, QuantityType.nos, null, price);
+		Product prod = new Product("Breeads", 19670, QuantityType.nos, null, price);
 
 		assertDoesNotThrow(() -> {
 			productService.update(prod, 1);
@@ -28,6 +30,20 @@ public class TestUpdateProduct {
 	}
 	
 	@Test
+	@Order(2)
+	public void testUpdateProductWithValidPrice() {
+
+		Price price = new Price(1200, 1, 0);
+		Product prod = new Product("milKKss", 590, QuantityType.ml, "Arisi", price);
+
+		assertDoesNotThrow(() -> {
+			productService.update(prod,3);
+		});
+
+	}
+	
+	@Test
+	@Order(3)
 	public void testUpdateProductWithNotExistingProductDetails() {
 
 		
@@ -44,6 +60,7 @@ public class TestUpdateProduct {
 	}
 
 	@Test
+	@Order(4)
 	public void testUpdateProductWithInvalidProductID() {
 
 		
@@ -60,6 +77,7 @@ public class TestUpdateProduct {
 	}
 	
 	@Test
+	@Order(5)
 	public void testUpdateProductWithProductNull() {
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
@@ -71,6 +89,7 @@ public class TestUpdateProduct {
 	}
 
 	@Test
+	@Order(6)
 	public void testUpdateProductWithProductNameEmpty() {
 
 		Price price = new Price(1200, 1, 0);
@@ -87,6 +106,7 @@ public class TestUpdateProduct {
 	}
 
 	@Test
+	@Order(7)
 	public void testUpdateProductWithProductNameNull() {
 
 		Price price = new Price(1200, 1, 0);
@@ -103,6 +123,7 @@ public class TestUpdateProduct {
 	}
 
 	@Test
+	@Order(8)
 	public void testUpdateProductWithSpecialNameEmpty() {
 
 		Price price = new Price(1200, 1, 0);
@@ -119,6 +140,7 @@ public class TestUpdateProduct {
 	}
 
 	@Test
+	@Order(9)
 	public void testUpdateProductWithInvalidQuantity() {
 
 		Price price = new Price(1200, 1, 0);
@@ -135,6 +157,7 @@ public class TestUpdateProduct {
 	}
 
 	@Test
+	@Order(10)
 	public void testUpdateProductWithQuantityTypeNull() {
 
 		Price price = new Price(1200, 1, 0);
@@ -151,6 +174,7 @@ public class TestUpdateProduct {
 	}
 
 	@Test
+	@Order(11)
 	public void testUpadetProductWithExistingProductDetails() {
 
 		Price price = new Price(1200, 1, 0);
@@ -166,19 +190,10 @@ public class TestUpdateProduct {
 
 	}
 
-	@Test
-	public void testUpdateProductWithValidPrice() {
 
-		Price price = new Price(1200, 1, 0);
-		Product prod = new Product("milkss", 500, QuantityType.ml, "Arisi", price);
-
-		assertDoesNotThrow(() -> {
-			productService.update(prod,3);
-		});
-
-	}
 
 	@Test
+	@Order(12)
 	public void testUpdateProductWithPriceNull() {
 
 		Product prod = new Product("Rice", 81, QuantityType.g, "Arisi", null);
@@ -194,6 +209,7 @@ public class TestUpdateProduct {
 	}
 
 	@Test
+	@Order(13)
 	public void testUpdateProductWithInvalidMrp() {
 
 		Price price = new Price(-1, 1, 0);
@@ -210,6 +226,7 @@ public class TestUpdateProduct {
 	}
 
 	@Test
+	@Order(14)
 	public void testUpdateProductWithInvalidTax() {
 
 		Price price = new Price(100, -1, 1);
@@ -226,6 +243,7 @@ public class TestUpdateProduct {
 	}
 
 	@Test
+	@Order(15)
 	public void testUpdateProductWithInvalidDiscount() {
 
 		Price price = new Price(100, 1, -1);
