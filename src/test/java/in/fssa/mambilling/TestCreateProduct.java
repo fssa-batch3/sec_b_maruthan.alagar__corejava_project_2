@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Random;
+
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -25,9 +27,20 @@ public class TestCreateProduct {
 	@Test
 	@Order(1)
 	public void testCreateProductWithValidData() {
+		
+		 int min = 1; // Minimum value for the random number
+	        int max = 10000; // Maximum value for the random number
+	        int numberOfRandomNumbers = 100; // Set the number of random numbers you want to generate
+
+	        Random rand = new Random();
+	        int randomNumber = 0;
+	        for (int i = 0; i < numberOfRandomNumbers; i++) {
+	             randomNumber = rand.nextInt(max - min + 1) + min;
+	           
+	        }
 
 		Price price = new Price(12, 1, 0);
-		Product prod = new Product("Soafps", 10, QuantityType.nos, null, price);
+		Product prod = new Product("Soafps", randomNumber, QuantityType.nos, null, price);
 
 		assertDoesNotThrow(() -> {
 			productService.create(prod);
@@ -38,8 +51,19 @@ public class TestCreateProduct {
 	@Order(2)
 	public void testCreateProductWithValidPrice() {
 
+		 int min = 1; // Minimum value for the random number
+	        int max = 2000; // Maximum value for the random number
+	        int numberOfRandomNumbers = 100; // Set the number of random numbers you want to generate
+
+	        Random rand = new Random();
+	        int randomNumber = 0;
+	        for (int i = 0; i < numberOfRandomNumbers; i++) {
+	             randomNumber = rand.nextInt(max - min + 1) + min;
+	           
+	        }
+		
 		Price price = new Price(30, 1, 0);
-		Product prod = new Product("VelLlam", 7661, QuantityType.g, null, price);
+		Product prod = new Product("VelLlam", randomNumber, QuantityType.g, null, price);
 
 		assertDoesNotThrow(() -> {
 			productService.create(prod);
@@ -149,7 +173,7 @@ public class TestCreateProduct {
 	public void testCreateProductWithExistingProductDetails() {
 
 		Price price = new Price(1200, 1, 0);
-		Product prod = new Product("Ricce", 1000, QuantityType.g, "Pachai Rice", price);
+		Product prod = new Product("Choculate", 15, QuantityType.nos, "Pachai Rice", price);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			productService.create(prod);
@@ -182,9 +206,21 @@ public class TestCreateProduct {
 	@Test
 	@Order(11)
 	public void testCreateProductWithInvalidMrp() {
+		
+		 int min = 1; // Minimum value for the random number
+	        int max = 10000; // Maximum value for the random number
+	        int numberOfRandomNumbers = 100; // Set the number of random numbers you want to generate
+
+	        Random rand = new Random();
+	        int randomNumber = 0;
+	        for (int i = 0; i < numberOfRandomNumbers; i++) {
+	             randomNumber = rand.nextInt(max - min + 1) + min;
+	           
+	        }
+	
 
 		Price price = new Price(-1, 1, 0);
-		Product prod = new Product("NNkotes", 71, QuantityType.nos, null, price);
+		Product prod = new Product("NNkotes", randomNumber, QuantityType.nos, null, price);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			productService.create(prod);
@@ -199,9 +235,21 @@ public class TestCreateProduct {
 	@Test
 	@Order(12)
 	public void testCreateProductWithInvalidTax() {
+		
+		 int min = 1; // Minimum value for the random number
+	        int max = 10000; // Maximum value for the random number
+	        int numberOfRandomNumbers = 100; // Set the number of random numbers you want to generate
+
+	        Random rand = new Random();
+	        int randomNumber = 0;
+	        for (int i = 0; i < numberOfRandomNumbers; i++) {
+	             randomNumber = rand.nextInt(max - min + 1) + min;
+	           
+	        }
+		
 
 		Price price = new Price(100, -1, 1);
-		Product prod = new Product("BooooeooouFooook", 13, QuantityType.g, "StoRy Book", price);
+		Product prod = new Product("BooooeooouFooook", randomNumber, QuantityType.g, "StoRy Book", price);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			productService.create(prod);
@@ -216,9 +264,20 @@ public class TestCreateProduct {
 	@Test
 	@Order(13)
 	public void testCreateProductWithInvalidDiscount() {
+		
+		 int min = 1; // Minimum value for the random number
+	        int max = 10000; // Maximum value for the random number
+	        int numberOfRandomNumbers = 100; // Set the number of random numbers you want to generate
+
+	        Random rand = new Random();
+	        int randomNumber = 0;
+	        for (int i = 0; i < numberOfRandomNumbers; i++) {
+	             randomNumber = rand.nextInt(max - min + 1) + min;
+	           
+	        }
 
 		Price price = new Price(100, 1, -1);
-		Product prod = new Product("Basmati RRRice", 144, QuantityType.g, "BasmathiArisi", price);
+		Product prod = new Product("Basmati RRRice", randomNumber, QuantityType.g, "BasmathiArisi", price);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			productService.create(prod);

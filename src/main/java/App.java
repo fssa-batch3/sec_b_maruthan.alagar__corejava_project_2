@@ -1,6 +1,7 @@
-//import java.util.ArrayList;
-//import java.util.List;
-//
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 //import in.fssa.mambilling.Exception.PersistanceException;
 //import in.fssa.mambilling.Exception.ServiceException;
 //import in.fssa.mambilling.Exception.ValidationException;
@@ -12,9 +13,9 @@
 //import in.fssa.mambilling.service.PriceService;
 //import in.fssa.mambilling.service.ProductService;
 //import in.fssa.mambilling.service.UserService;
-//
-//public class App {
-//	public static void main(String[] args) {
+
+public class App {
+	public static void main(String[] args) {
 //
 //		ProductService ps = new ProductService();
 //		PriceService priceService = new PriceService();
@@ -64,6 +65,34 @@
 //		} catch (ValidationException e) {
 //			e.printStackTrace();
 //		}
-//
-//	}
-//}
+		
+		 int min = 1; // Minimum value for the random number
+	        int max = 1000; // Maximum value for the random number
+	        int numberOfRandomNumbers = 10; // Set the number of random numbers you want to generate
+
+	        Random rand = new Random();
+	        int randomNumber = 0;
+	        for (int i = 0; i < numberOfRandomNumbers; i++) {
+	             randomNumber = rand.nextInt(max - min + 1) + min;
+	           
+	        }
+	        
+	        System.out.println(randomNumber);
+	        
+	        int min1 = 1; // Minimum value for the random number
+	        int max1 = 1000; // Maximum value for the random number
+	        int numberOfRandomNumbers1 = 10; // Set the number of random numbers you want to generate
+
+	        Random rand1 = new Random();
+	        int randomNumber1 = 0;
+	        for (int i = 0; i < numberOfRandomNumbers1
+	        		; i++) {
+	             randomNumber1 = rand1.nextInt(max1 - min1 + 1) + min1;
+	           
+	        }
+	        
+	        System.out.println(randomNumber1);
+
+
+	}
+}
