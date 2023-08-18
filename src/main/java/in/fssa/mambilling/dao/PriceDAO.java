@@ -8,12 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import in.fssa.mambilling.Exception.PersistanceException;
+import in.fssa.mambilling.interfaces.PriceInterface;
 import in.fssa.mambilling.model.Price;
 import in.fssa.mambilling.model.Product;
 import in.fssa.mambilling.model.Product.QuantityType;
 import in.fssa.mambilling.util.ConnectionUtil;
 
-public class PriceDAO {
+public class PriceDAO implements PriceInterface {
 	/**
 	 * 
 	 * @param newPrice
@@ -114,5 +115,29 @@ public class PriceDAO {
 		}
 		return priceList;
 
+	}
+
+	@Override
+	public void create(Price t) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void update(int id, Price t) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void delete(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Price findById(int id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
