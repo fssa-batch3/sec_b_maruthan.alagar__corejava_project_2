@@ -200,7 +200,7 @@ public class TestUpdateProduct {
 		Product prod = new Product("RiXce", 1, null, "Arisi", price);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
-			productService.update(prod,2);
+			productService.update(prod,12);
 		});
 
 		String expectedMessage = "Invalid Product Quantity Type";
