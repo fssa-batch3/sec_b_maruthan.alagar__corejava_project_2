@@ -1,4 +1,4 @@
-use mam_billing;
+use maruthan_alagar_corejava_projct;
 
 
 CREATE TABLE IF NOT EXISTS products (
@@ -53,7 +53,7 @@ INSERT INTO users (name, phone_number, email,address) VALUES
 create TABLE IF NOT EXISTS bill (
   `id` int PRIMARY KEY auto_increment not null,
   timestamp timestamp DEFAULT  current_timestamp not null,
-	 user_id INT unique not null,
+	 user_id INT not null,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
@@ -64,30 +64,27 @@ INSERT INTO bill (user_id) VALUES
 (4),
 (5);
 
-CREATE TABLE IF NOT EXISTS bill_details (
+CREATE TABLE IF NOT EXISTS bill_items (
   `id` int PRIMARY KEY auto_increment not null,
-   bill_id INT unique not null,
-   product_id INT unique not null,
-   price_id INT unique not null,
+   bill_id INT not null,
+   product_id INT not null,
+   price_id INT not null,
    quantity int not null,
-   quantity_type enum("g","ml","nos"),
     FOREIGN KEY (bill_id) REFERENCES bill(id),
     FOREIGN KEY (product_id) REFERENCES products(id),
     FOREIGN KEY (price_id) REFERENCES price(id)
 );
 
-INSERT INTO bill_details (bill_id,product_id,price_id,quantity,quantity_type) VALUES
-(1,1,1,100,'g'),
-(2,2,2,100,'g'),
-(3,3,3,100,'ml'),
-(4,4,4,100,'nos'),
-(5,5,5,100,'nos');
+INSERT INTO bill_items (bill_id,product_id,price_id,quantity) VALUES
+(1,1,1,100),
+(2,2,2,100),
+(3,3,3,100),
+(4,4,4,100),
+(5,5,5,100);
 
 
 Select * from users;
 Select * from products;
 Select * from price;
 Select * from bill;
-Select * from bill_details;
-
-
+Select * from bill_items;

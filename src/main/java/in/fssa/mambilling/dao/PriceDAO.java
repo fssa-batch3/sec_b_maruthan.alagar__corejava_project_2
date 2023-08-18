@@ -60,7 +60,7 @@ public class PriceDAO {
 			ps.executeUpdate();
 
 			System.out.println("Price Successfully Updated :)");
-
+ 
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new PersistanceException(e.getMessage());

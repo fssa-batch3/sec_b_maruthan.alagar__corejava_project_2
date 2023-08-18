@@ -19,7 +19,7 @@ public class TestUpdateProduct {
 	public void testUpdateProductWithValidData() {
 
 		Price price = new Price(6, 1, 0);
-		Product prod = new Product("Breads", 1090, QuantityType.nos, null, price);
+		Product prod = new Product("Breads", 1470, QuantityType.nos, null, price);
 
 		assertDoesNotThrow(() -> {
 			productService.update(prod, 1);
@@ -170,7 +170,7 @@ public class TestUpdateProduct {
 	public void testUpdateProductWithValidPrice() {
 
 		Price price = new Price(1200, 1, 0);
-		Product prod = new Product("milk", 500, QuantityType.ml, "Arisi", price);
+		Product prod = new Product("milkss", 500, QuantityType.ml, "Arisi", price);
 
 		assertDoesNotThrow(() -> {
 			productService.update(prod,3);
@@ -181,7 +181,7 @@ public class TestUpdateProduct {
 	@Test
 	public void testUpdateProductWithPriceNull() {
 
-		Product prod = new Product("Rice", 1, QuantityType.g, "Arisi", null);
+		Product prod = new Product("Rice", 81, QuantityType.g, "Arisi", null);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			productService.update(prod, 3);
