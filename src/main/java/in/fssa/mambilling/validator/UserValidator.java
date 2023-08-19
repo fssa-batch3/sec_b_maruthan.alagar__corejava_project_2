@@ -9,11 +9,16 @@ import in.fssa.mambilling.dao.UserDAO;
 import in.fssa.mambilling.model.User;
 import in.fssa.mambilling.util.StringUtil;
 
+/**
+ * The UserValidator class provides methods for validating user-related
+ * operations.
+ */
 public class UserValidator {
 	/**
-	 * 
-	 * @param newUser
-	 * @throws ValidationException
+	 * Validates the creation of a new user.
+	 *
+	 * @param newUser The new user to validate.
+	 * @throws ValidationException If any validation errors are encountered.
 	 */
 	public static void validate(User newUser) throws ValidationException {
 
@@ -44,11 +49,13 @@ public class UserValidator {
 		}
 
 	}
+
 	/**
-	 * 
-	 * @param phoneNumber
-	 * @param newUser
-	 * @throws ValidationException
+	 * Validates the update of an existing user.
+	 *
+	 * @param phoneNumber The phone number of the user being updated.
+	 * @param newUser     The updated user data.
+	 * @throws ValidationException If any validation errors are encountered.
 	 */
 	public static void validateUpdate(long phoneNumber, User newUser) throws ValidationException {
 
@@ -92,11 +99,14 @@ public class UserValidator {
 		}
 
 	}
+
 	/**
-	 * 
-	 * @param phoneNumber
-	 * @param inputName
-	 * @throws ValidationException
+	 * Validates a phone number.
+	 *
+	 * @param phoneNumber The phone number to validate.
+	 * @param inputName   The name of the input (e.g., "Phone Number") for error
+	 *                    messages.
+	 * @throws ValidationException If the phone number is invalid.
 	 */
 	public static void validatePhoneNumber(long phoneNumber, String inputName) throws ValidationException {
 		String regexPattern = "^[6-9]\\d{9}$";
@@ -108,11 +118,13 @@ public class UserValidator {
 			throw new ValidationException(inputName.concat(" doesn't match the Pattern"));
 		}
 	}
+
 	/**
-	 * 
-	 * @param address
-	 * @param inputName
-	 * @throws ValidationException
+	 * Validates an address.
+	 *
+	 * @param address   The address to validate.
+	 * @param inputName The name of the input (e.g., "Address") for error messages.
+	 * @throws ValidationException If the address is invalid.
 	 */
 	public static void ValidateAddress(String address, String inputName) throws ValidationException {
 		if ("".equals(address.trim())) {
@@ -131,11 +143,13 @@ public class UserValidator {
 		}
 
 	}
+
 	/**
-	 * 
-	 * @param email
-	 * @param inputName
-	 * @throws ValidationException
+	 * Validates an email address.
+	 *
+	 * @param email     The email address to validate.
+	 * @param inputName The name of the input (e.g., "Email") for error messages.
+	 * @throws ValidationException If the email address is invalid.
 	 */
 	public static void ValidateEmail(String email, String inputName) throws ValidationException {
 
@@ -155,6 +169,19 @@ public class UserValidator {
 		if (!matcher.matches()) {
 			throw new ValidationException(inputName.concat(" doesn't match the Pattern"));
 		}
+	}
+
+	/**
+	 * Validates a user ID.
+	 *
+	 * @param id The ID of the user to validate.
+	 * @throws ValidationException If the user ID is invalid.
+	 */
+	public static void validateUserId(int id) throws ValidationException {
+		if (id <= 0) {
+			throw new ValidationException("Invalid User ID");
+		}
+
 	}
 
 }

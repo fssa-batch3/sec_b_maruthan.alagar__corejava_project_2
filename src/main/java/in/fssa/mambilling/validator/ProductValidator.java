@@ -6,11 +6,16 @@ import in.fssa.mambilling.dao.ProductDAO;
 import in.fssa.mambilling.model.Product;
 import in.fssa.mambilling.util.StringUtil;
 
+/**
+ * The ProductValidator class provides methods for validating product-related
+ * operations.
+ */
 public class ProductValidator {
 	/**
-	 * 
-	 * @param newProduct
-	 * @throws ValidationException
+	 * Validates the creation of a new product.
+	 *
+	 * @param newProduct The new product to validate.
+	 * @throws ValidationException If any validation errors are encountered.
 	 */
 	public static void validateCreate(Product newProduct) throws ValidationException {
 
@@ -44,11 +49,13 @@ public class ProductValidator {
 		}
 
 	}
+
 	/**
-	 * 
-	 * @param newProduct
-	 * @param id
-	 * @throws ValidationException
+	 * Validates the update of an existing product.
+	 *
+	 * @param newProduct The updated product data.
+	 * @param id         The ID of the product being updated.
+	 * @throws ValidationException If any validation errors are encountered.
 	 */
 	public static void validateUpdate(Product newProduct, int id) throws ValidationException {
 
@@ -88,6 +95,19 @@ public class ProductValidator {
 
 		} catch (PersistanceException e) {
 			throw new ValidationException("Failed to Check product is exists or not in update");
+		}
+
+	}
+
+	/**
+	 * Validates a product ID.
+	 *
+	 * @param id The ID of the product to validate.
+	 * @throws ValidationException If the product ID is invalid.
+	 */
+	public static void validateProductId(int id) throws ValidationException {
+		if (id < 1) {
+			throw new ValidationException("Invalid Product ID");
 		}
 
 	}

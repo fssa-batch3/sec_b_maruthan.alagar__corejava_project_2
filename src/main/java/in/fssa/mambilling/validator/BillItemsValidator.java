@@ -1,40 +1,67 @@
-//package in.fssa.mambilling.validator;
-//
-//import java.util.List;
-//
-//import in.fssa.mambilling.Exception.PersistanceException;
-//import in.fssa.mambilling.Exception.ValidationException;
-//import in.fssa.mambilling.dao.BillDAO;
-//import in.fssa.mambilling.dao.UserDAO;
-//import in.fssa.mambilling.model.BillItems;
-//import in.fssa.mambilling.model.User;
-//
-//public class BillItemsValidator {
-//	
-//	public static void validate(int billId , List<BillItems> billItems) throws ValidationException {
-//
-//		if (billId < 1) {
-//			throw new ValidationException("Invalid Bill ID");
-//		}
-//		
-//		if(billItems == null) {
-//			throw new ValidationException("Invalid Product Details");
-//		}
-//
-//		BillDAO billdao = new BillDAO();
-//		try {
-//			User existingCheckBill = userdao.findById(id);
-//
-//			if (existingCheckUser == null) {
-//				throw new ValidationException("User Not Exists");
-//			}
-//		} catch (PersistanceException e) {
-//
-//			throw new ValidationException(e.getMessage());
-//		}
-//
-//	}
-//	
-//	
-//
-//}
+package in.fssa.mambilling.validator;
+
+import java.util.List;
+
+import in.fssa.mambilling.Exception.ServiceException;
+import in.fssa.mambilling.Exception.ValidationException;
+import in.fssa.mambilling.model.BillItems;
+import in.fssa.mambilling.model.Price;
+import in.fssa.mambilling.model.Product;
+import in.fssa.mambilling.service.PriceService;
+import in.fssa.mambilling.service.ProductService;
+
+/**
+ * The BillItemsValidator class provides methods for validating bill items.
+ */
+public class BillItemsValidator {
+
+	/**
+	 * Validates a list of bill items for a given bill ID.
+	 *
+	 * @param billId    The ID of the bill to which the items belong.
+	 * @param billItems The list of bill items to validate.
+	 * @throws ValidationException If any validation errors are encountered.
+	 * @throws ServiceException    If there is a service-related issue during
+	 *                             validation.
+	 */
+	public static void validate(int billId, List<BillItems> billItems) throws ValidationException, ServiceException {
+
+		if (billId < 1) {
+			throw new ValidationException("Invalid Bill ID");
+		}
+
+		if (billItems == null) {
+			throw new ValidationException("Invalid Product Details");
+		}
+
+		for (BillItems billItem : billItems) {
+
+			try {
+				ProductService productservice = new ProductService();
+				PriceService priceservice = new PriceService();
+				Product product = productservice.findById(billItem.getProductId());
+				Price price = priceservice.findById(billItem.getPriceId());
+
+				if (product == null) {
+					throw new ValidationException("Product Not found with this ID");
+
+				}
+
+				if (price == null) {
+					throw new ValidationException("Price Not found with this ID");
+
+				}
+			} catch (ServiceException e) {
+				throw new ValidationException(e.getMessage());
+			}
+
+			if (billItem.getQuantity() < 1) {
+				throw new ValidationException(
+						"Invalid product quantity for this product id " + billItem.getProductId());
+			}
+
+		}
+
+	}
+
+}

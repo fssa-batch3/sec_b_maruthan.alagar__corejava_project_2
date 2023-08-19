@@ -11,11 +11,11 @@ is_active boolean default true
 );
 
 INSERT INTO products (product_name, quantity, special_name, quantity_type) VALUES
-('Rice', 500, NULL, 'g'),
-('Sugar', 1000, 'Special Edition', 'g'),
-('Seasame Oil', 1000, NULL, 'ml'),
-('Soap', 5, 'Limited Edition', 'nos'),
-('Choculate', 5, NULL, 'nos');
+('Rice', 5020, NULL, 'g'),
+('Sugar', 10200, 'Special Edition', 'g'),
+('Seasame Oil', 2000, NULL, 'ml'),
+('Soap', 51, 'Limited Edition', 'nos'),
+('Choculate', 15, NULL, 'nos');
 
 CREATE TABLE price (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -88,3 +88,11 @@ Select * from products;
 Select * from price;
 Select * from bill;
 Select * from bill_items;
+
+-- drop table bill_items;
+-- drop table bill;
+-- drop table users;
+-- drop table products;
+-- drop table price;
+
+

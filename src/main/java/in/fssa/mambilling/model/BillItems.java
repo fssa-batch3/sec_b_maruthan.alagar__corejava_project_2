@@ -6,7 +6,15 @@ public class BillItems {
 	private int priceId;
 	private int quantity;
 
+	public BillItems(int productId, int priceId, int quantity) {
+		this.productId = productId;
+		this.priceId = priceId;
+		this.quantity = quantity;
+	}
 
+	public BillItems() {
+
+	}
 
 	public int getProductId() {
 		return productId;
@@ -34,8 +42,7 @@ public class BillItems {
 
 	@Override
 	public String toString() {
-		return "BillDetails [Product Id = " + productId + ", Price Id = " + priceId
-				+ ", Quantity = " + quantity + "]";
+		return "BillDetails [Product Id = " + productId + ", Price Id = " + priceId + ", Quantity = " + quantity + "]";
 	}
 
 }

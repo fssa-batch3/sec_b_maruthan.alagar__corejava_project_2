@@ -9,16 +9,21 @@ import java.util.List;
 
 import in.fssa.mambilling.Exception.PersistanceException;
 import in.fssa.mambilling.model.Price;
-import in.fssa.mambilling.model.Product;
-import in.fssa.mambilling.model.Product.QuantityType;
 import in.fssa.mambilling.util.ConnectionUtil;
 
+/**
+ * The PriceDAO class provides methods for interacting with a database to
+ * perform operations related to product prices.
+ */
 public class PriceDAO {
+
 	/**
-	 * 
-	 * @param newPrice
-	 * @param productID
-	 * @throws PersistanceException
+	 * Creates a new price entry for a product in the database.
+	 *
+	 * @param newPrice  The Price object representing the new price to be created.
+	 * @param productID The ID of the product for which the price is being created.
+	 * @throws PersistanceException If there's an issue with the database connection
+	 *                              or query execution.
 	 */
 	public void create(Price newPrice, int productID) throws PersistanceException {
 		Connection con = null;
@@ -48,10 +53,12 @@ public class PriceDAO {
 	}
 
 	/**
-	 * 
-	 * @param newPrice
-	 * @param productID
-	 * @throws PersistanceException
+	 * Updates the price entry for a product in the database.
+	 *
+	 * @param newPrice  The Price object representing the updated price.
+	 * @param productID The ID of the product for which the price is being updated.
+	 * @throws PersistanceException If there's an issue with the database connection
+	 *                              or query execution.
 	 */
 	public void update(Price newPrice, int productID) throws PersistanceException {
 		Connection con = null;
@@ -71,7 +78,7 @@ public class PriceDAO {
 			ps.executeUpdate();
 
 			System.out.println("Price Successfully Updated :)");
- 
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new PersistanceException(e.getMessage());
@@ -80,10 +87,14 @@ public class PriceDAO {
 			ConnectionUtil.close(con, ps);
 		}
 	}
+
 	/**
-	 * 
-	 * @return
-	 * @throws PersistanceException
+	 * Retrieves a list of all product prices from the database.
+	 *
+	 * @return A List of Price objects representing all product prices in the
+	 *         database.
+	 * @throws PersistanceException If there's an issue with the database connection
+	 *                              or query execution.
 	 */
 	public List<Price> findAll() throws PersistanceException {
 
@@ -112,7 +123,91 @@ public class PriceDAO {
 		} finally {
 			ConnectionUtil.close(con, ps, rs);
 		}
+
 		return priceList;
 
 	}
+
+	/**
+	 * Retrieves the price information for a specific price ID.
+	 *
+	 * @param priceId The ID of the price for which information is being retrieved.
+	 * @return A Price object representing the price information.
+	 * @throws PersistanceException If there's an issue with the database connection
+	 *                              or query execution.
+	 */
+	public Price findById(int priceId) throws PersistanceException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		Price price = null;
+
+		try {
+			String query = "SELECT * FROM price  WHERE id = ? ";
+			con = ConnectionUtil.getConnection();
+			ps = con.prepareStatement(query);
+			ps.setInt(1, priceId);
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				price = new Price();
+				price.setDiscount(rs.getDouble("discount"));
+				price.setMrp(rs.getDouble("mrp"));
+				price.setTax(rs.getDouble("tax"));
+				price.setId(rs.getInt("id"));
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+			throw new PersistanceException(e.getMessage());
+		} finally {
+			ConnectionUtil.close(con, ps, rs);
+		}
+
+		return price;
+	}
+
+	/**
+	 * Retrieves the price information for a specific product ID.
+	 *
+	 * @param productId The ID of the product for which price information is being
+	 *                  retrieved.
+	 * @return A Price object representing the price information for the product.
+	 * @throws PersistanceException If there's an issue with the database connection
+	 *                              or query execution.
+	 */
+	public Price findByProductId(int productId) throws PersistanceException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		Price price = null;
+
+		try {
+			String query = "SELECT * FROM  price  WHERE product_id = ? ";
+			con = ConnectionUtil.getConnection();
+			ps = con.prepareStatement(query);
+			ps.setInt(1, productId);
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				price = new Price();
+
+				price.setId(rs.getInt("id"));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+			throw new PersistanceException(e.getMessage());
+		} finally {
+			ConnectionUtil.close(con, ps, rs);
+		}
+
+		return price;
+	}
+
 }

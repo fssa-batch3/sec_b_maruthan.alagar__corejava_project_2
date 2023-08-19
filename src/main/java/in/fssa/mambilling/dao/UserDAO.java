@@ -11,13 +11,19 @@ import in.fssa.mambilling.Exception.PersistanceException;
 import in.fssa.mambilling.model.User;
 import in.fssa.mambilling.util.ConnectionUtil;
 
+/**
+ * The UserDAO class provides methods for interacting with a database to perform
+ * operations related to user management.
+ */
 
 public class UserDAO {
-	
+
 	/**
-	 * 
-	 * @return
-	 * @throws PersistanceException
+	 * Retrieves a list of all users from the database.
+	 *
+	 * @return A List of User objects representing all users in the database.
+	 * @throws PersistanceException If there's an issue with the database connection
+	 *                              or query execution.
 	 */
 	public List<User> findAll() throws PersistanceException {
 		Connection con = null;
@@ -32,7 +38,8 @@ public class UserDAO {
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
-				User newUser = new User(rs.getString("name"),rs.getString("email"),rs.getLong("phone_number"),rs.getString("address"));
+				User newUser = new User(rs.getString("name"), rs.getString("email"), rs.getLong("phone_number"),
+						rs.getString("address"));
 				userList.add(newUser);
 			}
 		} catch (SQLException e) {
@@ -47,9 +54,11 @@ public class UserDAO {
 	}
 
 	/**
-	 * 
-	 * @param user
-	 * @throws PersistanceException
+	 * Creates a new user entry in the database.
+	 *
+	 * @param user The User object representing the new user to be created.
+	 * @throws PersistanceException If there's an issue with the database connection
+	 *                              or query execution.
 	 */
 	public void create(User user) throws PersistanceException {
 		Connection con = null;
@@ -82,11 +91,15 @@ public class UserDAO {
 		}
 
 	}
+
 	/**
-	 * 
-	 * @param phoneNumber
-	 * @return
-	 * @throws PersistanceException
+	 * Retrieves a user by their phone number.
+	 *
+	 * @param phoneNumber The phone number of the user to be retrieved.
+	 * @return A User object representing the user with the specified phone number,
+	 *         if found, otherwise null.
+	 * @throws PersistanceException If there's an issue with the database connection
+	 *                              or query execution.
 	 */
 	public User findByPhoneNumber(long phoneNumber) throws PersistanceException {
 		Connection con = null;
@@ -108,6 +121,7 @@ public class UserDAO {
 				user.setEmail(rs.getString("email"));
 				user.setPhoneNumber(rs.getLong("phone_number"));
 				user.setAddress(rs.getString("address"));
+				user.setId(rs.getInt("id"));
 			}
 
 		} catch (SQLException e) {
@@ -119,12 +133,14 @@ public class UserDAO {
 
 		return user;
 	}
-	
+
 	/**
-	 * 
-	 * @param phoneNumber
-	 * @param newUser
-	 * @throws PersistanceException
+	 * Updates an existing user entry in the database based on their phone number.
+	 *
+	 * @param phoneNumber The phone number of the user to be updated.
+	 * @param newUser     The User object representing the updated user information.
+	 * @throws PersistanceException If there's an issue with the database connection
+	 *                              or query execution.
 	 */
 	public void update(long phoneNumber, User newUser) throws PersistanceException {
 		Connection con = null;
@@ -138,7 +154,7 @@ public class UserDAO {
 			ps.setLong(2, newUser.getPhoneNumber());
 			ps.setString(3, newUser.getAddress());
 			ps.setString(4, newUser.getEmail());
-			ps.setLong(5 ,phoneNumber);
+			ps.setLong(5, phoneNumber);
 
 			ps.executeUpdate();
 
@@ -152,14 +168,17 @@ public class UserDAO {
 			ConnectionUtil.close(con, ps);
 		}
 
-		
 	}
+
 	/**
-	 * 
-	 * @param userId
-	 * @return
-	 * @throws PersistanceException
+	 * Retrieves user information by their user ID.
+	 *
+	 * @param userId The ID of the user for which information is being retrieved.
+	 * @return A User object representing the user information.
+	 * @throws PersistanceException If there's an issue with the database connection
+	 *                              or query execution.
 	 */
+
 	public User findById(int userId) throws PersistanceException {
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -180,6 +199,7 @@ public class UserDAO {
 				user.setEmail(rs.getString("email"));
 				user.setPhoneNumber(rs.getLong("phone_number"));
 				user.setAddress(rs.getString("address"));
+				user.setId(rs.getInt("id"));
 
 			}
 
@@ -193,8 +213,5 @@ public class UserDAO {
 
 		return user;
 	}
-
-
-
 
 }

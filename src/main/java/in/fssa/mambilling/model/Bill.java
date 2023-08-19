@@ -33,7 +33,7 @@ public class Bill {
 
 	@Override
 	public String toString() {
-		return "Bill [ Time Stamp = " + timeStamp + " , Bill ID = "+billId+ "]";
+		return "Bill [ Time Stamp = " + timeStamp + " , Bill ID = "+billId+ "]"+"\n";
 	}
 
 }

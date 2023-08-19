@@ -22,22 +22,20 @@ public class TestCreateProduct {
 
 	ProductService productService = new ProductService();
 
-	
-
 	@Test
 	@Order(1)
 	public void testCreateProductWithValidData() {
-		
-		 int min = 1; // Minimum value for the random number
-	        int max = 10000; // Maximum value for the random number
-	        int numberOfRandomNumbers = 100; // Set the number of random numbers you want to generate
 
-	        Random rand = new Random();
-	        int randomNumber = 0;
-	        for (int i = 0; i < numberOfRandomNumbers; i++) {
-	             randomNumber = rand.nextInt(max - min + 1) + min;
-	           
-	        }
+		int min = 1; // Minimum value for the random number
+		int max = 10000; // Maximum value for the random number
+		int numberOfRandomNumbers = 100; // Set the number of random numbers you want to generate
+
+		Random rand = new Random();
+		int randomNumber = 0;
+		for (int i = 0; i < numberOfRandomNumbers; i++) {
+			randomNumber = rand.nextInt(max - min + 1) + min;
+
+		}
 
 		Price price = new Price(12, 1, 0);
 		Product prod = new Product("Soafps", randomNumber, QuantityType.nos, null, price);
@@ -47,21 +45,22 @@ public class TestCreateProduct {
 		});
 
 	}
+
 	@Test
 	@Order(2)
 	public void testCreateProductWithValidPrice() {
 
-		 int min = 1; // Minimum value for the random number
-	        int max = 2000; // Maximum value for the random number
-	        int numberOfRandomNumbers = 100; // Set the number of random numbers you want to generate
+		int min = 1; // Minimum value for the random number
+		int max = 2000; // Maximum value for the random number
+		int numberOfRandomNumbers = 100; // Set the number of random numbers you want to generate
 
-	        Random rand = new Random();
-	        int randomNumber = 0;
-	        for (int i = 0; i < numberOfRandomNumbers; i++) {
-	             randomNumber = rand.nextInt(max - min + 1) + min;
-	           
-	        }
-		
+		Random rand = new Random();
+		int randomNumber = 0;
+		for (int i = 0; i < numberOfRandomNumbers; i++) {
+			randomNumber = rand.nextInt(max - min + 1) + min;
+
+		}
+
 		Price price = new Price(30, 1, 0);
 		Product prod = new Product("VelLlam", randomNumber, QuantityType.g, null, price);
 
@@ -185,8 +184,6 @@ public class TestCreateProduct {
 
 	}
 
-	
-
 	@Test
 	@Order(10)
 	public void testCreateProductWithPriceNull() {
@@ -206,18 +203,17 @@ public class TestCreateProduct {
 	@Test
 	@Order(11)
 	public void testCreateProductWithInvalidMrp() {
-		
-		 int min = 1; // Minimum value for the random number
-	        int max = 10000; // Maximum value for the random number
-	        int numberOfRandomNumbers = 100; // Set the number of random numbers you want to generate
 
-	        Random rand = new Random();
-	        int randomNumber = 0;
-	        for (int i = 0; i < numberOfRandomNumbers; i++) {
-	             randomNumber = rand.nextInt(max - min + 1) + min;
-	           
-	        }
-	
+		int min = 1; // Minimum value for the random number
+		int max = 10000; // Maximum value for the random number
+		int numberOfRandomNumbers = 100; // Set the number of random numbers you want to generate
+
+		Random rand = new Random();
+		int randomNumber = 0;
+		for (int i = 0; i < numberOfRandomNumbers; i++) {
+			randomNumber = rand.nextInt(max - min + 1) + min;
+
+		}
 
 		Price price = new Price(-1, 1, 0);
 		Product prod = new Product("NNkotes", randomNumber, QuantityType.nos, null, price);
@@ -235,21 +231,20 @@ public class TestCreateProduct {
 	@Test
 	@Order(12)
 	public void testCreateProductWithInvalidTax() {
-		
-		 int min = 1; // Minimum value for the random number
-	        int max = 10000; // Maximum value for the random number
-	        int numberOfRandomNumbers = 100; // Set the number of random numbers you want to generate
 
-	        Random rand = new Random();
-	        int randomNumber = 0;
-	        for (int i = 0; i < numberOfRandomNumbers; i++) {
-	             randomNumber = rand.nextInt(max - min + 1) + min;
-	           
-	        }
-		
+		int min = 1; // Minimum value for the random number
+		int max = 10000; // Maximum value for the random number
+		int numberOfRandomNumbers = 100; // Set the number of random numbers you want to generate
+
+		Random rand = new Random();
+		int randomNumber = 0;
+		for (int i = 0; i < numberOfRandomNumbers; i++) {
+			randomNumber = rand.nextInt(max - min + 1) + min;
+
+		}
 
 		Price price = new Price(100, -1, 1);
-		Product prod = new Product("BooooeooouFooook", randomNumber, QuantityType.g, "StoRy Book", price);
+		Product prod = new Product("Booo oeoook", randomNumber, QuantityType.g, "StoRy Book", price);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			productService.create(prod);
@@ -264,20 +259,20 @@ public class TestCreateProduct {
 	@Test
 	@Order(13)
 	public void testCreateProductWithInvalidDiscount() {
-		
-		 int min = 1; // Minimum value for the random number
-	        int max = 10000; // Maximum value for the random number
-	        int numberOfRandomNumbers = 100; // Set the number of random numbers you want to generate
 
-	        Random rand = new Random();
-	        int randomNumber = 0;
-	        for (int i = 0; i < numberOfRandomNumbers; i++) {
-	             randomNumber = rand.nextInt(max - min + 1) + min;
-	           
-	        }
+		int min = 1; // Minimum value for the random number
+		int max = 10000; // Maximum value for the random number
+		int numberOfRandomNumbers = 100; // Set the number of random numbers you want to generate
+
+		Random rand = new Random();
+		int randomNumber = 0;
+		for (int i = 0; i < numberOfRandomNumbers; i++) {
+			randomNumber = rand.nextInt(max - min + 1) + min;
+
+		}
 
 		Price price = new Price(100, 1, -1);
-		Product prod = new Product("Basmati RRRice", randomNumber, QuantityType.g, "BasmathiArisi", price);
+		Product prod = new Product("Basmati RRRice", randomNumber, QuantityType.g, "Basmath iArisi", price);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			productService.create(prod);

@@ -6,19 +6,29 @@ import in.fssa.mambilling.Exception.PersistanceException;
 import in.fssa.mambilling.Exception.ValidationException;
 import in.fssa.mambilling.dao.UserDAO;
 import in.fssa.mambilling.model.BillItems;
-import in.fssa.mambilling.model.Product;
 import in.fssa.mambilling.model.User;
 
+/**
+ * The BillValidator class provides methods for validating bill-related
+ * operations.
+ */
 
 public class BillValidator {
 
-	public static void validate(int id , List<BillItems> billItems) throws ValidationException {
+	/**
+	 * Validates a user ID and a list of bill items.
+	 *
+	 * @param id        The ID of the user creating the bill.
+	 * @param billItems The list of bill items to validate.
+	 * @throws ValidationException If any validation errors are encountered.
+	 */
+	public static void validate(int id, List<BillItems> billItems) throws ValidationException {
 
 		if (id < 1) {
 			throw new ValidationException("Invalid User ID");
 		}
-		
-		if(billItems == null) {
+
+		if (billItems == null) {
 			throw new ValidationException("Invalid Product Details");
 		}
 
@@ -32,6 +42,19 @@ public class BillValidator {
 		} catch (PersistanceException e) {
 
 			throw new ValidationException(e.getMessage());
+		}
+
+	}
+
+	/**
+	 * Validates a bill ID.
+	 *
+	 * @param id The ID of the bill to validate.
+	 * @throws ValidationException If the bill ID is invalid.
+	 */
+	public static void validateBillId(int id) throws ValidationException {
+		if (id < 1) {
+			throw new ValidationException("Invalid Bill ID");
 		}
 
 	}

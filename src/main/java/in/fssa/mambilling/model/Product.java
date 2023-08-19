@@ -6,6 +6,15 @@ public class Product {
 	private QuantityType quantityType;
 	private String specialName;
 	private Price price;
+	private int id;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public Price getPrice() {
 		return price;

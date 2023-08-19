@@ -1,55 +1,142 @@
-//package in.fssa.mambilling.service;
-//
-//import java.util.List;
-//
-//import in.fssa.mambilling.Exception.PersistanceException;
-//import in.fssa.mambilling.Exception.ServiceException;
-//import in.fssa.mambilling.Exception.ValidationException;
-//import in.fssa.mambilling.dao.BillDAO;
-//import in.fssa.mambilling.model.BillItems;
-//import in.fssa.mambilling.model.Product;
-//import in.fssa.mambilling.validator.BillValidator;
-//import in.fssa.mambilling.validator.ProductValidator;
-//
-//public class BillService {
-//
-//	BillDAO billdao = new BillDAO();
-//
-//	public void create(int userId  , ) throws ValidationException, ServiceException {
-//
-//		try {
-//			BillValidator.validate(userId , products);
-//			billdao.create(userId);
-//		} catch (PersistanceException e) {
-//			throw new ServiceException("Failed to create Bill");
-//		}
-//
-//	}
-//	
-//	
-////	public void create(int userId , List<BillItems> billItems) throws ValidationException, ServiceException {
-////
-////		int billId = 0;
-////		try {
-////			BillValidator.validate(userId , billItems);
-////			billId = billdao.create(userId);
-////		} catch (PersistanceException e) {
-////			throw new ServiceException("Failed to create Bill");
-////		}
-////
-////		try {
-////			System.out.println(billId);
-////			priceservice.create(newProduct.getPrice(), productId);
-////		} catch (ServiceException e) {
-////			System.out.println("Failed to create product price");
-////			removeRow(productId);
-////
-////		} catch (ValidationException e) {
-////			removeRow(productId);
-////			throw new ValidationException(e.getMessage());
-////
-////		}
-////
-////	}
-//
-//}
+package in.fssa.mambilling.service;
+
+import java.util.List;
+
+import in.fssa.mambilling.Exception.PersistanceException;
+import in.fssa.mambilling.Exception.ServiceException;
+import in.fssa.mambilling.Exception.ValidationException;
+import in.fssa.mambilling.dao.BillDAO;
+import in.fssa.mambilling.model.Bill;
+import in.fssa.mambilling.model.BillItems;
+import in.fssa.mambilling.model.User;
+import in.fssa.mambilling.validator.BillValidator;
+
+/**
+ * The BillService class provides a service layer for managing bills, including
+ * creation, retrieval, and removal operations, as well as fetching lists of
+ * bills.
+ */
+public class BillService {
+
+	BillDAO billdao = new BillDAO();
+	BillItemsService billitemsservice = new BillItemsService();
+
+	/**
+	 * Creates a new bill and associates bill items with it.
+	 *
+	 * @param userId    The ID of the user for whom the bill is being created.
+	 * @param billItems A list of BillItems representing the items to be associated
+	 *                  with the bill.
+	 * @throws ValidationException If validation of input parameters fails.
+	 * @throws ServiceException    If there's an issue with the database operation
+	 *                             or a service-level error occurs.
+	 */
+	public void create(int userId, List<BillItems> billItems) throws ValidationException, ServiceException {
+
+		int billId = 0;
+		try {
+			BillValidator.validate(userId, billItems);
+			billId = billdao.create(userId);
+		} catch (PersistanceException e) {
+			throw new ServiceException(e.getMessage());
+		}
+
+		try {
+			System.out.println(billId);
+			billitemsservice.create(billId, billItems);
+		} catch (ServiceException e) {
+			System.out.println(e.getMessage());
+			removeRow(billId);
+
+		} catch (ValidationException e) {
+			System.out.println(e.getMessage());
+			removeRow(billId);
+
+		}
+
+	}
+
+	/**
+	 * Removes a bill and its associated items from the database.
+	 *
+	 * @param billId The ID of the bill to be removed.
+	 * @throws ServiceException    If there's an issue with the database operation
+	 *                             or a service-level error occurs.
+	 * @throws ValidationException If validation of input parameters fails.
+	 */
+	public void removeRow(int billId) throws ServiceException, ValidationException {
+
+		try {
+			BillValidator.validateBillId(billId);
+			billdao.dropRow(billId);
+		} catch (PersistanceException e) {
+			throw new ServiceException("Failed to create Bill Items");
+		}
+
+	}
+
+	/**
+	 * Retrieves a list of all bills from the database.
+	 *
+	 * @return A List of Bill objects representing all bills in the database.
+	 * @throws ServiceException If there's an issue with the database operation or a
+	 *                          service-level error occurs.
+	 */
+	public List<Bill> getAllbills() throws ServiceException {
+
+		try {
+			return billdao.findAll();
+		} catch (PersistanceException e) {
+			throw new ServiceException(e.getMessage());
+		}
+
+	}
+
+	/**
+	 * Retrieves a list of all recent bills from the database.
+	 *
+	 * @return A List of Bill objects representing recent bills.
+	 * @throws ServiceException If there's an issue with the database operation or a
+	 *                          service-level error occurs.
+	 */
+	public List<Bill> getAllRecentbills() throws ServiceException {
+
+		try {
+			return billdao.findAllRecentBills();
+		} catch (PersistanceException e) {
+			throw new ServiceException(e.getMessage());
+		}
+
+	}
+
+	/**
+	 * Retrieves a list of all bills associated with a user's phone number.
+	 *
+	 * @param phoneNumber The phone number of the user for whom bills are being
+	 *                    retrieved.
+	 * @return A List of Bill objects representing the user's bills.
+	 * @throws ValidationException If validation of input parameters fails.
+	 * @throws ServiceException    If there's an issue with the database operation
+	 *                             or a service-level error occurs.
+	 */
+	public List<Bill> getAllUserbills(long phoneNumber) throws ServiceException, ValidationException {
+
+		try {
+
+			UserService userservice = new UserService();
+
+			User user = userservice.getByPhoneNumber(phoneNumber);
+
+			if (user == null) {
+				throw new ServiceException("User Not Found or Invalid Phone Number");
+			}
+			BillValidator.validateBillId(user.getId());
+
+			return billdao.findByUserId(user.getId());
+		} catch (PersistanceException e) {
+			throw new ServiceException(e.getMessage());
+		}
+
+	}
+
+}
