@@ -38,7 +38,7 @@ public class StringUtil {
 	 */
 	public static void rejectIfInvalidName(String name, String nameInput) throws ValidationException {
 
-		String regexPattern = "[A-Za-z]+(\\s[A-Za-z]+)*";
+		String regexPattern = "^[a-zA-Z ]+$";
 
 		// Create a Pattern object
 		Pattern pattern = Pattern.compile(regexPattern);

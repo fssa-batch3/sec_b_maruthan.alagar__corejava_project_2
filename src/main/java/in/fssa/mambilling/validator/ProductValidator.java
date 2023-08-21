@@ -45,7 +45,7 @@ public class ProductValidator {
 				throw new ValidationException("Product Already Exists");
 			}
 		} catch (PersistanceException e) {
-			throw new ValidationException("Failed to Check product is exists or not in create");
+			throw new ValidationException("Failed to check if the product exists during create.");
 		}
 
 	}
@@ -94,7 +94,7 @@ public class ProductValidator {
 			}
 
 		} catch (PersistanceException e) {
-			throw new ValidationException("Failed to Check product is exists or not in update");
+			throw new ValidationException("Failed to check if the product exists during update.");
 		}
 
 	}
