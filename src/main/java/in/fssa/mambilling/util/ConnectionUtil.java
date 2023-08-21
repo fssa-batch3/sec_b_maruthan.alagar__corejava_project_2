@@ -46,7 +46,6 @@ public class ConnectionUtil {
 
 		} catch (ClassNotFoundException | SQLException e) {
 
-			e.printStackTrace();
 			throw new SQLException(e);
 		}
 
@@ -70,7 +69,8 @@ public class ConnectionUtil {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
+
 		}
 
 	}
@@ -95,7 +95,7 @@ public class ConnectionUtil {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 
 	}
