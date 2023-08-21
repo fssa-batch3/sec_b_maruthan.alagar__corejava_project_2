@@ -71,8 +71,8 @@ public class TestUpdateProduct {
 	public void testUpdateProductWithNotExistingProductDetails() {
 		
 		 int min = 1; // Minimum value for the random number
-	        int max = 2000; // Maximum value for the random number
-	        int numberOfRandomNumbers = 100; // Set the number of random numbers you want to generate
+	        int max = 20009; // Maximum value for the random number
+	        int numberOfRandomNumbers = 1000; // Set the number of random numbers you want to generate
 
 	        Random rand = new Random();
 	        int randomNumber = 0;
@@ -88,7 +88,7 @@ public class TestUpdateProduct {
 		
 		
 		Exception exception = assertThrows(ValidationException.class, () -> {
-			productService.update(prod, 95);
+			productService.update(prod, 12225);
 		});
 		String expectedMessage = "Product Doesn't Exists";
 		String actualMessage = exception.getMessage();
