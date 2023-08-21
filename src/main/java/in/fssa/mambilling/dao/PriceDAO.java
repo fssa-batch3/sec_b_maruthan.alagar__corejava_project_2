@@ -44,7 +44,6 @@ public class PriceDAO {
 			System.out.println("Price Successfully Created :)");
 
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new PersistanceException(e.getMessage());
 
 		} finally {
@@ -80,7 +79,6 @@ public class PriceDAO {
 			System.out.println("Price Successfully Updated :)");
 
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new PersistanceException(e.getMessage());
 
 		} finally {
@@ -117,8 +115,6 @@ public class PriceDAO {
 				priceList.add(newPrice);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
 			throw new PersistanceException(e.getMessage());
 		} finally {
 			ConnectionUtil.close(con, ps, rs);
@@ -160,8 +156,6 @@ public class PriceDAO {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
 			throw new PersistanceException(e.getMessage());
 		} finally {
 			ConnectionUtil.close(con, ps, rs);
@@ -200,8 +194,6 @@ public class PriceDAO {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
 			throw new PersistanceException(e.getMessage());
 		} finally {
 			ConnectionUtil.close(con, ps, rs);

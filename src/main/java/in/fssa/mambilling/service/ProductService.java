@@ -87,7 +87,6 @@ public class ProductService {
 		try {
 			return productdao.findAll();
 		} catch (PersistanceException e) {
-			e.printStackTrace();
 			throw new ServiceException("Failed to get Product Details");
 		}
 

@@ -43,8 +43,6 @@ public class UserDAO {
 				userList.add(newUser);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
 			throw new PersistanceException(e.getMessage());
 		} finally {
 			ConnectionUtil.close(con, ps, rs);
@@ -78,7 +76,6 @@ public class UserDAO {
 			System.out.println("User Successfully Created :)");
 
 		} catch (SQLException e) {
-			// e.printStackTrace();
 			if (e.getMessage().contains("Duplicate entry")) {
 				throw new PersistanceException("Duplicate constraint");
 			} else {
@@ -125,7 +122,6 @@ public class UserDAO {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new PersistanceException(e.getMessage());
 		} finally {
 			ConnectionUtil.close(con, ps, rs);
@@ -161,8 +157,7 @@ public class UserDAO {
 			System.out.println("User Successfully Updated :)");
 
 		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
+
 			throw new PersistanceException(e.getMessage());
 		} finally {
 			ConnectionUtil.close(con, ps);
@@ -204,8 +199,6 @@ public class UserDAO {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
 			throw new PersistanceException(e.getMessage());
 		} finally {
 			ConnectionUtil.close(con, ps, rs);

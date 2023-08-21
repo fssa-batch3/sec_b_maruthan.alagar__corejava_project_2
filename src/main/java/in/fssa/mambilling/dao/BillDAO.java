@@ -50,8 +50,6 @@ public class BillDAO {
 				billList.add(newbill);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
 			throw new PersistanceException(e.getMessage());
 		} finally {
 			ConnectionUtil.close(con, ps, rs);
@@ -91,7 +89,6 @@ public class BillDAO {
 			System.out.println("Bill Successfully Created :)");
 
 		} catch (SQLException e) {
-			e.printStackTrace();
 			if (e.getMessage().contains("Duplicate entry")) {
 				throw new PersistanceException("Duplicate constraint");
 			} else {
@@ -129,8 +126,6 @@ public class BillDAO {
 			System.out.println("Bill Successfully Deleted :)");
 
 		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
 			throw new PersistanceException(e.getMessage());
 		} finally {
 			ConnectionUtil.close(con, ps);
@@ -171,8 +166,6 @@ public class BillDAO {
 				recentBillList.add(newbill);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
 			throw new PersistanceException(e.getMessage());
 		} finally {
 			ConnectionUtil.close(con, ps, rs);
@@ -216,8 +209,6 @@ public class BillDAO {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
 			throw new PersistanceException(e.getMessage());
 		} finally {
 			ConnectionUtil.close(con, ps, rs);

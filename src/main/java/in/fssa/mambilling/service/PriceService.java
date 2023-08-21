@@ -35,7 +35,6 @@ public class PriceService {
 			PriceValidator.validate(newPrice);
 			pricedao.create(newPrice, productId);
 		} catch (PersistanceException e) {
-			e.printStackTrace();
 			throw new ServiceException("Failed to create Price");
 		}
 
@@ -57,7 +56,6 @@ public class PriceService {
 			pricedao.update(newPrice, productId);
 
 		} catch (PersistanceException e) {
-			e.printStackTrace();
 			throw new ServiceException("Failed to update Price");
 		}
 
@@ -74,7 +72,6 @@ public class PriceService {
 		try {
 			return pricedao.findAll();
 		} catch (PersistanceException e) {
-			e.printStackTrace();
 			throw new ServiceException(e.getMessage());
 		}
 	}

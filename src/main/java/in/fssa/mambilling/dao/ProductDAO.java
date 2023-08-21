@@ -47,8 +47,6 @@ public class ProductDAO {
 				productList.add(newProduct);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
 			throw new PersistanceException(e.getMessage());
 		} finally {
 			ConnectionUtil.close(con, ps, rs);
@@ -92,7 +90,6 @@ public class ProductDAO {
 			System.out.println("Product Successfully Created :)");
 
 		} catch (SQLException e) {
-			e.printStackTrace();
 			if (e.getMessage().contains("Duplicate entry")) {
 				throw new PersistanceException("Duplicate constraint");
 			} else {
@@ -134,8 +131,6 @@ public class ProductDAO {
 			System.out.println("Product Successfully Updated :)");
 
 		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
 			throw new PersistanceException(e.getMessage());
 		} finally {
 			ConnectionUtil.close(con, ps);
@@ -181,8 +176,6 @@ public class ProductDAO {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
 			throw new PersistanceException(e.getMessage());
 		} finally {
 			ConnectionUtil.close(con, ps, rs);
@@ -227,8 +220,6 @@ public class ProductDAO {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
 			throw new PersistanceException(e.getMessage());
 		} finally {
 			ConnectionUtil.close(con, ps, rs);
@@ -275,8 +266,6 @@ public class ProductDAO {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
 			throw new PersistanceException(e.getMessage());
 		} finally {
 			ConnectionUtil.close(con, ps, rs);
@@ -310,8 +299,6 @@ public class ProductDAO {
 			System.out.println("Product Successfully Deactivated :)");
 
 		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
 			throw new PersistanceException(e.getMessage());
 		} finally {
 			ConnectionUtil.close(con, ps);
@@ -342,8 +329,6 @@ public class ProductDAO {
 			System.out.println("Product Successfully Deleted :)");
 
 		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
 			throw new PersistanceException(e.getMessage());
 		} finally {
 			ConnectionUtil.close(con, ps);
@@ -384,8 +369,7 @@ public class ProductDAO {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
+
 			throw new PersistanceException(e.getMessage());
 		} finally {
 			ConnectionUtil.close(con, ps, rs);
