@@ -1,4 +1,4 @@
-package in.fssa.mambilling.Exception;
+package in.fssa.mambilling.exception;
 
 public class ValidationException extends Exception {
 

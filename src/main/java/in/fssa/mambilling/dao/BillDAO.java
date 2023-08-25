@@ -11,7 +11,7 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
-import in.fssa.mambilling.Exception.PersistanceException;
+import in.fssa.mambilling.exception.PersistanceException;
 import in.fssa.mambilling.model.Bill;
 import in.fssa.mambilling.util.ConnectionUtil;
 
@@ -35,11 +35,11 @@ public class BillDAO {
 
 		List<Bill> billList = null;
 		try {
-			String query = "SELECT * FROM bill";
+			String query = "SELECT timeStamp , id FROM bills";
 			con = ConnectionUtil.getConnection();
 			ps = con.prepareStatement(query);
 			rs = ps.executeQuery();
-			billList = new ArrayList<Bill>();
+			billList = new ArrayList<>();
 			while (rs.next()) {
 
 				Timestamp timestamp = rs.getTimestamp("timeStamp");
@@ -75,7 +75,7 @@ public class BillDAO {
 		int billId = 0;
 
 		try {
-			String billquery = "INSERT INTO bill (user_id) VALUES (?);";
+			String billquery = "INSERT INTO bills (user_id) VALUES (?);";
 			con = ConnectionUtil.getConnection();
 			ps = con.prepareStatement(billquery, java.sql.Statement.RETURN_GENERATED_KEYS);
 			ps.setInt(1, userId);
@@ -89,12 +89,7 @@ public class BillDAO {
 			System.out.println("Bill Successfully Created :)");
 
 		} catch (SQLException e) {
-			if (e.getMessage().contains("Duplicate entry")) {
-				throw new PersistanceException("Duplicate constraint");
-			} else {
-				System.out.println(e.getMessage());
 				throw new PersistanceException(e.getMessage());
-			}
 
 		} finally {
 			ConnectionUtil.close(con, ps, rs);
@@ -115,7 +110,7 @@ public class BillDAO {
 		PreparedStatement ps = null;
 
 		try {
-			String query = "DELETE FROM bill WHERE (id = ?);";
+			String query = "DELETE FROM bills WHERE (id = ?);";
 			con = ConnectionUtil.getConnection();
 			ps = con.prepareStatement(query);
 
@@ -149,12 +144,12 @@ public class BillDAO {
 
 		try {
 
-			String query = "SELECT * FROM bill WHERE timestamp >= NOW() - INTERVAL 10 MINUTE ";
+			String query = "SELECT timeStamp ,id  FROM bills WHERE timestamp >= NOW() - INTERVAL 10 MINUTE ";
 			con = ConnectionUtil.getConnection();
 			ps = con.prepareStatement(query);
 			rs = ps.executeQuery();
 
-			recentBillList = new ArrayList<Bill>();
+			recentBillList = new ArrayList<>();
 
 			while (rs.next()) {
 				Timestamp timestamp = rs.getTimestamp("timeStamp");
@@ -190,13 +185,13 @@ public class BillDAO {
 		List<Bill> userBillList = null;
 
 		try {
-			String query = "SELECT * FROM bill  WHERE user_id = ? ";
+			String query = "SELECT timeStamp, id FROM bills  WHERE user_id = ? ";
 			con = ConnectionUtil.getConnection();
 			ps = con.prepareStatement(query);
 			ps.setInt(1, userId);
 			rs = ps.executeQuery();
 
-			userBillList = new ArrayList<Bill>();
+			userBillList = new ArrayList<>();
 
 			while (rs.next()) {
 				Timestamp timestamp = rs.getTimestamp("timeStamp");

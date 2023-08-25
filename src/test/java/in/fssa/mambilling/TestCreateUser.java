@@ -8,7 +8,7 @@ import java.util.Random;
 
 import org.junit.jupiter.api.Test;
 
-import in.fssa.mambilling.Exception.ValidationException;
+import in.fssa.mambilling.exception.ValidationException;
 import in.fssa.mambilling.model.User;
 import in.fssa.mambilling.service.UserService;
 
@@ -36,7 +36,7 @@ public class TestCreateUser {
 		newUser.setAddress("Pudukkottai");
 
 		assertDoesNotThrow(() -> {
-			userService.create(newUser);
+			userService.createUser(newUser);
 		});
 
 	}
@@ -45,7 +45,7 @@ public class TestCreateUser {
 	public void testCreateUserWithInvalidData() {
 		UserService userService = new UserService();
 		Exception exception = assertThrows(ValidationException.class, () -> {
-			userService.create(null);
+			userService.createUser(null);
 		});
 		String expectedMessage = "Invalid User Input";
 		String actualMessage = exception.getMessage();
@@ -75,7 +75,7 @@ public class TestCreateUser {
 		newUser.setAddress("Pudukkottai");
 
 		assertDoesNotThrow(() -> {
-			userService.create(newUser);
+			userService.createUser(newUser);
 		});
 
 	}
@@ -104,7 +104,7 @@ public class TestCreateUser {
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 
-			userService.create(newUser);
+			userService.createUser(newUser);
 
 		});
 		String expectedMessage = "Email cannot be Empty";
@@ -137,7 +137,7 @@ public class TestCreateUser {
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 
-			userService.create(newUser);
+			userService.createUser(newUser);
 
 		});
 		String expectedMessage = "Email doesn't match the Pattern";
@@ -161,7 +161,7 @@ public class TestCreateUser {
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 
-			userService.create(newUser);
+			userService.createUser(newUser);
 
 		});
 		String expectedMessage = "Phone Number doesn't match the Pattern";
@@ -183,7 +183,7 @@ public class TestCreateUser {
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 
-			userService.create(newUser);
+			userService.createUser(newUser);
 
 		});
 		String expectedMessage = "Phone Number doesn't match the Pattern";
@@ -205,7 +205,7 @@ public class TestCreateUser {
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 
-			userService.create(newUser);
+			userService.createUser(newUser);
 
 		});
 		String expectedMessage = "User Already Exists";
@@ -238,7 +238,7 @@ public class TestCreateUser {
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 
-			userService.create(newUser);
+			userService.createUser(newUser);
 
 		});
 		String expectedMessage = "Name cannot be Null or Empty";
@@ -271,7 +271,7 @@ public class TestCreateUser {
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 
-			userService.create(newUser);
+			userService.createUser(newUser);
 
 		});
 		String expectedMessage = "Name cannot be Null or Empty";
@@ -304,7 +304,7 @@ public class TestCreateUser {
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 
-			userService.create(newUser);
+			userService.createUser(newUser);
 
 		});
 		String expectedMessage = "Name doesn't match the Pattern";
@@ -338,7 +338,7 @@ public class TestCreateUser {
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 
-			userService.create(newUser);
+			userService.createUser(newUser);
 
 		});
 		String expectedMessage = "Address cannot be Empty";
@@ -370,7 +370,7 @@ public class TestCreateUser {
 		newUser.setAddress(null);
 
 		assertDoesNotThrow(() -> {
-			userService.create(newUser);
+			userService.createUser(newUser);
 		});
 
 	}
@@ -400,7 +400,7 @@ public class TestCreateUser {
 		newUser.setAddress(null);
 
 		assertDoesNotThrow(() -> {
-			userService.create(newUser);
+			userService.createUser(newUser);
 		});
 
 	}

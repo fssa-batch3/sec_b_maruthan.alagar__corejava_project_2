@@ -3,9 +3,9 @@ package in.fssa.mambilling.validator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import in.fssa.mambilling.Exception.PersistanceException;
-import in.fssa.mambilling.Exception.ValidationException;
 import in.fssa.mambilling.dao.UserDAO;
+import in.fssa.mambilling.exception.PersistanceException;
+import in.fssa.mambilling.exception.ValidationException;
 import in.fssa.mambilling.model.User;
 import in.fssa.mambilling.util.StringUtil;
 
@@ -30,15 +30,15 @@ public class UserValidator {
 		validatePhoneNumber(newUser.getPhoneNumber(), "Phone Number");
 
 		if (newUser.getEmail() != null) {
-			ValidateEmail(newUser.getEmail(), "Email");
+			validateEmail(newUser.getEmail(), "Email");
 		}
 		if (newUser.getAddress() != null) {
-			ValidateAddress(newUser.getAddress(), "Address");
+			validateAddress(newUser.getAddress(), "Address");
 		}
 
-		UserDAO userdao = new UserDAO();
+		UserDAO userDAO = new UserDAO();
 		try {
-			User existingCheckUser = userdao.findByPhoneNumber(newUser.getPhoneNumber());
+			User existingCheckUser = userDAO.findByPhoneNumber(newUser.getPhoneNumber());
 
 			if (existingCheckUser != null) {
 				throw new ValidationException("User Already Exists");
@@ -68,16 +68,16 @@ public class UserValidator {
 		StringUtil.rejectIfInvalidString(newUser.getName(), "Name");
 
 		if (newUser.getEmail() != null) {
-			ValidateEmail(newUser.getEmail(), "Email");
+			validateEmail(newUser.getEmail(), "Email");
 		}
 
 		if (newUser.getAddress() != null) {
-			ValidateAddress(newUser.getAddress(), "Address");
+			validateAddress(newUser.getAddress(), "Address");
 		}
-		UserDAO userdao = new UserDAO();
+		UserDAO userDAO = new UserDAO();
 		try {
 
-			User CheckExistOrNot = userdao.findByPhoneNumber(phoneNumber);
+			User CheckExistOrNot = userDAO.findByPhoneNumber(phoneNumber);
 
 			if (CheckExistOrNot == null) {
 				throw new ValidationException("User Not Exists With this Number");
@@ -85,7 +85,7 @@ public class UserValidator {
 			User AlreadyExistsOrNot = null;
 
 			if (phoneNumber != newUser.getPhoneNumber()) {
-				AlreadyExistsOrNot = userdao.findByPhoneNumber(newUser.getPhoneNumber());
+				AlreadyExistsOrNot = userDAO.findByPhoneNumber(newUser.getPhoneNumber());
 
 			}
 
@@ -126,7 +126,7 @@ public class UserValidator {
 	 * @param inputName The name of the input (e.g., "Address") for error messages.
 	 * @throws ValidationException If the address is invalid.
 	 */
-	public static void ValidateAddress(String address, String inputName) throws ValidationException {
+	public static void validateAddress(String address, String inputName) throws ValidationException {
 		if ("".equals(address.trim())) {
 			throw new ValidationException(inputName.concat(" cannot be Empty"));
 
@@ -151,7 +151,7 @@ public class UserValidator {
 	 * @param inputName The name of the input (e.g., "Email") for error messages.
 	 * @throws ValidationException If the email address is invalid.
 	 */
-	public static void ValidateEmail(String email, String inputName) throws ValidationException {
+	public static void validateEmail(String email, String inputName) throws ValidationException {
 
 		if ("".equals(email.trim())) {
 			throw new ValidationException(inputName.concat(" cannot be Empty"));

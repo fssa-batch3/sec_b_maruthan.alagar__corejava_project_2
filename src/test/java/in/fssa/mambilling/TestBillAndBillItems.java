@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import in.fssa.mambilling.Exception.ServiceException;
-import in.fssa.mambilling.Exception.ValidationException;
+import in.fssa.mambilling.exception.ServiceException;
+import in.fssa.mambilling.exception.ValidationException;
 import in.fssa.mambilling.service.BillService;
 
 public class TestBillAndBillItems {
@@ -18,7 +18,7 @@ public class TestBillAndBillItems {
 	public void testFindAllBills() {
 
 		assertDoesNotThrow(() -> {
-			billService.getAllbills();
+			billService.getAllBills();
 		});
 
 	}

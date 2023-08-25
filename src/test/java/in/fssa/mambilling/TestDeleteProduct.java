@@ -6,8 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import in.fssa.mambilling.Exception.ValidationException;
-
+import in.fssa.mambilling.exception.ValidationException;
 import in.fssa.mambilling.service.ProductService;
 
 public class TestDeleteProduct {
@@ -17,7 +16,7 @@ public class TestDeleteProduct {
 	public void testDeleteProductWithValidProductID() {
 
 		assertDoesNotThrow(() -> {
-			productService.delete(88);
+			productService.deleteProduct(88);
 		});
 
 	}
@@ -26,7 +25,7 @@ public class TestDeleteProduct {
 	public void testDeleteProductWithInvalidProductId() {
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
-			productService.delete(0);
+			productService.deleteProduct(0);
 		});
 
 		String expectedMessage = "Invalid Product ID";

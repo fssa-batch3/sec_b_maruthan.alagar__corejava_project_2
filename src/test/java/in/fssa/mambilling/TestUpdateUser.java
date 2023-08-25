@@ -8,7 +8,7 @@ import java.util.Random;
 
 import org.junit.jupiter.api.Test;
 
-import in.fssa.mambilling.Exception.ValidationException;
+import in.fssa.mambilling.exception.ValidationException;
 import in.fssa.mambilling.model.User;
 import in.fssa.mambilling.service.UserService;
 
@@ -25,7 +25,7 @@ public class TestUpdateUser {
 		newUser.setAddress("Pudukkottai");
 
 		assertDoesNotThrow(() -> {
-			userService.update(8978675645l , newUser);
+			userService.updateUser(8978675645l , newUser);
 		});
 
 	}
@@ -34,7 +34,7 @@ public class TestUpdateUser {
 	public void testUpdateUserWithInvalidData() {
 		UserService userService = new UserService();
 		Exception exception = assertThrows(ValidationException.class, () -> {
-			userService.update(0,null);
+			userService.updateUser(0,null);
 		});
 		String expectedMessage = "Invalid User Input";
 		String actualMessage = exception.getMessage();
@@ -54,7 +54,7 @@ public class TestUpdateUser {
 		newUser.setAddress("Pudukkottai");
 
 		assertDoesNotThrow(() -> {
-			userService.update(6787879878l,newUser);
+			userService.updateUser(6787879878l,newUser);
 		});
 
 	}
@@ -72,7 +72,7 @@ public class TestUpdateUser {
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 
-			userService.update(6787879878l,newUser);
+			userService.updateUser(6787879878l,newUser);
 
 		});
 		String expectedMessage = "Email cannot be Empty";
@@ -95,7 +95,7 @@ public class TestUpdateUser {
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 
-			userService.update(6787879878l,newUser);
+			userService.updateUser(6787879878l,newUser);
 
 		});
 		String expectedMessage = "Email doesn't match the Pattern";
@@ -119,7 +119,7 @@ public class TestUpdateUser {
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 
-			userService.update(6787879878l,newUser);
+			userService.updateUser(6787879878l,newUser);
 
 		});
 		String expectedMessage = "New Phone Number doesn't match the Pattern";
@@ -141,7 +141,7 @@ public class TestUpdateUser {
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 
-			userService.update(0,newUser);
+			userService.updateUser(0,newUser);
 
 		});
 		String expectedMessage = "Phone Number doesn't match the Pattern";
@@ -163,7 +163,7 @@ public class TestUpdateUser {
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 
-			userService.update(7810061562l,newUser);
+			userService.updateUser(7810061562l,newUser);
 
 		});
 		String expectedMessage = "User Not Exists With this Number";
@@ -185,7 +185,7 @@ public class TestUpdateUser {
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 
-			userService.update(6787878787l,newUser);
+			userService.updateUser(6787878787l,newUser);
 
 		});
 		String expectedMessage = "User Already Exists With this New Number";
@@ -207,7 +207,7 @@ public class TestUpdateUser {
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 
-			userService.update(6787878787l,newUser);
+			userService.updateUser(6787878787l,newUser);
 
 		});
 		String expectedMessage = "New Phone Number doesn't match the Pattern";
@@ -229,7 +229,7 @@ public class TestUpdateUser {
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 
-			userService.update(1234567890l,newUser);
+			userService.updateUser(1234567890l,newUser);
 
 		});
 		String expectedMessage = "Phone Number doesn't match the Pattern";
@@ -265,7 +265,7 @@ public class TestUpdateUser {
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 
-			userService.update(6787878787l,newUser);
+			userService.updateUser(6787878787l,newUser);
 
 		});
 		String expectedMessage = "Name cannot be Null or Empty";
@@ -298,7 +298,7 @@ public class TestUpdateUser {
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 
-			userService.update(6787878787l,newUser);
+			userService.updateUser(6787878787l,newUser);
 
 		});
 		String expectedMessage = "Name cannot be Null or Empty";
@@ -331,7 +331,7 @@ public class TestUpdateUser {
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 
-			userService.update(6787878787l,newUser);
+			userService.updateUser(6787878787l,newUser);
 
 		});
 		String expectedMessage = "Name doesn't match the Pattern";
@@ -365,7 +365,7 @@ public class TestUpdateUser {
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 
-			userService.update(6787878787l,newUser);
+			userService.updateUser(6787878787l,newUser);
 
 		});
 		String expectedMessage = "Address cannot be Empty";
@@ -387,7 +387,7 @@ public class TestUpdateUser {
 		newUser.setAddress(null);
 
 		assertDoesNotThrow(() -> {
-			userService.update(6787878787l,newUser);
+			userService.updateUser(6787878787l,newUser);
 		});
 
 	}
@@ -406,7 +406,7 @@ public class TestUpdateUser {
 		newUser.setAddress(null);
 
 		assertDoesNotThrow(() -> {
-			userService.update(6787878787l,newUser);
+			userService.updateUser(6787878787l,newUser);
 		});
 
 	}

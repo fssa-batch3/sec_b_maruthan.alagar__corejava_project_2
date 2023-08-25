@@ -2,9 +2,9 @@ package in.fssa.mambilling.validator;
 
 import java.util.List;
 
-import in.fssa.mambilling.Exception.PersistanceException;
-import in.fssa.mambilling.Exception.ValidationException;
 import in.fssa.mambilling.dao.UserDAO;
+import in.fssa.mambilling.exception.PersistanceException;
+import in.fssa.mambilling.exception.ValidationException;
 import in.fssa.mambilling.model.BillItems;
 import in.fssa.mambilling.model.User;
 
@@ -32,9 +32,9 @@ public class BillValidator {
 			throw new ValidationException("Invalid Product Details");
 		}
 
-		UserDAO userdao = new UserDAO();
+		UserDAO userDAO = new UserDAO();
 		try {
-			User existingCheckUser = userdao.findById(id);
+			User existingCheckUser = userDAO.findById(id);
 
 			if (existingCheckUser == null) {
 				throw new ValidationException("User Not Exists");

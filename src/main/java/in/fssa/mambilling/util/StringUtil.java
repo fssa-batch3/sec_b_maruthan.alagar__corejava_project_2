@@ -3,7 +3,7 @@ package in.fssa.mambilling.util;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import in.fssa.mambilling.Exception.ValidationException;
+import in.fssa.mambilling.exception.ValidationException;
 
 /**
  * The StringUtil class provides utility methods for working with strings and

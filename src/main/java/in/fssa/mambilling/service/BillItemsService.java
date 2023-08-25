@@ -2,10 +2,10 @@ package in.fssa.mambilling.service;
 
 import java.util.List;
 
-import in.fssa.mambilling.Exception.PersistanceException;
-import in.fssa.mambilling.Exception.ServiceException;
-import in.fssa.mambilling.Exception.ValidationException;
 import in.fssa.mambilling.dao.BillItemsDAO;
+import in.fssa.mambilling.exception.PersistanceException;
+import in.fssa.mambilling.exception.ServiceException;
+import in.fssa.mambilling.exception.ValidationException;
 import in.fssa.mambilling.model.BillItems;
 import in.fssa.mambilling.validator.BillItemsValidator;
 import in.fssa.mambilling.validator.BillValidator;
@@ -16,7 +16,7 @@ import in.fssa.mambilling.validator.BillValidator;
  */
 public class BillItemsService {
 
-	BillItemsDAO billitemsdao = new BillItemsDAO();
+	BillItemsDAO billitemsDAO = new BillItemsDAO();
 
 	/**
 	 * Creates bill items associated with a bill.
@@ -28,11 +28,11 @@ public class BillItemsService {
 	 * @throws ServiceException    If there's an issue with the database operation
 	 *                             or a service-level error occurs.
 	 */
-	public void create(int billId, List<BillItems> billItems) throws ValidationException, ServiceException {
+	public void createBillItems(int billId, List<BillItems> billItems) throws ValidationException, ServiceException {
 
 		try {
 			BillItemsValidator.validate(billId, billItems);
-			billitemsdao.create(billId, billItems);
+			billitemsDAO.create(billId, billItems);
 		} catch (PersistanceException e) {
 			throw new ServiceException(e.getMessage());
 		}
@@ -53,7 +53,7 @@ public class BillItemsService {
 
 		try {
 			BillValidator.validateBillId(newId);
-			return billitemsdao.findAllByBillId(newId);
+			return billitemsDAO.findAllByBillId(newId);
 		} catch (PersistanceException e) {
 			throw new ServiceException(e.getMessage());
 		}

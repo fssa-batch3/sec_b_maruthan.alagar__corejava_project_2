@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import in.fssa.mambilling.Exception.PersistanceException;
+import in.fssa.mambilling.exception.PersistanceException;
 import in.fssa.mambilling.model.User;
 import in.fssa.mambilling.util.ConnectionUtil;
 
@@ -32,7 +32,7 @@ public class UserDAO {
 
 		List<User> userList = new ArrayList<User>();
 		try {
-			String query = "SELECT * FROM users";
+			String query = "SELECT name,email,phone_number,address FROM users";
 			con = ConnectionUtil.getConnection();
 			ps = con.prepareStatement(query);
 			rs = ps.executeQuery();
@@ -63,7 +63,7 @@ public class UserDAO {
 		PreparedStatement ps = null;
 
 		try {
-			String query = "INSERT into users ( name , email , phone_number , address ) VALUES ( ?, ?, ?, ? );";
+			String query = "INSERT INTO users ( name , email , phone_number , address ) VALUES ( ?, ?, ?, ? );";
 			con = ConnectionUtil.getConnection();
 			ps = con.prepareStatement(query);
 			ps.setString(1, user.getName());
@@ -106,7 +106,7 @@ public class UserDAO {
 		User user = null;
 
 		try {
-			String query = "SELECT * FROM users  WHERE phone_number = ? ";
+			String query = "SELECT name,email,phone_number,address,id FROM users  WHERE phone_number = ? ";
 			con = ConnectionUtil.getConnection();
 			ps = con.prepareStatement(query);
 			ps.setLong(1, phoneNumber);
@@ -143,7 +143,7 @@ public class UserDAO {
 		PreparedStatement ps = null;
 
 		try {
-			String query = "UPDATE users SET name = ?, phone_number = ? , address = ? , email = ? Where phone_number = ?";
+			String query = "UPDATE users SET name = ?, phone_number = ? , address = ? , email = ? WHERE phone_number = ?";
 			con = ConnectionUtil.getConnection();
 			ps = con.prepareStatement(query);
 			ps.setString(1, newUser.getName());
@@ -182,7 +182,7 @@ public class UserDAO {
 		User user = null;
 
 		try {
-			String query = "SELECT * FROM users  WHERE id = ? ";
+			String query = "SELECT name,email,phone_number,address,id FROM users  WHERE id = ? ";
 			con = ConnectionUtil.getConnection();
 			ps = con.prepareStatement(query);
 			ps.setInt(1, userId);

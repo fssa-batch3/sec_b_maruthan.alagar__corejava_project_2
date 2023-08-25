@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import in.fssa.mambilling.Exception.PersistanceException;
 import in.fssa.mambilling.dto.ProductDTO;
+import in.fssa.mambilling.exception.PersistanceException;
 import in.fssa.mambilling.model.Product;
 import in.fssa.mambilling.model.Product.QuantityType;
 import in.fssa.mambilling.util.ConnectionUtil;
@@ -33,7 +33,7 @@ public class ProductDAO {
 
 		List<Product> productList = new ArrayList<Product>();
 		try {
-			String query = "SELECT * FROM products";
+			String query = "SELECT product_name , quantity ,special_name , quantity_type FROM products";
 			con = ConnectionUtil.getConnection();
 			ps = con.prepareStatement(query);
 			rs = ps.executeQuery();
@@ -47,6 +47,7 @@ public class ProductDAO {
 				productList.add(newProduct);
 			}
 		} catch (SQLException e) {
+			e.printStackTrace();
 			throw new PersistanceException(e.getMessage());
 		} finally {
 			ConnectionUtil.close(con, ps, rs);
@@ -117,7 +118,7 @@ public class ProductDAO {
 		PreparedStatement ps = null;
 
 		try {
-			String query = "UPDATE products SET product_name = ?,special_name = ?,quantity = ?,quantity_type = ? Where id = ?";
+			String query = "UPDATE products SET product_name = ?,special_name = ?,quantity = ?,quantity_type = ? WHERE id = ?";
 			con = ConnectionUtil.getConnection();
 			ps = con.prepareStatement(query);
 			ps.setString(1, newProduct.getProductName());
@@ -156,7 +157,7 @@ public class ProductDAO {
 		Product product = null;
 
 		try {
-			String query = "SELECT * FROM products WHERE product_name = ? and quantity = ? and quantity_type = ? ";
+			String query = "SELECT product_name ,quantity, quantity_type FROM products WHERE product_name = ? AND quantity = ? AND quantity_type = ? ";
 			con = ConnectionUtil.getConnection();
 			ps = con.prepareStatement(query);
 
@@ -202,7 +203,7 @@ public class ProductDAO {
 		Product product = null;
 
 		try {
-			String query = "SELECT * FROM products WHERE id = ? ";
+			String query = "SELECT product_name , quantity , quantity_type FROM products WHERE id = ? ";
 			con = ConnectionUtil.getConnection();
 			ps = con.prepareStatement(query);
 
@@ -246,9 +247,11 @@ public class ProductDAO {
 		ProductDTO product = null;
 
 		try {
-			String query = "SELECT p.product_name, p.quantity, p.special_name, p.quantity_type, pr.mrp, pr.tax, pr.discount FROM products p JOIN price pr ON p.id = pr.product_id;";
+			String query = "SELECT p.product_name, p.quantity, p.special_name, p.quantity_type, pr.mrp, pr.tax, pr.discount FROM products p JOIN price pr ON p.id = pr.product_id WHERE  p.id = ?;";
 			con = ConnectionUtil.getConnection();
 			ps = con.prepareStatement(query);
+
+			ps.setInt(1, productId);
 
 			rs = ps.executeQuery();
 
@@ -288,7 +291,7 @@ public class ProductDAO {
 		PreparedStatement ps = null;
 
 		try {
-			String query = "UPDATE products SET is_active = false Where id = ? and is_active = true ";
+			String query = "UPDATE products SET is_active = false WHERE id = ? AND is_active = true";
 			con = ConnectionUtil.getConnection();
 			ps = con.prepareStatement(query);
 
@@ -353,7 +356,7 @@ public class ProductDAO {
 		Product product = null;
 
 		try {
-			String query = "SELECT * FROM products  WHERE id = ? ";
+			String query = "SELECT product_name,quantity,quantity_type,special_name,id FROM products  WHERE id = ? ";
 			con = ConnectionUtil.getConnection();
 			ps = con.prepareStatement(query);
 			ps.setInt(1, productId);

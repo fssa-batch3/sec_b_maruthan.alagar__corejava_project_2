@@ -1,6 +1,6 @@
 package in.fssa.mambilling.validator;
 
-import in.fssa.mambilling.Exception.ValidationException;
+import in.fssa.mambilling.exception.ValidationException;
 import in.fssa.mambilling.model.Price;
 
 /**

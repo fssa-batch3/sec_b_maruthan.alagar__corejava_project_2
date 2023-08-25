@@ -9,7 +9,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import in.fssa.mambilling.Exception.ValidationException;
+import in.fssa.mambilling.exception.ValidationException;
 import in.fssa.mambilling.model.BillItems;
 import in.fssa.mambilling.service.BillItemsService;
 import in.fssa.mambilling.service.BillService;
@@ -37,7 +37,7 @@ public class TestCreateBillItems {
 		items.add(billitems3);
 
 		assertDoesNotThrow(() -> {
-			billitemsservice.create(5, items);
+			billitemsservice.createBillItems(5, items);
 		});
 
 	}
@@ -54,7 +54,7 @@ public class TestCreateBillItems {
 		items.add(billitems2);
 		items.add(billitems3);
 		Exception exception = assertThrows(ValidationException.class, () -> {
-			billitemsservice.create(-1500, items);
+			billitemsservice.createBillItems(-1500, items);
 		});
 		String expectedMessage = "Invalid Bill ID";
 		String actualMessage = exception.getMessage();
@@ -66,7 +66,7 @@ public class TestCreateBillItems {
 	public void testCreateBillItemsWithInvalidProductData() {
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
-			billitemsservice.create(7, null);
+			billitemsservice.createBillItems(7, null);
 		});
 		String expectedMessage = "Invalid Product Details";
 		String actualMessage = exception.getMessage();
@@ -83,7 +83,7 @@ public class TestCreateBillItems {
 		items.add(billitems1);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
-			billitemsservice.create(2, items);
+			billitemsservice.createBillItems(2, items);
 		});
 		String expectedMessage = "Invalid Product ID";
 		String actualMessage = exception.getMessage();
@@ -100,7 +100,7 @@ public class TestCreateBillItems {
 		items.add(billitems1);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
-			billitemsservice.create(2, items);
+			billitemsservice.createBillItems(2, items);
 		});
 		String expectedMessage = "Product Not found with this ID";
 		String actualMessage = exception.getMessage();
@@ -118,7 +118,7 @@ public class TestCreateBillItems {
 		items.add(billitems1);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
-			billitemsservice.create(2, items);
+			billitemsservice.createBillItems(2, items);
 		});
 		String expectedMessage = "Invalid Price ID";
 		String actualMessage = exception.getMessage();
@@ -135,7 +135,7 @@ public class TestCreateBillItems {
 		items.add(billitems1);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
-			billitemsservice.create(2, items);
+			billitemsservice.createBillItems(2, items);
 		});
 		String expectedMessage = "Price Not found with this ID";
 		String actualMessage = exception.getMessage();
@@ -152,7 +152,7 @@ public class TestCreateBillItems {
 		items.add(billitems1);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
-			billitemsservice.create(2, items);
+			billitemsservice.createBillItems(2, items);
 		});
 		String expectedMessage = "Invalid product quantity for this product id 1";
 		String actualMessage = exception.getMessage();

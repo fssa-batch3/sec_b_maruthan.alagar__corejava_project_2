@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import in.fssa.mambilling.Exception.PersistanceException;
+import in.fssa.mambilling.exception.PersistanceException;
 import in.fssa.mambilling.model.Price;
 import in.fssa.mambilling.util.ConnectionUtil;
 
@@ -101,7 +101,7 @@ public class PriceDAO {
 		ResultSet rs = null;
 		List<Price> priceList = null;
 		try {
-			String query = "SELECT * FROM price";
+			String query = "SELECT discount , mrp , tax  FROM price";
 			con = ConnectionUtil.getConnection();
 			ps = con.prepareStatement(query);
 			rs = ps.executeQuery();
@@ -140,7 +140,7 @@ public class PriceDAO {
 		Price price = null;
 
 		try {
-			String query = "SELECT * FROM price  WHERE id = ? ";
+			String query = "SELECT discount , mrp , tax , id FROM price  WHERE id = ? ";
 			con = ConnectionUtil.getConnection();
 			ps = con.prepareStatement(query);
 			ps.setInt(1, priceId);
@@ -181,7 +181,7 @@ public class PriceDAO {
 		Price price = null;
 
 		try {
-			String query = "SELECT * FROM  price  WHERE product_id = ? ";
+			String query = "SELECT id FROM  price  WHERE product_id = ? ";
 			con = ConnectionUtil.getConnection();
 			ps = con.prepareStatement(query);
 			ps.setInt(1, productId);

@@ -2,10 +2,10 @@ package in.fssa.mambilling.service;
 
 import java.util.List;
 
-import in.fssa.mambilling.Exception.PersistanceException;
-import in.fssa.mambilling.Exception.ServiceException;
-import in.fssa.mambilling.Exception.ValidationException;
 import in.fssa.mambilling.dao.UserDAO;
+import in.fssa.mambilling.exception.PersistanceException;
+import in.fssa.mambilling.exception.ServiceException;
+import in.fssa.mambilling.exception.ValidationException;
 import in.fssa.mambilling.model.User;
 import in.fssa.mambilling.validator.UserValidator;
 
@@ -15,7 +15,7 @@ import in.fssa.mambilling.validator.UserValidator;
  */
 public class UserService {
 
-	UserDAO userdao = new UserDAO();
+	UserDAO userDAO = new UserDAO();
 
 	/**
 	 * Retrieves a list of all users from the database.
@@ -27,7 +27,7 @@ public class UserService {
 	public List<User> getAllUsers() throws ServiceException {
 
 		try {
-			return userdao.findAll();
+			return userDAO.findAll();
 		} catch (PersistanceException e) {
 			throw new ServiceException(e.getMessage());
 		}
@@ -42,10 +42,10 @@ public class UserService {
 	 * @throws ServiceException    If there's an issue with the database operation
 	 *                             or a service-level error occurs.
 	 */
-	public void create(User user) throws ValidationException, ServiceException {
+	public void createUser(User user) throws ValidationException, ServiceException {
 		try {
 			UserValidator.validate(user);
-			userdao.create(user);
+			userDAO.create(user);
 		} catch (PersistanceException e) {
 			throw new ServiceException(e.getMessage());
 		}
@@ -65,7 +65,7 @@ public class UserService {
 
 		try {
 			UserValidator.validatePhoneNumber(phoneNumber, "Phone Number");
-			return userdao.findByPhoneNumber(phoneNumber);
+			return userDAO.findByPhoneNumber(phoneNumber);
 
 		} catch (PersistanceException e) {
 			throw new ServiceException(e.getMessage());
@@ -82,11 +82,11 @@ public class UserService {
 	 * @throws ServiceException    If there's an issue with the database operation
 	 *                             or a service-level error occurs.
 	 */
-	public void update(long phoneNumber, User newUser) throws ValidationException, ServiceException {
+	public void updateUser(long phoneNumber, User newUser) throws ValidationException, ServiceException {
 
 		try {
 			UserValidator.validateUpdate(phoneNumber, newUser);
-			userdao.update(phoneNumber, newUser);
+			userDAO.update(phoneNumber, newUser);
 		} catch (PersistanceException e) {
 			throw new ServiceException(e.getMessage());
 		}
@@ -102,11 +102,11 @@ public class UserService {
 	 * @throws ServiceException    If there's an issue with the database operation
 	 *                             or a service-level error occurs.
 	 */
-	public User getById(int newId) throws ValidationException, ServiceException {
+	public User getByUserId(int newId) throws ValidationException, ServiceException {
 
 		try {
 			UserValidator.validateUserId(newId);
-			return userdao.findById(newId);
+			return userDAO.findById(newId);
 		} catch (PersistanceException e) {
 			throw new ServiceException(e.getMessage());
 		}

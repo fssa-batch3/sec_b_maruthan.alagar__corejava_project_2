@@ -8,8 +8,8 @@ public class ProductDTO {
 	private String productName;
 	private int quantity;
 	private QuantityType quantityType;
-
 	private String specialName;
+	
 	private double mrp;
 	private double tax;
 	private double discount;

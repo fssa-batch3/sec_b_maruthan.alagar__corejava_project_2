@@ -1,8 +1,8 @@
 package in.fssa.mambilling.validator;
 
-import in.fssa.mambilling.Exception.PersistanceException;
-import in.fssa.mambilling.Exception.ValidationException;
 import in.fssa.mambilling.dao.ProductDAO;
+import in.fssa.mambilling.exception.PersistanceException;
+import in.fssa.mambilling.exception.ValidationException;
 import in.fssa.mambilling.model.Product;
 import in.fssa.mambilling.util.StringUtil;
 
@@ -37,10 +37,10 @@ public class ProductValidator {
 			throw new ValidationException("Invalid Product Quantity Type");
 		}
 
-		ProductDAO productdao = new ProductDAO();
+		ProductDAO productDAO = new ProductDAO();
 
 		try {
-			Product prod = productdao.isProductAlreadyExistsCreate(newProduct);
+			Product prod = productDAO.isProductAlreadyExistsCreate(newProduct);
 			if (prod != null) {
 				throw new ValidationException("Product Already Exists");
 			}
@@ -81,13 +81,13 @@ public class ProductValidator {
 		}
 
 		try {
-			ProductDAO productdao = new ProductDAO();
-			Product prod = productdao.isProductAlreadyExists(id);
+			ProductDAO productDAO = new ProductDAO();
+			Product prod = productDAO.isProductAlreadyExists(id);
 
 			if (prod == null) {
 				throw new ValidationException("Product Doesn't Exists");
 			}
-			Product prod1 = productdao.isProductAlreadyExistsCreate(newProduct);
+			Product prod1 = productDAO.isProductAlreadyExistsCreate(newProduct);
 
 			if (prod1 != null) {
 				throw new ValidationException("Product Already Exists");

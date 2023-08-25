@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import in.fssa.mambilling.Exception.PersistanceException;
+import in.fssa.mambilling.exception.PersistanceException;
 import in.fssa.mambilling.model.BillItems;
 import in.fssa.mambilling.util.ConnectionUtil;
 
@@ -31,7 +31,7 @@ public class BillItemsDAO {
 		PreparedStatement ps = null;
 
 		try {
-			String query = "INSERT into bill_items ( bill_id , product_id , price_id , quantity ) VALUES ( ?, ?, ?, ? );";
+			String query = "INSERT INTO bill_items ( bill_id , product_id , price_id , quantity ) VALUES ( ?, ?, ?, ? );";
 			con = ConnectionUtil.getConnection();
 			ps = con.prepareStatement(query);
 
@@ -74,7 +74,7 @@ public class BillItemsDAO {
 		List<BillItems> billItemsList = null;
 
 		try {
-			String query = "SELECT * FROM bill_items WHERE bill_id = ?";
+			String query = "SELECT product_id , price_id , quantity FROM bill_items WHERE bill_id = ?";
 			con = ConnectionUtil.getConnection();
 			ps = con.prepareStatement(query);
 			ps.setInt(1, billId);

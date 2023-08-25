@@ -9,7 +9,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import in.fssa.mambilling.Exception.ValidationException;
+import in.fssa.mambilling.exception.ValidationException;
 import in.fssa.mambilling.model.BillItems;
 import in.fssa.mambilling.service.BillItemsService;
 import in.fssa.mambilling.service.BillService;
@@ -38,7 +38,7 @@ public class TestCreateBill {
 		items.add(billitems3);
 
 		assertDoesNotThrow(() -> {
-			billservice.create(5, items);
+			billservice.createBill(5, items);
 		});
 
 	}
@@ -46,7 +46,7 @@ public class TestCreateBill {
 	@Test
 	public void testCreateBillWithInvalidData() {
 		Exception exception = assertThrows(ValidationException.class, () -> {
-			billservice.create(4, null);
+			billservice.createBill(4, null);
 		});
 		String expectedMessage = "Invalid Product Details";
 		String actualMessage = exception.getMessage();
@@ -56,7 +56,7 @@ public class TestCreateBill {
 	@Test
 	public void testCreateBillWithInvalidUserId() {
 		Exception exception = assertThrows(ValidationException.class, () -> {
-			billservice.create(0, null);
+			billservice.createBill(0, null);
 		});
 		String expectedMessage = "Invalid User ID";
 		String actualMessage = exception.getMessage();
@@ -75,7 +75,7 @@ public class TestCreateBill {
 		items.add(billitems2);
 		items.add(billitems3);
 		Exception exception = assertThrows(ValidationException.class, () -> {
-			billservice.create(1500, items);
+			billservice.createBill(1500, items);
 		});
 		String expectedMessage = "User Not Exists";
 		String actualMessage = exception.getMessage();

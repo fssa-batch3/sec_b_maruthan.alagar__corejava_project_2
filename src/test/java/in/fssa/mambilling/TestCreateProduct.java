@@ -1,4 +1,4 @@
-package in.fssa.mambilling;
+ package in.fssa.mambilling;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
-import in.fssa.mambilling.Exception.ValidationException;
+import in.fssa.mambilling.exception.ValidationException;
 import in.fssa.mambilling.model.Price;
 import in.fssa.mambilling.model.Product;
 import in.fssa.mambilling.model.Product.QuantityType;
@@ -38,10 +38,10 @@ public class TestCreateProduct {
 		}
 
 		Price price = new Price(12, 1, 0);
-		Product prod = new Product("Soafps", randomNumber, QuantityType.nos, null, price);
+		Product prod = new Product("Sofas", randomNumber, QuantityType.nos, null, price);
 
 		assertDoesNotThrow(() -> {
-			productService.create(prod);
+			productService.createProduct(prod);
 		});
 
 	}
@@ -65,7 +65,7 @@ public class TestCreateProduct {
 		Product prod = new Product("VelLlam", randomNumber, QuantityType.g, null, price);
 
 		assertDoesNotThrow(() -> {
-			productService.create(prod);
+			productService.createProduct(prod);
 		});
 
 	}
@@ -75,7 +75,7 @@ public class TestCreateProduct {
 	public void testCreateProductWithInvalidData() {
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
-			productService.create(null);
+			productService.createProduct(null);
 		});
 		String expectedMessage = "Invalid Product Input";
 		String actualMessage = exception.getMessage();
@@ -90,7 +90,7 @@ public class TestCreateProduct {
 		Product prod = new Product("", 1090, QuantityType.g, "Pachai Rice", price);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
-			productService.create(prod);
+			productService.createProduct(prod);
 		});
 
 		String expectedMessage = "Product Name cannot be Null or Empty";
@@ -107,7 +107,7 @@ public class TestCreateProduct {
 		Product prod = new Product(null, 1000, QuantityType.g, "Pachai Rice", price);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
-			productService.create(prod);
+			productService.createProduct(prod);
 		});
 
 		String expectedMessage = "Product Name cannot be Null or Empty";
@@ -124,7 +124,7 @@ public class TestCreateProduct {
 		Product prod = new Product("RRicee", 1000, QuantityType.g, "", price);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
-			productService.create(prod);
+			productService.createProduct(prod);
 		});
 
 		String expectedMessage = "Special Name cannot be Null or Empty";
@@ -141,7 +141,7 @@ public class TestCreateProduct {
 		Product prod = new Product("RiScce", 0, QuantityType.g, "Arisi", price);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
-			productService.create(prod);
+			productService.createProduct(prod);
 		});
 
 		String expectedMessage = "Invalid Product Quantity";
@@ -158,7 +158,7 @@ public class TestCreateProduct {
 		Product prod = new Product("Ricceee", 1, null, "Arisi", price);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
-			productService.create(prod);
+			productService.createProduct(prod);
 		});
 
 		String expectedMessage = "Invalid Product Quantity Type";
@@ -175,7 +175,7 @@ public class TestCreateProduct {
 		Product prod = new Product("Choculate", 15, QuantityType.nos, "Pachai Rice", price);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
-			productService.create(prod);
+			productService.createProduct(prod);
 		});
 
 		String expectedMessage = "Product Already Exists";
@@ -191,7 +191,7 @@ public class TestCreateProduct {
 		Product prod = new Product("TeEaPPowder", 1782, QuantityType.g, null, null);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
-			productService.create(prod);
+			productService.createProduct(prod);
 		});
 
 		String expectedMessage = "Invalid Price Deatils";
@@ -219,7 +219,7 @@ public class TestCreateProduct {
 		Product prod = new Product("NNkotes", randomNumber, QuantityType.nos, null, price);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
-			productService.create(prod);
+			productService.createProduct(prod);
 		});
 
 		String expectedMessage = "MRP must be greater than 0";
@@ -247,7 +247,7 @@ public class TestCreateProduct {
 		Product prod = new Product("Booo oeoook", randomNumber, QuantityType.g, "StoRy Book", price);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
-			productService.create(prod);
+			productService.createProduct(prod);
 		});
 
 		String expectedMessage = "Tax must be between 0 and 100";
@@ -275,7 +275,7 @@ public class TestCreateProduct {
 		Product prod = new Product("Basmati RRRice", randomNumber, QuantityType.g, "Basmath iArisi", price);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
-			productService.create(prod);
+			productService.createProduct(prod);
 		});
 
 		String expectedMessage = "Discount must be between 0 and 100";

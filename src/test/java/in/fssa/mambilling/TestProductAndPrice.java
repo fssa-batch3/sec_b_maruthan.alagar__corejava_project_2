@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import in.fssa.mambilling.Exception.ValidationException;
+import in.fssa.mambilling.exception.ValidationException;
 import in.fssa.mambilling.service.PriceService;
 import in.fssa.mambilling.service.ProductService;
 
@@ -18,7 +18,7 @@ public class TestProductAndPrice {
 	public void testFindAllProduct() {
 
 		assertDoesNotThrow(() -> {
-			productService.getAll();
+			productService.getAllProducts();
 		});
 
 	}
@@ -48,7 +48,7 @@ public class TestProductAndPrice {
 	public void testFindAllPrice() {
 
 		assertDoesNotThrow(() -> {
-			priceService.getAll();
+			priceService.getAllPrice();
 		});
 
 	}

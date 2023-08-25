@@ -2,23 +2,23 @@ package in.fssa.mambilling.service;
 
 import java.util.List;
 
-import in.fssa.mambilling.Exception.PersistanceException;
-import in.fssa.mambilling.Exception.ServiceException;
-import in.fssa.mambilling.Exception.ValidationException;
 import in.fssa.mambilling.dao.ProductDAO;
 import in.fssa.mambilling.dto.ProductDTO;
+import in.fssa.mambilling.exception.PersistanceException;
+import in.fssa.mambilling.exception.ServiceException;
+import in.fssa.mambilling.exception.ValidationException;
 import in.fssa.mambilling.model.Product;
 import in.fssa.mambilling.validator.ProductValidator;
 
 /**
- * The ProductService class provides a service layer for managing products,
+ * The ProductService class provides a Service layer for managing products,
  * including creation, retrieval, updating, and deletion operations, as well as
  * fetching lists of products and their details.
  */
 public class ProductService {
 
-	ProductDAO productdao = new ProductDAO();
-	PriceService priceservice = new PriceService();
+	ProductDAO productDAO = new ProductDAO();
+	PriceService priceService = new PriceService();
 
 	/**
 	 * Creates a new product.
@@ -27,20 +27,20 @@ public class ProductService {
 	 *                   created.
 	 * @throws ValidationException If validation of input parameters fails.
 	 * @throws ServiceException    If there's an issue with the database operation
-	 *                             or a service-level error occurs.
+	 *                             or a Service-level error occurs.
 	 */
-	public void create(Product newProduct) throws ValidationException, ServiceException {
+	public void createProduct(Product newProduct) throws ValidationException, ServiceException {
 
 		int productId = 0;
 		try {
 			ProductValidator.validateCreate(newProduct);
-			productId = productdao.create(newProduct);
+			productId = productDAO.create(newProduct);
 		} catch (PersistanceException e) {
-			throw new ServiceException("Failed to create product");
+			throw new ServiceException(e.getMessage());
 		}
 
 		try {
-			priceservice.create(newProduct.getPrice(), productId);
+			priceService.createPrice(newProduct.getPrice(), productId);
 		} catch (ServiceException e) {
 			System.out.println("Failed to create product price");
 			removeRow(productId);
@@ -60,17 +60,17 @@ public class ProductService {
 	 * @param id         The ID of the product to update.
 	 * @throws ValidationException If validation of input parameters fails.
 	 * @throws ServiceException    If there's an issue with the database operation
-	 *                             or a service-level error occurs.
+	 *                             or a Service-level error occurs.
 	 */
-	public void update(Product newProduct, int id) throws ValidationException, ServiceException {
+	public void updateProduct(Product newProduct, int id) throws ValidationException, ServiceException {
 
 		try {
 			ProductValidator.validateUpdate(newProduct, id);
-			priceservice.update(newProduct.getPrice(), id);
-			productdao.update(newProduct, id);
+			priceService.updatePrice(newProduct.getPrice(), id);
+			productDAO.update(newProduct, id);
 
 		} catch (PersistanceException e) {
-			throw new ServiceException("Failed to update product");
+			throw new ServiceException(e.getMessage());
 		}
 
 	}
@@ -80,14 +80,15 @@ public class ProductService {
 	 *
 	 * @return A List of Product objects representing all products in the database.
 	 * @throws ServiceException If there's an issue with the database operation or a
-	 *                          service-level error occurs.
+	 *                          Service-level error occurs.
 	 */
-	public List<Product> getAll() throws ServiceException {
+	public List<Product> getAllProducts() throws ServiceException {
 
 		try {
-			return productdao.findAll();
+			return productDAO.findAll();
 		} catch (PersistanceException e) {
-			throw new ServiceException("Failed to get Product Details");
+			e.printStackTrace();
+			throw new ServiceException(e.getMessage());
 		}
 
 	}
@@ -98,13 +99,13 @@ public class ProductService {
 	 * @param productId The ID of the product to delete.
 	 * @throws ValidationException If validation of input parameters fails.
 	 * @throws ServiceException    If there's an issue with the database operation
-	 *                             or a service-level error occurs.
+	 *                             or a Service-level error occurs.
 	 */
-	public void delete(int productId) throws ValidationException, ServiceException {
+	public void deleteProduct(int productId) throws ValidationException, ServiceException {
 		try {
 
 			ProductValidator.validateProductId(productId);
-			productdao.delete(productId);
+			productDAO.delete(productId);
 
 		} catch (PersistanceException e) {
 			throw new ServiceException(e.getMessage());
@@ -119,14 +120,14 @@ public class ProductService {
 	 *         product.
 	 * @throws ValidationException If validation of input parameters fails.
 	 * @throws ServiceException    If there's an issue with the database operation
-	 *                             or a service-level error occurs.
+	 *                             or a Service-level error occurs.
 	 */
 	public ProductDTO getProductDetail(int id) throws ValidationException, ServiceException {
 		try {
 			ProductValidator.validateProductId(id);
-			return productdao.findProductDetail(id);
+			return productDAO.findProductDetail(id);
 		} catch (PersistanceException e) {
-			throw new ServiceException("Failed to create Price");
+			throw new ServiceException(e.getMessage());
 		}
 	}
 
@@ -137,14 +138,14 @@ public class ProductService {
 	 * @return A Product object representing the product with the specified ID.
 	 * @throws ValidationException If validation of input parameters fails.
 	 * @throws ServiceException    If there's an issue with the database operation
-	 *                             or a service-level error occurs.
+	 *                             or a Service-level error occurs.
 	 */
 
 	public Product findById(int newId) throws ValidationException, ServiceException {
 
 		try {
 			ProductValidator.validateProductId(newId);
-			return productdao.findById(newId);
+			return productDAO.findById(newId);
 		} catch (PersistanceException e) {
 			throw new ServiceException(e.getMessage());
 		}
@@ -156,16 +157,16 @@ public class ProductService {
 	 *
 	 * @param productId The ID of the product to remove.
 	 * @throws ServiceException    If there's an issue with the database operation
-	 *                             or a service-level error occurs.
+	 *                             or a Service-level error occurs.
 	 * @throws ValidationException If validation of input parameters fails.
 	 */
 	public void removeRow(int productId) throws ServiceException, ValidationException {
 
 		try {
 			ProductValidator.validateProductId(productId);
-			productdao.dropRow(productId);
+			productDAO.dropRow(productId);
 		} catch (PersistanceException e) {
-			throw new ServiceException("Failed to create Price");
+			throw new ServiceException("Failed to Delete row");
 		}
 
 	}

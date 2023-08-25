@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import io.github.cdimascio.dotenv.Dotenv;
+//import io.github.cdimascio.dotenv.Dotenv;
 
 /**
  * The ConnectionUtil class provides utility methods for managing database
@@ -26,16 +26,22 @@ public class ConnectionUtil {
 		String userName;
 		String passWord;
 
-		if (System.getenv("CI") != null) {
+
 			url = System.getenv("DATABASE_HOSTNAME");
 			userName = System.getenv("DATABASE_USERNAME");
 			passWord = System.getenv("DATABASE_PASSWORD");
-		} else {
-			Dotenv env = Dotenv.load();
-			url = env.get("DATABASE_HOSTNAME");
-			userName = env.get("DATABASE_USERNAME");
-			passWord = env.get("DATABASE_PASSWORD");
-		}
+	
+
+//			Cloud
+//			url = "jdbc:mysql://164.52.216.41:3306/maruthan_alagar_corejava_project";
+//			userName = "maruthan";
+//			passWord = "6c4fa947-d353-41c6-9cff-d504192258c0";
+			
+//          Local
+//			DATABASE_HOSTNAME=jdbc:mysql://localhost:3306/mam_billing
+//			DATABASE_USERNAME=root
+//			DATABASE_PASSWORD=123456
+		
 
 		Connection connection = null;
 
@@ -45,7 +51,7 @@ public class ConnectionUtil {
 			connection = DriverManager.getConnection(url, userName, passWord);
 
 		} catch (ClassNotFoundException | SQLException e) {
-
+			e.printStackTrace();
 			throw new SQLException(e);
 		}
 

@@ -2,10 +2,10 @@ package in.fssa.mambilling.service;
 
 import java.util.List;
 
-import in.fssa.mambilling.Exception.PersistanceException;
-import in.fssa.mambilling.Exception.ServiceException;
-import in.fssa.mambilling.Exception.ValidationException;
 import in.fssa.mambilling.dao.PriceDAO;
+import in.fssa.mambilling.exception.PersistanceException;
+import in.fssa.mambilling.exception.ServiceException;
+import in.fssa.mambilling.exception.ValidationException;
 import in.fssa.mambilling.model.Price;
 import in.fssa.mambilling.validator.PriceValidator;
 import in.fssa.mambilling.validator.ProductValidator;
@@ -17,7 +17,7 @@ import in.fssa.mambilling.validator.ProductValidator;
  */
 public class PriceService {
 
-	PriceDAO pricedao = new PriceDAO();
+	PriceDAO priceDAO = new PriceDAO();
 
 	/**
 	 * Creates a new price for a product.
@@ -28,12 +28,12 @@ public class PriceService {
 	 * @throws ServiceException    If there's an issue with the database operation
 	 *                             or a service-level error occurs.
 	 */
-	public void create(Price newPrice, int productId) throws ValidationException, ServiceException {
+	public void createPrice(Price newPrice, int productId) throws ValidationException, ServiceException {
 
 		try {
 			ProductValidator.validateProductId(productId);
 			PriceValidator.validate(newPrice);
-			pricedao.create(newPrice, productId);
+			priceDAO.create(newPrice, productId);
 		} catch (PersistanceException e) {
 			throw new ServiceException("Failed to create Price");
 		}
@@ -49,11 +49,11 @@ public class PriceService {
 	 * @throws ServiceException    If there's an issue with the database operation
 	 *                             or a service-level error occurs.
 	 */
-	public void update(Price newPrice, int productId) throws ValidationException, ServiceException {
+	public void updatePrice(Price newPrice, int productId) throws ValidationException, ServiceException {
 		try {
 			ProductValidator.validateProductId(productId);
 			PriceValidator.validate(newPrice);
-			pricedao.update(newPrice, productId);
+			priceDAO.update(newPrice, productId);
 
 		} catch (PersistanceException e) {
 			throw new ServiceException("Failed to update Price");
@@ -68,9 +68,9 @@ public class PriceService {
 	 * @throws ServiceException If there's an issue with the database operation or a
 	 *                          service-level error occurs.
 	 */
-	public List<Price> getAll() throws ServiceException {
+	public List<Price> getAllPrice() throws ServiceException {
 		try {
-			return pricedao.findAll();
+			return priceDAO.findAll();
 		} catch (PersistanceException e) {
 			throw new ServiceException(e.getMessage());
 		}
@@ -89,7 +89,7 @@ public class PriceService {
 
 		try {
 			PriceValidator.validatePriceId(newId);
-			return pricedao.findById(newId);
+			return priceDAO.findById(newId);
 		} catch (PersistanceException e) {
 			throw new ServiceException(e.getMessage());
 		}
@@ -110,7 +110,7 @@ public class PriceService {
 
 		try {
 			PriceValidator.validatePriceId(newId);
-			return pricedao.findByProductId(newId);
+			return priceDAO.findByProductId(newId);
 		} catch (PersistanceException e) {
 			throw new ServiceException(e.getMessage());
 		}

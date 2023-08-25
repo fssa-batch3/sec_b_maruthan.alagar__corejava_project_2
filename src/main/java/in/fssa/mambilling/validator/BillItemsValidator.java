@@ -2,8 +2,8 @@ package in.fssa.mambilling.validator;
 
 import java.util.List;
 
-import in.fssa.mambilling.Exception.ServiceException;
-import in.fssa.mambilling.Exception.ValidationException;
+import in.fssa.mambilling.exception.ServiceException;
+import in.fssa.mambilling.exception.ValidationException;
 import in.fssa.mambilling.model.BillItems;
 import in.fssa.mambilling.model.Price;
 import in.fssa.mambilling.model.Product;
@@ -21,7 +21,7 @@ public class BillItemsValidator {
 	 * @param billId    The ID of the bill to which the items belong.
 	 * @param billItems The list of bill items to validate.
 	 * @throws ValidationException If any validation errors are encountered.
-	 * @throws ServiceException    If there is a service-related issue during
+	 * @throws ServiceException    If there is a Service-related issue during
 	 *                             validation.
 	 */
 	public static void validate(int billId, List<BillItems> billItems) throws ValidationException, ServiceException {
@@ -37,10 +37,10 @@ public class BillItemsValidator {
 		for (BillItems billItem : billItems) {
 
 			try {
-				ProductService productservice = new ProductService();
-				PriceService priceservice = new PriceService();
-				Product product = productservice.findById(billItem.getProductId());
-				Price price = priceservice.findById(billItem.getPriceId());
+				ProductService productService = new ProductService();
+				PriceService priceService = new PriceService();
+				Product product = productService.findById(billItem.getProductId());
+				Price price = priceService.findById(billItem.getPriceId());
 
 				if (product == null) {
 					throw new ValidationException("Product Not found with this ID");

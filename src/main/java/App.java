@@ -1,5 +1,5 @@
-import in.fssa.mambilling.Exception.ServiceException;
-import in.fssa.mambilling.Exception.ValidationException;
+import in.fssa.mambilling.exception.ServiceException;
+import in.fssa.mambilling.exception.ValidationException;
 import in.fssa.mambilling.service.BillItemsService;
 import in.fssa.mambilling.service.BillService;
 import in.fssa.mambilling.service.PriceService;
@@ -89,6 +89,16 @@ public class App {
 //			e.printStackTrace();
 //		}
 //		
+		
+	try {
+		System.out.println(ps.getProductDetail(132));
+	} catch (ValidationException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (ServiceException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 		
 
 

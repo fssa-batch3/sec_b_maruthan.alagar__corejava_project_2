@@ -2,10 +2,10 @@ package in.fssa.mambilling.service;
 
 import java.util.List;
 
-import in.fssa.mambilling.Exception.PersistanceException;
-import in.fssa.mambilling.Exception.ServiceException;
-import in.fssa.mambilling.Exception.ValidationException;
 import in.fssa.mambilling.dao.BillDAO;
+import in.fssa.mambilling.exception.PersistanceException;
+import in.fssa.mambilling.exception.ServiceException;
+import in.fssa.mambilling.exception.ValidationException;
 import in.fssa.mambilling.model.Bill;
 import in.fssa.mambilling.model.BillItems;
 import in.fssa.mambilling.model.User;
@@ -18,7 +18,7 @@ import in.fssa.mambilling.validator.BillValidator;
  */
 public class BillService {
 
-	BillDAO billdao = new BillDAO();
+	BillDAO billDAO = new BillDAO();
 	BillItemsService billitemsservice = new BillItemsService();
 
 	/**
@@ -31,19 +31,19 @@ public class BillService {
 	 * @throws ServiceException    If there's an issue with the database operation
 	 *                             or a service-level error occurs.
 	 */
-	public void create(int userId, List<BillItems> billItems) throws ValidationException, ServiceException {
+	public void createBill(int userId, List<BillItems> billItems) throws ValidationException, ServiceException {
 
 		int billId = 0;
 		try {
 			BillValidator.validate(userId, billItems);
-			billId = billdao.create(userId);
+			billId = billDAO.create(userId);
 		} catch (PersistanceException e) {
 			throw new ServiceException(e.getMessage());
 		}
 
 		try {
 			System.out.println(billId);
-			billitemsservice.create(billId, billItems);
+			billitemsservice.createBillItems(billId, billItems);
 		} catch (ServiceException e) {
 			System.out.println(e.getMessage());
 			removeRow(billId);
@@ -68,7 +68,7 @@ public class BillService {
 
 		try {
 			BillValidator.validateBillId(billId);
-			billdao.dropRow(billId);
+			billDAO.dropRow(billId);
 		} catch (PersistanceException e) {
 			throw new ServiceException("Failed to create Bill Items");
 		}
@@ -82,10 +82,10 @@ public class BillService {
 	 * @throws ServiceException If there's an issue with the database operation or a
 	 *                          service-level error occurs.
 	 */
-	public List<Bill> getAllbills() throws ServiceException {
+	public List<Bill> getAllBills() throws ServiceException {
 
 		try {
-			return billdao.findAll();
+			return billDAO.findAll();
 		} catch (PersistanceException e) {
 			throw new ServiceException(e.getMessage());
 		}
@@ -102,7 +102,7 @@ public class BillService {
 	public List<Bill> getAllRecentbills() throws ServiceException {
 
 		try {
-			return billdao.findAllRecentBills();
+			return billDAO.findAllRecentBills();
 		} catch (PersistanceException e) {
 			throw new ServiceException(e.getMessage());
 		}
@@ -132,7 +132,7 @@ public class BillService {
 			}
 			BillValidator.validateBillId(user.getId());
 
-			return billdao.findByUserId(user.getId());
+			return billDAO.findByUserId(user.getId());
 		} catch (PersistanceException e) {
 			throw new ServiceException(e.getMessage());
 		}
