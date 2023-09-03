@@ -172,7 +172,7 @@ public class TestCreateProduct {
 	public void testCreateProductWithExistingProductDetails() {
 
 		Price price = new Price(1200, 1, 0);
-		Product prod = new Product("Choculate", 15, QuantityType.nos, "Pachai Rice", price);
+		Product prod = new Product("Sofas", 1690, QuantityType.nos, "Sofa seater", price);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			productService.createProduct(prod);

@@ -14,7 +14,7 @@ import in.fssa.mambilling.service.UserService;
 
 public class TestUpdateUser {
 	@Test
-	public void testCreateUserWithValidData() {
+	public void testUpdateUserWithValidData() {
 		UserService userService = new UserService();
 
 		User newUser = new User();

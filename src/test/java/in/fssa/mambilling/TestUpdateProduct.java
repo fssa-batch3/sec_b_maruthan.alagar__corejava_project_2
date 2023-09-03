@@ -211,14 +211,14 @@ public class TestUpdateProduct {
 
 	@Test
 	@Order(11)
-	public void testUpadetProductWithExistingProductDetails() {
+	public void testUpdateProductWithExistingProductDetails() {
 
 		Price price = new Price(1200, 1, 0);
 		Product prod = new Product("Choculate", 15, QuantityType.nos, null, price);
 		
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
-			productService.updateProduct(prod,3);
+			productService.updateProduct(prod,6);
 		});
 
 		String expectedMessage = "Product Already Exists";
