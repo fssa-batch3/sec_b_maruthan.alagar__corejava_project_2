@@ -7,10 +7,22 @@ public class Bill {
 	
 	private LocalDateTime timeStamp;
 	private int billId;
+	private int userId;
 	
-	public Bill(LocalDateTime timeStamp, int billId) {
+	public int getUserId() {
+		return userId;
+	}
+
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+
+	public Bill(LocalDateTime timeStamp, int billId,int userId) {
 		this.timeStamp = timeStamp;
 		this.billId = billId;
+		this.userId = userId;
 	}
 	
 

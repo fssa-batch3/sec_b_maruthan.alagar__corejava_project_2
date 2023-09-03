@@ -9,11 +9,19 @@ public class ProductDTO {
 	private int quantity;
 	private QuantityType quantityType;
 	private String specialName;
-	
+	private int totalQuantity;
 	private double mrp;
 	private double tax;
 	private double discount;
 
+	
+	public int getTotalQuantity() {
+		return totalQuantity;
+	}
+
+	public void setTotalQuantity(int totalQuantity) {
+		this.totalQuantity = totalQuantity;
+	}
 	public String getProductName() {
 		return productName;
 	}

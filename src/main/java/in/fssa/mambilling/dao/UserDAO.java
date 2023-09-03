@@ -32,7 +32,7 @@ public class UserDAO {
 
 		List<User> userList = new ArrayList<User>();
 		try {
-			String query = "SELECT name,email,phone_number,address FROM users";
+			String query = "SELECT name,email,phone_number,address,id FROM users";
 			con = ConnectionUtil.getConnection();
 			ps = con.prepareStatement(query);
 			rs = ps.executeQuery();
@@ -40,6 +40,7 @@ public class UserDAO {
 			while (rs.next()) {
 				User newUser = new User(rs.getString("name"), rs.getString("email"), rs.getLong("phone_number"),
 						rs.getString("address"));
+				newUser.setId(rs.getInt("id"));
 				userList.add(newUser);
 			}
 		} catch (SQLException e) {

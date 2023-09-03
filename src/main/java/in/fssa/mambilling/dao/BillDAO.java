@@ -35,7 +35,7 @@ public class BillDAO {
 
 		List<Bill> billList = null;
 		try {
-			String query = "SELECT timeStamp , id FROM bills";
+			String query = "SELECT timeStamp , id, user_id FROM bills";
 			con = ConnectionUtil.getConnection();
 			ps = con.prepareStatement(query);
 			rs = ps.executeQuery();
@@ -46,7 +46,8 @@ public class BillDAO {
 				Instant instant = timestamp.toInstant();
 				ZoneId zoneId = ZoneId.systemDefault();
 				LocalDateTime localDateTime = instant.atZone(zoneId).toLocalDateTime();
-				Bill newbill = new Bill(localDateTime, rs.getInt("id"));
+				
+				Bill newbill = new Bill(localDateTime, rs.getInt("id"),rs.getInt("user_id"));
 				billList.add(newbill);
 			}
 		} catch (SQLException e) {
@@ -144,7 +145,7 @@ public class BillDAO {
 
 		try {
 
-			String query = "SELECT timeStamp ,id  FROM bills WHERE timestamp >= NOW() - INTERVAL 10 MINUTE ";
+			String query = "SELECT timeStamp ,id ,user_id FROM bills WHERE timestamp >= NOW() - INTERVAL 10 MINUTE ";
 			con = ConnectionUtil.getConnection();
 			ps = con.prepareStatement(query);
 			rs = ps.executeQuery();
@@ -157,7 +158,7 @@ public class BillDAO {
 				ZoneId zoneId = ZoneId.systemDefault();
 				LocalDateTime localDateTime = instant.atZone(zoneId).toLocalDateTime();
 
-				Bill newbill = new Bill(localDateTime, rs.getInt("id"));
+				Bill newbill = new Bill(localDateTime, rs.getInt("id"),rs.getInt("user_id"));
 				recentBillList.add(newbill);
 			}
 		} catch (SQLException e) {
@@ -185,7 +186,7 @@ public class BillDAO {
 		List<Bill> userBillList = null;
 
 		try {
-			String query = "SELECT timeStamp, id FROM bills  WHERE user_id = ? ";
+			String query = "SELECT timeStamp, id ,user_id FROM bills  WHERE user_id = ? ";
 			con = ConnectionUtil.getConnection();
 			ps = con.prepareStatement(query);
 			ps.setInt(1, userId);
@@ -199,7 +200,7 @@ public class BillDAO {
 				ZoneId zoneId = ZoneId.systemDefault();
 				LocalDateTime localDateTime = instant.atZone(zoneId).toLocalDateTime();
 
-				Bill newbill = new Bill(localDateTime, rs.getInt("id"));
+				Bill newbill = new Bill(localDateTime, rs.getInt("id"),rs.getInt("user_id"));
 				userBillList.add(newbill);
 			}
 

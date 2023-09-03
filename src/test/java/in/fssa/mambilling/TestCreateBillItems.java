@@ -100,7 +100,7 @@ public class TestCreateBillItems {
 		items.add(billitems1);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
-			billitemsservice.createBillItems(2, items);
+			billitemsservice.createBillItems(200, items);
 		});
 		String expectedMessage = "Product Not found with this ID";
 		String actualMessage = exception.getMessage();

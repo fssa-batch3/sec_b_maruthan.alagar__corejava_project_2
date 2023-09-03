@@ -33,7 +33,7 @@ public class ProductDAO {
 
 		List<Product> productList = new ArrayList<Product>();
 		try {
-			String query = "SELECT product_name , quantity ,special_name , quantity_type FROM products";
+			String query = "SELECT id , product_name , quantity ,special_name , quantity_type FROM products WHERE is_active = 1";
 			con = ConnectionUtil.getConnection();
 			ps = con.prepareStatement(query);
 			rs = ps.executeQuery();
@@ -44,6 +44,7 @@ public class ProductDAO {
 				newProduct.setQuantity(rs.getInt("quantity"));
 				newProduct.setSpecialName(rs.getString("special_name"));
 				newProduct.setQuantityType(QuantityType.valueOf(rs.getString("quantity_type")));
+				newProduct.setId(rs.getInt("id"));
 				productList.add(newProduct);
 			}
 		} catch (SQLException e) {
@@ -157,7 +158,7 @@ public class ProductDAO {
 		Product product = null;
 
 		try {
-			String query = "SELECT product_name ,quantity, quantity_type FROM products WHERE product_name = ? AND quantity = ? AND quantity_type = ? ";
+			String query = "SELECT product_name ,quantity, quantity_type FROM products WHERE product_name = ? AND quantity = ? AND quantity_type = ? AND is_active = 1";
 			con = ConnectionUtil.getConnection();
 			ps = con.prepareStatement(query);
 
