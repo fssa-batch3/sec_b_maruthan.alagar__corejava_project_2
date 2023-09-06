@@ -3,7 +3,9 @@ package in.fssa.mambilling.dto;
 import in.fssa.mambilling.model.Product.QuantityType;
 
 public class ProductDTO {
-//	 DATA TRANFOMATION MODAL
+//	 DATA TRANFOMATION OBJECT
+	private int id;
+
 
 	private String productName;
 	private int quantity;
@@ -14,7 +16,13 @@ public class ProductDTO {
 	private double tax;
 	private double discount;
 
-	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 	public int getTotalQuantity() {
 		return totalQuantity;
 	}

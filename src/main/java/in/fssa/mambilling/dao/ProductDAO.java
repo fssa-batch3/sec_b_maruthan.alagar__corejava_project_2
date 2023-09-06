@@ -248,7 +248,7 @@ public class ProductDAO {
 		ProductDTO product = null;
 
 		try {
-			String query = "SELECT p.product_name, p.quantity, p.special_name, p.quantity_type, pr.mrp, pr.tax, pr.discount FROM products p JOIN price pr ON p.id = pr.product_id WHERE  p.id = ?;";
+			String query = "SELECT p.product_name, p.quantity, p.special_name, p.quantity_type, p.id ,pr.mrp, pr.tax, pr.discount FROM products p JOIN price pr ON p.id = pr.product_id WHERE  p.id = ?;";
 			con = ConnectionUtil.getConnection();
 			ps = con.prepareStatement(query);
 
@@ -266,6 +266,7 @@ public class ProductDAO {
 				product.setDiscount(rs.getDouble("discount"));
 				product.setMrp(rs.getDouble("mrp"));
 				product.setTax(rs.getDouble("tax"));
+				product.setId(rs.getInt("id"));
 
 			}
 
