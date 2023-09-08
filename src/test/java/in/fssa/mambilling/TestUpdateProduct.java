@@ -34,10 +34,10 @@ public class TestUpdateProduct {
 	        }
 
 		Price price = new Price(6, 1, 0);
-		Product prod = new Product("BreDHDads", randomNumber, QuantityType.nos, null, price);
+		Product prod = new Product("Bun", randomNumber, QuantityType.nos, null, price);
 
 		assertDoesNotThrow(() -> {
-			productService.updateProduct(prod, 1);
+			productService.updateProduct(prod, 11);
 		});
 
 	}
@@ -58,7 +58,7 @@ public class TestUpdateProduct {
 	        }
 
 		Price price = new Price(1200, 1, 0);
-		Product prod = new Product("mMilFKKss", randomNumber, QuantityType.ml, "Arisi", price);
+		Product prod = new Product("Dairy Millk", randomNumber, QuantityType.nos, "choculate", price);
 
 		assertDoesNotThrow(() -> {
 			productService.updateProduct(prod,3);
@@ -83,7 +83,7 @@ public class TestUpdateProduct {
 
 		
 		Price price = new Price(1200, 1, 0);
-		Product prod = new Product("Choculate", randomNumber, QuantityType.nos, "Arisi", price);
+		Product prod = new Product("Soap", randomNumber, QuantityType.nos, "Arisi", price);
 		
 		
 		
@@ -214,7 +214,7 @@ public class TestUpdateProduct {
 	public void testUpdateProductWithExistingProductDetails() {
 
 		Price price = new Price(1200, 1, 0);
-		Product prod = new Product("Choculate", 15, QuantityType.nos, null, price);
+		Product prod = new Product("Soap", 1, QuantityType.nos, null, price);
 		
 
 		Exception exception = assertThrows(ValidationException.class, () -> {

@@ -32,7 +32,7 @@ public class BillItemsValidator {
 
 		if (billItems == null) {
 			throw new ValidationException("Invalid Product Details");
-		}
+		} 
 
 		for (BillItems billItem : billItems) {
 

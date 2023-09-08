@@ -32,7 +32,7 @@ public class BillItemsService {
 
 		try {
 			BillItemsValidator.validate(billId, billItems);
-			billitemsDAO.create(billId, billItems);
+			billitemsDAO.create(billId, billItems); 
 		} catch (PersistanceException e) {
 			throw new ServiceException(e.getMessage());
 		}

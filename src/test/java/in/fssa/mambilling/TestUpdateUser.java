@@ -20,12 +20,12 @@ public class TestUpdateUser {
 		User newUser = new User();
 
 		newUser.setName("Maruthan");
-		newUser.setPhoneNumber(8978675645l);
+		newUser.setPhoneNumber(7810061572l);
 		newUser.setEmail("maruthudivyaalagarchittu@gmail.com");
 		newUser.setAddress("Pudukkottai");
 
 		assertDoesNotThrow(() -> {
-			userService.updateUser(8978675645l , newUser);
+			userService.updateUser(7810061572l , newUser);
 		});
 
 	}

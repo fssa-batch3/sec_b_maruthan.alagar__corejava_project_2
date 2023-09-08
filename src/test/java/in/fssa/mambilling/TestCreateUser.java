@@ -199,7 +199,7 @@ public class TestCreateUser {
 
 
 		newUser.setName("Maruthan");
-		newUser.setPhoneNumber(6787879878l);
+		newUser.setPhoneNumber(7810061572l);
 		newUser.setEmail("maruthanalagar@gmail.com");
 		newUser.setAddress("Pudukkottai");
 

@@ -38,7 +38,7 @@ public class BillService {
 			BillValidator.validate(userId, billItems);
 			billId = billDAO.create(userId);
 		} catch (PersistanceException e) {
-			throw new ServiceException(e.getMessage());
+			throw new ServiceException(e.getMessage()); 
 		}
 
 		try {

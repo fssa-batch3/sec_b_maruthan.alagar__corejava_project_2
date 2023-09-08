@@ -33,7 +33,7 @@ public class BillItemsDAO {
 		try {
 			String query = "INSERT INTO bill_items ( bill_id , product_id , price_id , quantity ) VALUES ( ?, ?, ?, ? );";
 			con = ConnectionUtil.getConnection();
-			ps = con.prepareStatement(query);
+			ps = con.prepareStatement(query); 
 
 			for (BillItems item : billItems) {
 

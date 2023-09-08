@@ -73,7 +73,7 @@ public class BillDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 
-		int billId = 0;
+		int billId = 0; 
 
 		try {
 			String billquery = "INSERT INTO bills (user_id) VALUES (?);";

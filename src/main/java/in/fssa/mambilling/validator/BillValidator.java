@@ -29,7 +29,7 @@ public class BillValidator {
 		}
 
 		if (billItems == null) {
-			throw new ValidationException("Invalid Product Details");
+			throw new ValidationException("Invalid Product Details"); 
 		}
 
 		UserDAO userDAO = new UserDAO();

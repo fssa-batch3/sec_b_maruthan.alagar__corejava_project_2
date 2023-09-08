@@ -36,7 +36,7 @@ public class TestBillAndBillItems {
 	public void testFindAllBillsByUserNumber() {
 
 		assertDoesNotThrow(() -> {
-			billService.getAllUserbills(6787878787l);
+			billService.getAllUserbills(7810061572l);
 		});
 
 	}
@@ -57,7 +57,7 @@ public class TestBillAndBillItems {
 	public void testFindBillswithNotExistingPhoneNumber() {
 
 		Exception exception = assertThrows(ServiceException.class, () -> {
-			billService.getAllUserbills(6787876787l);
+			billService.getAllUserbills(6787776787l);
 		});
 		String expectedMessage = "User Not Found or Invalid Phone Number";
 		String actualMessage = exception.getMessage();

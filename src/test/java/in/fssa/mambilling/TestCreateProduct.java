@@ -38,7 +38,7 @@ public class TestCreateProduct {
 		}
 
 		Price price = new Price(12, 1, 0);
-		Product prod = new Product("Sofas", randomNumber, QuantityType.nos, null, price);
+		Product prod = new Product("Chilli powder", randomNumber, QuantityType.nos, null, price);
 
 		assertDoesNotThrow(() -> {
 			productService.createProduct(prod);
@@ -121,7 +121,7 @@ public class TestCreateProduct {
 	public void testCreateProductWithSpecialNameEmpty() {
 
 		Price price = new Price(1200, 1, 0);
-		Product prod = new Product("RRicee", 1000, QuantityType.g, "", price);
+		Product prod = new Product("Rice", 1000, QuantityType.g, "", price);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			productService.createProduct(prod);
@@ -172,7 +172,7 @@ public class TestCreateProduct {
 	public void testCreateProductWithExistingProductDetails() {
 
 		Price price = new Price(1200, 1, 0);
-		Product prod = new Product("Sofas", 1690, QuantityType.nos, "Sofa seater", price);
+		Product prod = new Product("Rice", 1000, QuantityType.g, "Arisi", price);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			productService.createProduct(prod);
