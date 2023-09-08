@@ -30,11 +30,11 @@ public class ConnectionUtil {
 //			userName = System.getenv("DATABASE_USERNAME");
 //			passWord = System.getenv("DATABASE_PASSWORD");
 
-		
-		url = System.getenv("LOCAL_DB_HOST");
-		userName = System.getenv("LOCAL_DB_USERNAME");
-		passWord = System.getenv("LOCAL_DB_PASSWORD");
 
+//          Local
+		url = "jdbc:mysql://localhost:3306/mam_billing";
+		userName = "root";
+		passWord = "123456";
 
 		Connection connection = null;
 

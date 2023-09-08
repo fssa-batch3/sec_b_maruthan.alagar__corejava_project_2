@@ -35,6 +35,9 @@ public class TestCreateProduct {
 		for (int i = 0; i < numberOfRandomNumbers; i++) {
 			randomNumber = rand.nextInt(max - min + 1) + min;
 
+			
+			
+			
 		}
 
 		Price price = new Price(12, 1, 0);
