@@ -30,15 +30,11 @@ public class ConnectionUtil {
 //			userName = System.getenv("DATABASE_USERNAME");
 //			passWord = System.getenv("DATABASE_PASSWORD");
 
-//			Cloud
-//			url = "jdbc:mysql://164.52.216.41:3306/maruthan_alagar_corejava_project";
-//			userName = "maruthan";
-//			passWord = "6c4fa947-d353-41c6-9cff-d504192258c0";
+		
+		url = System.getenv("LOCAL_DB_HOST");
+		userName = System.getenv("LOCAL_DB_USERNAME");
+		passWord = System.getenv("LOCAL_DB_PASSWORD");
 
-//          Local
-		url = "jdbc:mysql://localhost:3306/mam_billing";
-		userName = "root";
-		passWord = "123456";
 
 		Connection connection = null;
 
