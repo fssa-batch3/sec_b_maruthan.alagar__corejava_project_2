@@ -26,15 +26,15 @@ public class ConnectionUtil {
 		String userName;
 		String passWord;
 
-//			url = System.getenv("DATABASE_HOSTNAME");
-//			userName = System.getenv("DATABASE_USERNAME");
-//			passWord = System.getenv("DATABASE_PASSWORD");
+			url = System.getenv("DATABASE_HOSTNAME");
+			userName = System.getenv("DATABASE_USERNAME");
+			passWord = System.getenv("DATABASE_PASSWORD");
 
 
-//          Local
-		url = "jdbc:mysql://localhost:3306/mam_billing";
-		userName = "root";
-		passWord = "123456";
+////          Local
+//		url = "jdbc:mysql://localhost:3306/mam_billing";
+//		userName = "root";
+//		passWord = "123456";
 
 		Connection connection = null;
 
