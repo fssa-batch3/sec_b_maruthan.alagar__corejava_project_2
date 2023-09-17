@@ -213,8 +213,8 @@ public class TestUpdateProduct {
 	@Order(11)
 	public void testUpdateProductWithExistingProductDetails() {
 
-		Price price = new Price(1200, 1, 0);
-		Product prod = new Product("Soap", 1, QuantityType.nos, null, price);
+		Price price = new Price(60, 4, 10);
+		Product prod = new Product("Rice", 1000, QuantityType.g, null, price);
 		
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
@@ -239,7 +239,7 @@ public class TestUpdateProduct {
 			productService.updateProduct(prod, 3);
 		});
 
-		String expectedMessage = "Invalid Price Deatils";
+		String expectedMessage = "Invalid Price Details";
 		String actualMessage = exception.getMessage();
 		assertTrue(expectedMessage.equals(actualMessage));
 

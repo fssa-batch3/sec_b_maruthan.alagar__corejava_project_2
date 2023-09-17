@@ -7,6 +7,7 @@ import in.fssa.mambilling.service.BillService;
 import in.fssa.mambilling.service.PriceService;
 import in.fssa.mambilling.service.ProductService;
 import in.fssa.mambilling.service.UserService;
+import in.fssa.mambilling.util.PasswordUtil;
 
 public class App {
 	public static void main(String[] args) {
@@ -92,15 +93,27 @@ public class App {
 //			e.printStackTrace();
 //		}
 //		
+//		
+//	
+//		
+//	try {
+//		graphDAO.findGraphDetails();
+//	} catch (PersistanceException e) {
+//		// TODO Auto-generated catch block
+//		e.printStackTrace();
+//	}
 		
-	
-		
-	try {
-		graphDAO.findGraphDetails();
-	} catch (PersistanceException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+	        PasswordUtil encoderDecoder = new PasswordUtil();
+
+	        String originalPassword = "Acdm@2005";
+
+	        // Encode a password
+	        String encodedPassword = encoderDecoder.encodePassword(originalPassword);
+	        System.out.println("Encoded Password: " + encodedPassword);
+
+	        // Decode the password
+	        String decodedPassword = encoderDecoder.decodePassword(encodedPassword);
+	        System.out.println("Decoded Password: " + decodedPassword);
 
 
 	}

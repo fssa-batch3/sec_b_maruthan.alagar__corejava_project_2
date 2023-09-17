@@ -197,7 +197,7 @@ public class TestCreateProduct {
 			productService.createProduct(prod);
 		});
 
-		String expectedMessage = "Invalid Price Deatils";
+		String expectedMessage = "Invalid Price Details";
 		String actualMessage = exception.getMessage();
 		assertTrue(expectedMessage.equals(actualMessage));
 

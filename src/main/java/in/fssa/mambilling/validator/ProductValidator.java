@@ -22,6 +22,9 @@ public class ProductValidator {
 		if (newProduct == null) {
 			throw new ValidationException("Invalid Product Input");
 		}
+		if(newProduct.getPrice()==null) {
+			throw new ValidationException("Invalid Price Details");
+		}
 
 		StringUtil.rejectIfInvalidString(newProduct.getProductName(), "Product Name");
 
@@ -61,6 +64,10 @@ public class ProductValidator {
 
 		if (newProduct == null) {
 			throw new ValidationException("Invalid Product Input");
+		}
+		
+		if(newProduct.getPrice()==null) {
+			throw new ValidationException("Invalid Price Details");
 		}
 
 		if (id <= 0) {

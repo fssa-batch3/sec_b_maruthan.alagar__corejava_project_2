@@ -17,7 +17,7 @@ public class PriceValidator {
 	public static void validate(Price newPrice) throws ValidationException {
 
 		if (newPrice == null) {
-			throw new ValidationException("Invalid Price Deatils");
+			throw new ValidationException("Invalid Price Details");
 		}
 
 		validateMrp(newPrice.getMrp());
