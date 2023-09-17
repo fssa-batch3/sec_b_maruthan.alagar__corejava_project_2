@@ -1,3 +1,5 @@
+import in.fssa.mambilling.dao.GraphDAO;
+import in.fssa.mambilling.exception.PersistanceException;
 import in.fssa.mambilling.exception.ServiceException;
 import in.fssa.mambilling.exception.ValidationException;
 import in.fssa.mambilling.service.BillItemsService;
@@ -14,6 +16,7 @@ public class App {
 		UserService userservice = new UserService();
 		BillService billservice = new BillService();
 		BillItemsService billitemsservice = new BillItemsService();
+		GraphDAO graphDAO = new GraphDAO();
 		
 //
 //		Price price = new Price(1200, 1, 0);
@@ -90,16 +93,14 @@ public class App {
 //		}
 //		
 		
+	
+		
 	try {
-		System.out.println(ps.getProductDetail(132));
-	} catch (ValidationException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	} catch (ServiceException e) {
+		graphDAO.findGraphDetails();
+	} catch (PersistanceException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-		
 
 
 	}

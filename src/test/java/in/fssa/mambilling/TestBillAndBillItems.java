@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import in.fssa.mambilling.dao.GraphDAO;
 import in.fssa.mambilling.exception.ServiceException;
 import in.fssa.mambilling.exception.ValidationException;
 import in.fssa.mambilling.service.BillService;
@@ -40,7 +41,7 @@ public class TestBillAndBillItems {
 		});
 
 	}
-	
+
 	@Test
 	public void testFindBillswithInvalidPhoneNumber() {
 
@@ -62,6 +63,14 @@ public class TestBillAndBillItems {
 		String expectedMessage = "User Not Found or Invalid Phone Number";
 		String actualMessage = exception.getMessage();
 		assertTrue(expectedMessage.equals(actualMessage));
+
+	}
+	@Test
+	public void testFindAllDateTotalAmounts() {
+		GraphDAO graphDAO = new GraphDAO();
+		assertDoesNotThrow(() -> {
+			graphDAO.findGraphDetails();
+		});
 
 	}
 

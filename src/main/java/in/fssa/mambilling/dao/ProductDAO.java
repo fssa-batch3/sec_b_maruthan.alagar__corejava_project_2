@@ -158,13 +158,17 @@ public class ProductDAO {
 		Product product = null;
 
 		try {
-			String query = "SELECT product_name ,quantity, quantity_type FROM products WHERE product_name = ? AND quantity = ? AND quantity_type = ? AND is_active = 1";
+			String query = "SELECT p.product_name, p.quantity, p.quantity_type FROM products p JOIN price pr ON p.id = pr.product_id WHERE p.product_name = ? AND p.quantity = ? AND p.quantity_type = ? AND pr.mrp = ? AND pr.tax = ? AND pr.discount = ? ;";
 			con = ConnectionUtil.getConnection();
 			ps = con.prepareStatement(query);
 
 			ps.setString(1, newProduct.getProductName());
 			ps.setInt(2, newProduct.getQuantity());
 			ps.setString(3, newProduct.getQuantityType().toString());
+			ps.setDouble(4, newProduct.getPrice().getMrp());
+			ps.setDouble(5, newProduct.getPrice().getTax());
+			ps.setDouble(6, newProduct.getPrice().getDiscount());
+			
 
 			rs = ps.executeQuery();
 

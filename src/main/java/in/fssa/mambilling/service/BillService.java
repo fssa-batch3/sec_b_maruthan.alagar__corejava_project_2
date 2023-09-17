@@ -1,8 +1,10 @@
 package in.fssa.mambilling.service;
 
 import java.util.List;
+import java.util.Map;
 
 import in.fssa.mambilling.dao.BillDAO;
+import in.fssa.mambilling.dao.GraphDAO;
 import in.fssa.mambilling.exception.PersistanceException;
 import in.fssa.mambilling.exception.ServiceException;
 import in.fssa.mambilling.exception.ValidationException;
@@ -137,6 +139,23 @@ public class BillService {
 			throw new ServiceException(e.getMessage());
 		}
 
+	}
+	
+	/**
+	 * Retrieves and returns details of a graph as a mapping of node names to corresponding weights.
+	 *
+	 * @return A {@code Map} containing node names as keys and their associated weights as values.
+	 * @throws ServiceException If there is an issue while fetching graph details, a {@code ServiceException} is thrown.
+	 */
+	public static Map<String, Double> getGraphDetails() throws ServiceException{
+		GraphDAO graphDAO = new GraphDAO();
+		try {
+			
+			return graphDAO.findGraphDetails();
+		} catch (PersistanceException e) {
+			throw new ServiceException(e.getMessage());
+		}
+		
 	}
 
 }

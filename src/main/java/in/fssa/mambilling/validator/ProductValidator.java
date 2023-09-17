@@ -94,7 +94,7 @@ public class ProductValidator {
 			}
 
 		} catch (PersistanceException e) {
-			throw new ValidationException("Failed to check if the product exists during update.");
+			throw new ValidationException(e.getMessage());
 		}
 
 	}
