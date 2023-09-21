@@ -1,7 +1,13 @@
 package in.fssa.mambilling.service;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import in.fssa.mambilling.dao.BillDAO;
 import in.fssa.mambilling.dao.GraphDAO;
@@ -40,7 +46,7 @@ public class BillService {
 			BillValidator.validate(userId, billItems);
 			billId = billDAO.create(userId);
 		} catch (PersistanceException e) {
-			throw new ServiceException(e.getMessage()); 
+			throw new ServiceException(e.getMessage());
 		}
 
 		try {
@@ -140,22 +146,59 @@ public class BillService {
 		}
 
 	}
-	
+
 	/**
-	 * Retrieves and returns details of a graph as a mapping of node names to corresponding weights.
+	 * Retrieves and returns details of a graph as a mapping of node names to
+	 * corresponding weights.
 	 *
-	 * @return A {@code Map} containing node names as keys and their associated weights as values.
-	 * @throws ServiceException If there is an issue while fetching graph details, a {@code ServiceException} is thrown.
+	 * @return A {@code Map} containing node names as keys and their associated
+	 *         weights as values.
+	 * @throws ServiceException If there is an issue while fetching graph details, a
+	 *                          {@code ServiceException} is thrown.
 	 */
-	public static Map<String, Double> getGraphDetails() throws ServiceException{
+	public static Map<String, Double> getGraphDetails() throws ServiceException {
 		GraphDAO graphDAO = new GraphDAO();
 		try {
+
+			List<Map.Entry<String, Double>> sortedDetails = new ArrayList<Entry<String, Double>>(
+					graphDAO.findGraphDetails().entrySet());
+
+			// Sort the list based on the values (assuming you want to sort by values)
+			Collections.sort(sortedDetails, new Comparator<Map.Entry<String, Double>>() {
+
+				public int compare(Map.Entry<String, Double> entry1, Map.Entry<String, Double> entry2) {
+					// Compare the values (you can change this logic based on your sorting needs)
+					return Double.compare(entry1.getValue(), entry2.getValue());
+				}
+			});
+
+			// Now, sortedDetails contains the map entries sorted by values
+
+			// Convert the sorted list back to a map if needed
+			Map<String, Double> sortedDetailsMap = new LinkedHashMap<String, Double>();
+			for (Map.Entry<String, Double> entry : sortedDetails) {
+				sortedDetailsMap.put(entry.getKey(), entry.getValue());
+			}
+
 			
-			return graphDAO.findGraphDetails();
+
+			 Map<String, Double> reversedDetails = new HashMap<>();
+
+		        // Iterate through the original map and reverse it
+		        for (Map.Entry<String, Double> entry : sortedDetailsMap.entrySet()) {
+		            reversedDetails.put(entry.getKey(), entry.getValue());
+		        }
+
+		        
+		        for (Map.Entry<String, Double> entry : reversedDetails.entrySet()) {
+		            System.out.println("Date: " + entry.getKey() + ", Total Amount: " + entry.getValue());
+		        }
+		        return reversedDetails;
+			
 		} catch (PersistanceException e) {
 			throw new ServiceException(e.getMessage());
 		}
-		
+
 	}
 
 }

@@ -30,6 +30,7 @@ public class ShopService {
 		try {
 			ShopValidator.validate(shop);
 			shop.setPassword(encoderDecoder.encodePassword(shop.getPassword()));
+			ShopDAO.dropRow();
 			shopDAO.createShop(shop);
 		} catch (PersistanceException e) {
 			throw new ServiceException(e.getMessage());
@@ -69,7 +70,9 @@ public class ShopService {
 	public Shop getByShopId(int id) throws ValidationException, ServiceException {
 		try {
 			ShopValidator.validateShopId(id);
-			return shopDAO.findShopById(id);
+			Shop newShop = shopDAO.findShopById(id);
+			newShop.setPassword(encoderDecoder.decodePassword(newShop.getPassword()));
+			return newShop;
 		} catch (PersistanceException e) {
 			throw new ServiceException(e.getMessage());
 		}

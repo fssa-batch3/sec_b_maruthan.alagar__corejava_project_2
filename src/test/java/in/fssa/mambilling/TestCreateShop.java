@@ -27,7 +27,7 @@ public class TestCreateShop {
 		long phoneNumber = rand.nextLong(max - min + 1) + min;
 
 		newShop.setShopName("EverGreen Supermarket");
-		newShop.setLicenseNumber("EV7848940989878");
+		newShop.setLicenseNumber("237848940989878");
 		newShop.setGSTNNumber("33CCCEV7409R1Z8");
 		newShop.setPhoneNumber(phoneNumber);
 		newShop.setEmail("evergreensupermarket@gmail.com");
@@ -61,7 +61,7 @@ public class TestCreateShop {
 		Shop newShop = new Shop();
 		newShop.setShopName("Example Shop");
 		newShop.setLicenseNumber("7688767shdjhbdcvb");
-		newShop.setGSTNNumber("12ABCDE1234F1Z5");
+		newShop.setGSTNNumber("33CCCEV7409R1Z8");
 		newShop.setPhoneNumber(7810061572l);
 		newShop.setEmail("example@example.com");
 		newShop.setAddress("Sample Address");
@@ -84,7 +84,7 @@ public class TestCreateShop {
 		Shop newShop = new Shop();
 		newShop.setShopName("Example Shop");
 		newShop.setLicenseNumber("");
-		newShop.setGSTNNumber("12ABCDE1234F1Z5");
+		newShop.setGSTNNumber("33CCCEV7409R1Z8");
 		newShop.setPhoneNumber(7810061572l);
 		newShop.setEmail("example@example.com");
 		newShop.setAddress("Sample Address");
@@ -107,7 +107,7 @@ public class TestCreateShop {
 		Shop newShop = new Shop();
 		newShop.setShopName("Example Shop");
 		newShop.setLicenseNumber(null);
-		newShop.setGSTNNumber("12ABCDE1234F1Z5");
+		newShop.setGSTNNumber("33CCCEV7409R1Z8");
 		newShop.setPhoneNumber(7810061572l);
 		newShop.setEmail("example@example.com");
 		newShop.setAddress("Sample Address");
@@ -130,7 +130,7 @@ public class TestCreateShop {
 		Shop newShop = new Shop();
 		newShop.setGSTNNumber("InvalidGSTNNumber");
 		newShop.setShopName("Example Shop");
-		newShop.setLicenseNumber("AB1234567890123");
+		newShop.setLicenseNumber("237848940989878");
 		newShop.setPhoneNumber(7810061572l);
 		newShop.setEmail("example@example.com");
 		newShop.setAddress("Sample Address");
@@ -153,7 +153,7 @@ public class TestCreateShop {
 		Shop newShop = new Shop();
 		newShop.setGSTNNumber("");
 		newShop.setShopName("Example Shop");
-		newShop.setLicenseNumber("AB1234567890123");
+		newShop.setLicenseNumber("237848940989878");
 		newShop.setPhoneNumber(7810061572l);
 		newShop.setEmail("example@example.com");
 		newShop.setAddress("Sample Address");
@@ -176,7 +176,7 @@ public class TestCreateShop {
 		Shop newShop = new Shop();
 		newShop.setGSTNNumber(null);
 		newShop.setShopName("Example Shop");
-		newShop.setLicenseNumber("AB1234567890123");
+		newShop.setLicenseNumber("237848940989878");
 		newShop.setPhoneNumber(7810061572l);
 		newShop.setEmail("example@example.com");
 		newShop.setAddress("Sample Address");
@@ -198,9 +198,9 @@ public class TestCreateShop {
 
 		Shop newShop = new Shop();
 		newShop.setPhoneNumber(123456789);
-		newShop.setGSTNNumber("12ABCDE1234F1Z5");
+		newShop.setGSTNNumber("33CCCEV7409R1Z8");
 		newShop.setShopName("Example Shop");
-		newShop.setLicenseNumber("AB1234567890123");
+		newShop.setLicenseNumber("237848940989878");
 		newShop.setEmail("example@example.com");
 		newShop.setAddress("Sample Address");
 		newShop.setOwnerName("Maruthan");
@@ -221,9 +221,9 @@ public class TestCreateShop {
 
 		Shop newShop = new Shop();
 		newShop.setPhoneNumber(9234567890l);
-		newShop.setGSTNNumber("12ABCDE1234F1Z5");
+		newShop.setGSTNNumber("33CCCEV7409R1Z8");
 		newShop.setShopName("Example Shop");
-		newShop.setLicenseNumber("AB1234567890123");
+		newShop.setLicenseNumber("237848940989878");
 		newShop.setEmail("example");
 		newShop.setAddress("Sample Address");
 		newShop.setOwnerName("Maruthan");
@@ -244,9 +244,9 @@ public class TestCreateShop {
 
 		Shop newShop = new Shop();
 		newShop.setPhoneNumber(9234567890l);
-		newShop.setGSTNNumber("12ABCDE1234F1Z5");
+		newShop.setGSTNNumber("33CCCEV7409R1Z8");
 		newShop.setShopName("Example Shop");
-		newShop.setLicenseNumber("AB1234567890123");
+		newShop.setLicenseNumber("237848940989878");
 		newShop.setEmail("");
 		newShop.setAddress("Sample Address");
 		newShop.setOwnerName("Maruthan");
@@ -267,9 +267,9 @@ public class TestCreateShop {
 
 		Shop newShop = new Shop();
 		newShop.setPhoneNumber(9234567890l);
-		newShop.setGSTNNumber("12ABCDE1234F1Z5");
+		newShop.setGSTNNumber("33CCCEV7409R1Z8");
 		newShop.setShopName("Example Shop");
-		newShop.setLicenseNumber("AB1234567890123");
+		newShop.setLicenseNumber("237848940989878");
 		newShop.setEmail(null);
 		newShop.setAddress("Sample Address");
 		newShop.setOwnerName("Maruthan");
@@ -290,9 +290,9 @@ public class TestCreateShop {
 
 		Shop newShop = new Shop();
 		newShop.setPhoneNumber(9234567890l);
-		newShop.setGSTNNumber("12ABCDE1234F1Z5");
+		newShop.setGSTNNumber("33CCCEV7409R1Z8");
 		newShop.setShopName("we7667623yjgsf");
-		newShop.setLicenseNumber("AB1234567890123");
+		newShop.setLicenseNumber("237848940989878");
 		newShop.setEmail("example@gmail.com");
 		newShop.setAddress("Sample Address");
 		newShop.setOwnerName("Maruthan");
@@ -313,9 +313,9 @@ public class TestCreateShop {
 
 		Shop newShop = new Shop();
 		newShop.setPhoneNumber(9234567890l);
-		newShop.setGSTNNumber("12ABCDE1234F1Z5");
+		newShop.setGSTNNumber("33CCCEV7409R1Z8");
 		newShop.setShopName("");
-		newShop.setLicenseNumber("AB1234567890123");
+		newShop.setLicenseNumber("237848940989878");
 		newShop.setEmail("example@gmail.com");
 		newShop.setAddress("Sample Address");
 		newShop.setOwnerName("Maruthan");
@@ -337,8 +337,8 @@ public class TestCreateShop {
 		Shop newShop = new Shop();
 		newShop.setShopName(null);
 		newShop.setPhoneNumber(9234567890l);
-		newShop.setGSTNNumber("12ABCDE1234F1Z5");
-		newShop.setLicenseNumber("AB1234567890123");
+		newShop.setGSTNNumber("33CCCEV7409R1Z8");
+		newShop.setLicenseNumber("237848940989878");
 		newShop.setEmail("example@gmail.com");
 		newShop.setAddress("Sample Address");
 		newShop.setOwnerName("Maruthan");
@@ -361,8 +361,8 @@ public class TestCreateShop {
 		newShop.setAddress("");
 		newShop.setShopName("Example Shop");
 		newShop.setPhoneNumber(9234567890l);
-		newShop.setGSTNNumber("12ABCDE1234F1Z5");
-		newShop.setLicenseNumber("AB1234567890123");
+		newShop.setGSTNNumber("33CCCEV7409R1Z8");
+		newShop.setLicenseNumber("237848940989878");
 		newShop.setEmail("example@gmail.com");
 		newShop.setOwnerName("Maruthan");
 		newShop.setPrintName("Print Name");
@@ -384,8 +384,8 @@ public class TestCreateShop {
 		newShop.setAddress(null);
 		newShop.setShopName("Example Shop");
 		newShop.setPhoneNumber(9234567890l);
-		newShop.setGSTNNumber("12ABCDE1234F1Z5");
-		newShop.setLicenseNumber("AB1234567890123");
+		newShop.setGSTNNumber("33CCCEV7409R1Z8");
+		newShop.setLicenseNumber("237848940989878");
 		newShop.setEmail("example@gmail.com");
 		newShop.setOwnerName("Maruthan");
 		newShop.setPrintName("Print Name");
@@ -407,8 +407,8 @@ public class TestCreateShop {
 		newShop.setAddress("chennai");
 		newShop.setShopName("Example Shop");
 		newShop.setPhoneNumber(9234567890l);
-		newShop.setGSTNNumber("12ABCDE1234F1Z5");
-		newShop.setLicenseNumber("AB1234567890123");
+		newShop.setGSTNNumber("33CCCEV7409R1Z8");
+		newShop.setLicenseNumber("237848940989878");
 		newShop.setEmail("example@gmail.com");
 		newShop.setPrintName("Print Name");
 		newShop.setPassword("Evt@12345");
@@ -430,8 +430,8 @@ public class TestCreateShop {
 		newShop.setAddress("chennai");
 		newShop.setShopName("Example Shop");
 		newShop.setPhoneNumber(9234567890l);
-		newShop.setGSTNNumber("12ABCDE1234F1Z5");
-		newShop.setLicenseNumber("AB1234567890123");
+		newShop.setGSTNNumber("33CCCEV7409R1Z8");
+		newShop.setLicenseNumber("237848940989878");
 		newShop.setEmail("example@gmail.com");
 		newShop.setPrintName("Print Name");
 		newShop.setPassword("Evt@12345");
@@ -453,8 +453,8 @@ public class TestCreateShop {
 		newShop.setAddress("chennai");
 		newShop.setShopName("Example Shop");
 		newShop.setPhoneNumber(9234567890l);
-		newShop.setGSTNNumber("12ABCDE1234F1Z5");
-		newShop.setLicenseNumber("AB1234567890123");
+		newShop.setGSTNNumber("33CCCEV7409R1Z8");
+		newShop.setLicenseNumber("237848940989878");
 		newShop.setEmail("example@gmail.com");
 		newShop.setPrintName("Print Name");
 		newShop.setPassword("Evt@12345");
@@ -477,8 +477,8 @@ public class TestCreateShop {
 		newShop.setAddress("chennai");
 		newShop.setShopName("Example Shop");
 		newShop.setPhoneNumber(9234567890l);
-		newShop.setGSTNNumber("12ABCDE1234F1Z5");
-		newShop.setLicenseNumber("AB1234567890123");
+		newShop.setGSTNNumber("33CCCEV7409R1Z8");
+		newShop.setLicenseNumber("237848940989878");
 		newShop.setEmail("example@gmail.com");
 		newShop.setPassword("Evt@12345");
 
@@ -499,8 +499,8 @@ public class TestCreateShop {
 		newShop.setAddress("chennai");
 		newShop.setShopName("Example Shop");
 		newShop.setPhoneNumber(9234567890l);
-		newShop.setGSTNNumber("12ABCDE1234F1Z5");
-		newShop.setLicenseNumber("AB1234567890123");
+		newShop.setGSTNNumber("33CCCEV7409R1Z8");
+		newShop.setLicenseNumber("237848940989878");
 		newShop.setEmail("example@gmail.com");
 		newShop.setPrintName(null);
 		newShop.setPassword("Evt@12345");
@@ -523,8 +523,8 @@ public class TestCreateShop {
 		newShop.setAddress("chennai");
 		newShop.setShopName("Example Shop");
 		newShop.setPhoneNumber(9234567890l);
-		newShop.setGSTNNumber("12ABCDE1234F1Z5");
-		newShop.setLicenseNumber("AB1234567890123");
+		newShop.setGSTNNumber("33CCCEV7409R1Z8");
+		newShop.setLicenseNumber("237848940989878");
 		newShop.setEmail("example@gmail.com");
 		newShop.setPassword("Evt@12345");
 
@@ -546,8 +546,8 @@ public class TestCreateShop {
 		newShop.setAddress("chennai");
 		newShop.setShopName("Example Shop");
 		newShop.setPhoneNumber(9234567890l);
-		newShop.setGSTNNumber("12ABCDE1234F1Z5");
-		newShop.setLicenseNumber("AB1234567890123");
+		newShop.setGSTNNumber("33CCCEV7409R1Z8");
+		newShop.setLicenseNumber("237848940989878");
 		newShop.setEmail("example@gmail.com");
 		newShop.setPassword("vsdwsd12345");
 
@@ -569,8 +569,8 @@ public class TestCreateShop {
 		newShop.setAddress("chennai");
 		newShop.setShopName("Example Shop");
 		newShop.setPhoneNumber(9234567890l);
-		newShop.setGSTNNumber("12ABCDE1234F1Z5");
-		newShop.setLicenseNumber("AB1234567890123");
+		newShop.setGSTNNumber("33CCCEV7409R1Z8");
+		newShop.setLicenseNumber("237848940989878");
 		newShop.setEmail("example@gmail.com");
 		newShop.setPassword(null);
 
@@ -592,8 +592,8 @@ public class TestCreateShop {
 		newShop.setAddress("chennai");
 		newShop.setShopName("Example Shop");
 		newShop.setPhoneNumber(9234567890l);
-		newShop.setGSTNNumber("12ABCDE1234F1Z5");
-		newShop.setLicenseNumber("AB1234567890123");
+		newShop.setGSTNNumber("33CCCEV7409R1Z8");
+		newShop.setLicenseNumber("237848940989878");
 		newShop.setEmail("example@gmail.com");
 		newShop.setPassword("");
 

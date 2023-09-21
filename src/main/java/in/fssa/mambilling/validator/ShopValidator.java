@@ -110,7 +110,7 @@ public class ShopValidator {
 			throw new ValidationException("License Number cannot be Null or Empty");
 
 		}
-        String regexPattern = "^[A-Z]{2}\\d{2}\\d{4}\\d{7}$";
+        String regexPattern = "^[0-9]{2}\\d{2}\\d{4}\\d{7}$";
         Pattern pattern = Pattern.compile(regexPattern);
         Matcher matcher = pattern.matcher(licenceNumber);
 

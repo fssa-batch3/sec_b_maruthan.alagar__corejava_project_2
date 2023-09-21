@@ -4,14 +4,14 @@ import java.util.Base64;
 
 public class PasswordUtil {
 
-	private final String key = "mam_billing_secret_key";
+	private static final String KEY = "mam_billing_secret_key";
 
 
 	public String encodePassword(String password) {
 		try {
 			// Convert the password and key to byte arrays
 			byte[] passwordBytes = password.getBytes("UTF-8");
-			byte[] keyBytes = key.getBytes("UTF-8");
+			byte[] keyBytes = KEY.getBytes("UTF-8");
 
 			// Perform XOR operation
 			for (int i = 0; i < passwordBytes.length; i++) {
@@ -32,7 +32,7 @@ public class PasswordUtil {
 			// Decode the Base64-encoded password to byte array
 			byte[] encodedBytes = encodedPassword.getBytes("UTF-8");
 			byte[] passwordBytes = Base64.getDecoder().decode(encodedBytes);
-			byte[] keyBytes = key.getBytes("UTF-8");
+			byte[] keyBytes = KEY.getBytes("UTF-8");
 
 			// Perform XOR operation to decode
 			for (int i = 0; i < passwordBytes.length; i++) {

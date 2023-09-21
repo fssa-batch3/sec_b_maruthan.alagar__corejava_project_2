@@ -80,7 +80,7 @@ public class ShopDAO {
             ps.setString(9, shop.getPassword());
             
             
-            ps.setInt(10, shop.getId());
+            ps.setInt(10, 1);
 
             int updatedRows = ps.executeUpdate();
 
@@ -113,7 +113,7 @@ public class ShopDAO {
         Shop shop = null;
 
         try {
-            String query = "SELECT * FROM shop WHERE id=?";
+            String query = "SELECT id,shop_name,licence_number,gstn_number,phone_number, email ,address,print_name ,owner_name,password FROM shop WHERE id=?";
             con = ConnectionUtil.getConnection();
             ps = con.prepareStatement(query);
             ps.setInt(1, id);
@@ -133,7 +133,7 @@ public class ShopDAO {
                 shop.setPassword(rs.getString("password"));
             }
 
-            return shop;
+           
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -141,6 +141,8 @@ public class ShopDAO {
         } finally {
             ConnectionUtil.close(con, ps, rs);
         }
+        return shop;
+        
     }
 	/**
 	 * Deletes a product with the specified ID from the database.

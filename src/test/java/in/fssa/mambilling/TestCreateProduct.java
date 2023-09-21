@@ -174,7 +174,7 @@ public class TestCreateProduct {
 	@Order(9)
 	public void testCreateProductWithExistingProductDetails() {
 
-		Price price = new Price(1200, 1, 0);
+		Price price = new Price(60, 4, 10);
 		Product prod = new Product("Rice", 1000, QuantityType.g, "Arisi", price);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {

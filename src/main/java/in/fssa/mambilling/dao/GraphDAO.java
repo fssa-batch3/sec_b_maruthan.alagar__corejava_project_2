@@ -97,9 +97,7 @@ public class GraphDAO {
 	            dateTotalAmounts.put(dateToQuery, totalAmount);
 	        }
 
-	        for (Map.Entry<String, Double> entry : dateTotalAmounts.entrySet()) {
-	            System.out.println("Date: " + entry.getKey() + ", Total Amount: " + entry.getValue());
-	        }
+
 
 	        return dateTotalAmounts;
 	    } catch (SQLException e) {
