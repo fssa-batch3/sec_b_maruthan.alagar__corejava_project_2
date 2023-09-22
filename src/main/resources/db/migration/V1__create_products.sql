@@ -1,5 +1,3 @@
-use mam_billing;
-
 
 CREATE TABLE IF NOT EXISTS products (
 `id` int PRIMARY KEY auto_increment not null,
@@ -9,6 +7,7 @@ special_name VARCHAR(100),
 quantity_type enum("g","ml","nos"),
 is_active boolean default true
 );
+
 
 
 CREATE TABLE price (
@@ -27,20 +26,18 @@ CREATE TABLE price (
 CREATE TABLE IF NOT EXISTS users (
   `id` int PRIMARY KEY auto_increment not null,
   name VARCHAR(50) not null,
-  phone_number BIGINT(10) unique,
+  phone_number BIGINT unique not null,
   email VARCHAR(150),
   address VARCHAR(250)
 );
 
 
-
-create TABLE IF NOT EXISTS bill (
+CREATE TABLE IF NOT EXISTS bills (
   `id` int PRIMARY KEY auto_increment not null,
-  timestamp timestamp DEFAULT  current_timestamp not null,
-	 user_id INT not null,
-    FOREIGN KEY (user_id) REFERENCES users(id)
+  `timestamp` timestamp DEFAULT current_timestamp not null,
+  user_id INT not null,
+  FOREIGN KEY (user_id) REFERENCES users(id)
 );
-
 
 
 CREATE TABLE IF NOT EXISTS bill_items (
@@ -49,11 +46,23 @@ CREATE TABLE IF NOT EXISTS bill_items (
    product_id INT not null,
    price_id INT not null,
    quantity int not null,
-    FOREIGN KEY (bill_id) REFERENCES bill(id),
+    FOREIGN KEY (bill_id) REFERENCES bills(id),
     FOREIGN KEY (product_id) REFERENCES products(id),
     FOREIGN KEY (price_id) REFERENCES price(id)
 );
 
+CREATE TABLE shop (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    shop_name VARCHAR(255) not null unique,
+    licence_number VARCHAR(255)not null,
+    gstn_Number VARCHAR(255) not null,
+    phone_number BIGINT not null,
+    email VARCHAR(255) not null,
+    address VARCHAR(255) not null,
+    print_name VARCHAR(255) not null ,
+    owner_name VARCHAR(255) not null,
+    password varchar(100) not null
+);
 
 
 
@@ -62,6 +71,9 @@ Select * from products;
 Select * from price;
 Select * from bills;
 Select * from bill_items;
+Select * from shop;
+
+
 
 
 

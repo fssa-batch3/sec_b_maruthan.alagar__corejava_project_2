@@ -1,8 +1,12 @@
 package in.fssa.mambilling.service;
 
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -160,40 +164,33 @@ public class BillService {
 		GraphDAO graphDAO = new GraphDAO();
 		try {
 
-			List<Map.Entry<String, Double>> sortedDetails = new ArrayList<Entry<String, Double>>(
-					graphDAO.findGraphDetails().entrySet());
+			List<Map.Entry<String, Double>> sortedDetails = new ArrayList<>(graphDAO.findGraphDetails().entrySet());
 
-			// Sort the list based on the values (assuming you want to sort by values)
-			Collections.sort(sortedDetails, new Comparator<Map.Entry<String, Double>>() {
-
-				public int compare(Map.Entry<String, Double> entry1, Map.Entry<String, Double> entry2) {
-					// Compare the values (you can change this logic based on your sorting needs)
-					return Double.compare(entry1.getValue(), entry2.getValue());
-				}
+			// Sort the list based on the date strings
+			Collections.sort(sortedDetails, (entry1, entry2) -> {
+			    // Parse the date strings and compare them
+			    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // Adjust the date format as needed
+			    try {
+			        Date date1 = dateFormat.parse(entry1.getKey());
+			        Date date2 = dateFormat.parse(entry2.getKey());
+			        return date1.compareTo(date2);
+			    } catch (ParseException e) {
+			        // Handle parsing errors here
+			        return 0; // You may want to handle this differently
+			    }
 			});
 
-			// Now, sortedDetails contains the map entries sorted by values
-
-			// Convert the sorted list back to a map if needed
-			Map<String, Double> sortedDetailsMap = new LinkedHashMap<String, Double>();
+			// Convert the sorted list back to a map
+			LinkedHashMap<String, Double> sortedDetailsMap = new LinkedHashMap<>();
 			for (Map.Entry<String, Double> entry : sortedDetails) {
-				sortedDetailsMap.put(entry.getKey(), entry.getValue());
+			    sortedDetailsMap.put(entry.getKey(), entry.getValue());
 			}
 
-			
+			for (Map.Entry<String, Double> entry : sortedDetailsMap.entrySet()) {
+			    System.out.println("Date: " + entry.getKey() + ", Total Amount: " + entry.getValue());
+			}
 
-			 Map<String, Double> reversedDetails = new HashMap<>();
-
-		        // Iterate through the original map and reverse it
-		        for (Map.Entry<String, Double> entry : sortedDetailsMap.entrySet()) {
-		            reversedDetails.put(entry.getKey(), entry.getValue());
-		        }
-
-		        
-		        for (Map.Entry<String, Double> entry : reversedDetails.entrySet()) {
-		            System.out.println("Date: " + entry.getKey() + ", Total Amount: " + entry.getValue());
-		        }
-		        return reversedDetails;
+			return sortedDetailsMap;
 			
 		} catch (PersistanceException e) {
 			throw new ServiceException(e.getMessage());

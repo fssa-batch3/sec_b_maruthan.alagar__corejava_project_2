@@ -205,4 +205,39 @@ public class ShopDAO {
 		return shop;
 
 	}
+	
+	
+	
+	/**
+	 * Updates the password for a shop in the database.
+	 *
+	 * @param shopId     The ID of the shop to update.
+	 * @param newPassword The new password to set for the shop.
+	 * @throws PersistanceException If there is an issue with the database connection or the update operation.
+	 */
+	public void updateShopPassword(String email, String newPassword) throws PersistanceException {
+	    Connection con = null;
+	    PreparedStatement ps = null;
+
+	    try {
+	        String query = "UPDATE shop SET password=? WHERE email=?";
+	        con = ConnectionUtil.getConnection();
+	        ps = con.prepareStatement(query);
+	        ps.setString(1, newPassword);
+	        ps.setString(2, email);
+
+	        int rowsUpdated = ps.executeUpdate();
+
+	        if (rowsUpdated == 0) {
+	            throw new PersistanceException("Shop not found");
+	        }
+
+	    } catch (SQLException e) {
+	        System.out.println(e.getMessage());
+	        throw new PersistanceException(e.getMessage());
+	    } finally {
+	        ConnectionUtil.close(con, ps, null);
+	    }
+	}
+
 }

@@ -75,6 +75,15 @@ public class ShopService {
 		}
 	}
 
+	/**
+	 * Attempts to log in a shop using the provided email and password.
+	 *
+	 * @param email    The email of the shop.
+	 * @param password The password of the shop.
+	 * @return True if the login is successful, false otherwise.
+	 * @throws ValidationException If there is a validation error with the password.
+	 * @throws ServiceException   If there is an issue with the service operation.
+	 */
 	public boolean getShopForLogin(String email, String password) throws ValidationException, ServiceException {
 		try {
 
@@ -86,5 +95,25 @@ public class ShopService {
 			throw new ServiceException(e.getMessage());
 		}
 	}
+	
+	/**
+	 * Updates the password for a shop in the database.
+	 *
+	 * @param shopId      The ID of the shop to update.
+	 * @param newPassword The new password to set for the shop.
+	 * @throws ServiceException If there is an issue with the service operation.
+	 * @throws ValidationException 
+	 */
+	public void updateShopPassword(String email, String newPassword) throws ServiceException, ValidationException {
+	    try {
+	    	ShopValidator.validatePassword(newPassword);
+	    	ShopValidator.validateEmail(email, "Shop Email");
+			String encodedPassword = encoderDecoder.encodePassword(newPassword);
+	        shopDAO.updateShopPassword(email, encodedPassword);
+	    } catch (PersistanceException e) {
+	        throw new ServiceException(e.getMessage());
+	    }
+	}
+	
 
 }

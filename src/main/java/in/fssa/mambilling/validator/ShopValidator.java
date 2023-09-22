@@ -138,7 +138,7 @@ public class ShopValidator {
 			throw new ValidationException("License Number cannot be Null or Empty");
 
 		}
-		String regexPattern = "^[0-9]{2}\\d{2}\\d{4}\\d{7}$";
+		String regexPattern = "^[0-9]{1}\\d{2}\\d{4}\\d{7}$";
 		Pattern pattern = Pattern.compile(regexPattern);
 		Matcher matcher = pattern.matcher(licenceNumber);
 
@@ -198,7 +198,17 @@ public class ShopValidator {
 			throw new ValidationException("Invalid Shop ID");
 		}
 	}
-
+	
+	/**
+	 * Validates user login details against database records.
+	 *
+	 * @param userEmail    The email provided by the user for login.
+	 * @param userpassword The password provided by the user for login.
+	 * @param dbEmail      The email retrieved from the database.
+	 * @param dbPassword   The password retrieved from the database.
+	 * @return True if the provided login details match the database records, false otherwise.
+	 * @throws ValidationException If there is a validation error with the user email.
+	 */
 	public static boolean validateLoginDetails(String userEmail, String userpassword, String dbEmail, String dbPassword)
 			throws ValidationException {
 
