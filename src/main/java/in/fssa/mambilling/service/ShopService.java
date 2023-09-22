@@ -8,7 +8,6 @@ import in.fssa.mambilling.model.Shop;
 import in.fssa.mambilling.util.PasswordUtil;
 import in.fssa.mambilling.validator.ShopValidator;
 
-
 /**
  * The ShopService class provides a service layer for managing shops, including
  * shop creation, retrieval, updating, and fetching shop details.
@@ -49,8 +48,7 @@ public class ShopService {
 
 	public void updateShop(Shop newShop) throws ValidationException, ServiceException {
 		try {
-			ShopValidator.validate(newShop);
-			newShop.setPassword(encoderDecoder.encodePassword(newShop.getPassword()));
+			ShopValidator.validateUpdate(newShop);
 			shopDAO.updateShop(newShop);
 		} catch (PersistanceException e) {
 			throw new ServiceException(e.getMessage());
@@ -71,8 +69,19 @@ public class ShopService {
 		try {
 			ShopValidator.validateShopId(id);
 			Shop newShop = shopDAO.findShopById(id);
-			newShop.setPassword(encoderDecoder.decodePassword(newShop.getPassword()));
 			return newShop;
+		} catch (PersistanceException e) {
+			throw new ServiceException(e.getMessage());
+		}
+	}
+
+	public boolean getShopForLogin(String email, String password) throws ValidationException, ServiceException {
+		try {
+
+			Shop newShop = shopDAO.findShopDetailsForLogin();
+			ShopValidator.validatePassword(password);
+			String encodedPassword = encoderDecoder.encodePassword(password);
+			return ShopValidator.validateLoginDetails(email, encodedPassword, newShop.getEmail(),newShop.getPassword());
 		} catch (PersistanceException e) {
 			throw new ServiceException(e.getMessage());
 		}
