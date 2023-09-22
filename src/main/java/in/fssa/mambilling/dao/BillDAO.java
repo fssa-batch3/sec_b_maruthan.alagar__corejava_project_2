@@ -5,9 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +19,7 @@ import in.fssa.mambilling.util.ConnectionUtil;
  */
 public class BillDAO {
 
+	
 	/**
 	 * Retrieves a list of all bills from the database.
 	 *
@@ -41,12 +40,12 @@ public class BillDAO {
 			rs = ps.executeQuery();
 			billList = new ArrayList<>();
 			while (rs.next()) {
+				
+				System.out.println(rs.getTimestamp("timeStamp"));
 
 				Timestamp timestamp = rs.getTimestamp("timeStamp");
-				Instant instant = timestamp.toInstant();
-				ZoneId zoneId = ZoneId.systemDefault();
-				LocalDateTime localDateTime = instant.atZone(zoneId).toLocalDateTime();
-				
+                LocalDateTime localDateTime = timestamp.toLocalDateTime();	
+    
 				Bill newbill = new Bill(localDateTime, rs.getInt("id"),rs.getInt("user_id"));
 				billList.add(newbill);
 			}
@@ -74,12 +73,16 @@ public class BillDAO {
 		ResultSet rs = null;
 
 		int billId = 0; 
+		
 
 		try {
-			String billquery = "INSERT INTO bills (user_id) VALUES (?);";
+			String billquery = "INSERT INTO bills (user_id , timestamp) VALUES (? , ?);";
 			con = ConnectionUtil.getConnection();
 			ps = con.prepareStatement(billquery, java.sql.Statement.RETURN_GENERATED_KEYS);
 			ps.setInt(1, userId);
+			LocalDateTime localDateTime = LocalDateTime.now();	
+			java.sql.Timestamp billDateTime = java.sql.Timestamp.valueOf(localDateTime);
+			ps.setTimestamp(2, billDateTime);
 			ps.executeUpdate();
 
 			rs = ps.getGeneratedKeys();
@@ -154,9 +157,7 @@ public class BillDAO {
 
 			while (rs.next()) {
 				Timestamp timestamp = rs.getTimestamp("timeStamp");
-				Instant instant = timestamp.toInstant();
-				ZoneId zoneId = ZoneId.systemDefault();
-				LocalDateTime localDateTime = instant.atZone(zoneId).toLocalDateTime();
+                LocalDateTime localDateTime = timestamp.toLocalDateTime();
 
 				Bill newbill = new Bill(localDateTime, rs.getInt("id"),rs.getInt("user_id"));
 				recentBillList.add(newbill);
@@ -196,10 +197,9 @@ public class BillDAO {
 
 			while (rs.next()) {
 				Timestamp timestamp = rs.getTimestamp("timeStamp");
-				Instant instant = timestamp.toInstant();
-				ZoneId zoneId = ZoneId.systemDefault();
-				LocalDateTime localDateTime = instant.atZone(zoneId).toLocalDateTime();
+                LocalDateTime localDateTime = timestamp.toLocalDateTime();
 
+                System.out.print(localDateTime);
 				Bill newbill = new Bill(localDateTime, rs.getInt("id"),rs.getInt("user_id"));
 				userBillList.add(newbill);
 			}

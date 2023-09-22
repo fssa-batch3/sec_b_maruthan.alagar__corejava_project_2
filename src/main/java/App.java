@@ -86,3 +86,20 @@
  * 
  * } }
  */
+import in.fssa.mambilling.exception.ServiceException;
+import in.fssa.mambilling.service.BillService; 
+
+public class App { 
+	
+	public static void main(String[] args) {
+		
+		BillService billservice = new BillService();
+		try {
+			System.out.println(billservice.getAllBills());
+		} catch (ServiceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	}
