@@ -97,5 +97,38 @@ public class BillItemsDAO {
 
 		return billItemsList;
 	}
+	
+	/**
+	 * Deletes a bill item from the database.
+	 *
+	 * @param billItemId The ID of the bill item to be deleted.
+	 * @throws PersistanceException If there's an issue with the database connection
+	 *                              or query execution.
+	 */
+	public void deleteBillItem(int billItemId) throws PersistanceException {
+	    Connection con = null;
+	    PreparedStatement ps = null;
+
+	    try {
+	        String deleteQuery = "DELETE FROM bill_items WHERE bill_id = ?";
+	        con = ConnectionUtil.getConnection();
+	        ps = con.prepareStatement(deleteQuery);
+	        ps.setInt(1, billItemId);
+	        int rowsAffected = ps.executeUpdate();
+
+	        if (rowsAffected == 0) {
+	            throw new PersistanceException("Bill item not found .");
+	        }
+
+	        System.out.println("Bill item Successfully deleted :)");
+
+	    } catch (SQLException e) {
+	        throw new PersistanceException(e.getMessage());
+
+	    } finally {
+	        ConnectionUtil.close(con, ps);
+	    }
+	}
+
 
 }

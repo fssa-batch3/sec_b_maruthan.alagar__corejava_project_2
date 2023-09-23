@@ -150,6 +150,25 @@ public class BillService {
 		}
 
 	}
+	/**
+	 * Removes a bill from the database.
+	 *
+	 * @param billId The ID of the bill to be removed.
+	 * @throws ServiceException    If there's an issue with the database operation
+	 *                             or a service-level error occurs.
+	 * @throws ValidationException If validation of input parameters fails.
+	 */
+	public void deleteBill(int billId) throws ServiceException, ValidationException {
+	    try {
+	        BillValidator.validateBillId(billId);
+	        billitemsservice.deleteBillItems(billId);
+	        billDAO.delete(billId);
+	        System.out.println("Bill and successfully Deleted.");
+	    } catch (PersistanceException e) {
+	        throw new ServiceException(e.getMessage());
+	    }
+	}
+
 
 	/**
 	 * Retrieves and returns details of a graph as a mapping of node names to

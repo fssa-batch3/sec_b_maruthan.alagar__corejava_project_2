@@ -212,5 +212,38 @@ public class BillDAO {
 
 		return userBillList;
 	}
+	
+	/**
+	 * Marks a bill as inactive in the database.
+	 *
+	 * @param billId The ID of the bill to mark as inactive.
+	 * @throws PersistanceException If there's an issue with the database connection
+	 *                              or query execution.
+	 */
+	public void delete(int billId) throws PersistanceException {
+	    Connection con = null;
+	    PreparedStatement ps = null;
+
+	    try {
+	        String deleteQuery = "DELETE FROM bills WHERE id = ?";
+	        con = ConnectionUtil.getConnection();
+	        ps = con.prepareStatement(deleteQuery);
+	        ps.setInt(1, billId);
+	        int rowsAffected = ps.executeUpdate();
+
+	        if (rowsAffected == 0) {
+	            throw new PersistanceException("Bill not found .");
+	        }
+
+	        System.out.println("Bill Successfully marked as inactive :)");
+
+	    } catch (SQLException e) {
+	        throw new PersistanceException(e.getMessage());
+
+	    } finally {
+	        ConnectionUtil.close(con, ps);
+	    }
+	}
+
 
 }

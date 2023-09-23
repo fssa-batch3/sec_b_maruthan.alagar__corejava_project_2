@@ -60,4 +60,21 @@ public class BillItemsService {
 
 	}
 
+	/**
+	 * Removes a bill Items from the database.
+	 *
+	 * @param billId The ID of the bill to be removed.
+	 * @throws ServiceException    If there's an issue with the database operation
+	 *                             or a service-level error occurs.
+	 * @throws ValidationException If validation of input parameters fails.
+	 */
+	public void deleteBillItems(int billId) throws ServiceException, ValidationException {
+	    try {
+	        BillValidator.validateBillId(billId);
+	        billitemsDAO.deleteBillItem(billId);
+	        System.out.println("Bill Items successfully Deleted.");
+	    } catch (PersistanceException e) {
+	        throw new ServiceException(e.getMessage());
+	    }
+	}
 }
