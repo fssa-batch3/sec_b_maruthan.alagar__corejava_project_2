@@ -124,4 +124,79 @@ public class TestShop {
 	}
 	
 
+	@Test
+	public void testShopUpdateWithPasswordEmpty() {
+		ShopService shopService = new ShopService();
+		
+		
+		Exception exception = assertThrows(ValidationException.class, () -> {
+			shopService.updateShopPassword("evergreensupermarket@gmail.com", "");
+		});
+		String expectedMessage = "Password cannot be Null or Empty";
+		String actualMessage = exception.getMessage();
+		assertTrue(expectedMessage.equals(actualMessage));
+	}
+	
+	@Test
+	public void testShopUpdateWithPasswordNull() {
+		ShopService shopService = new ShopService();
+		
+		
+		Exception exception = assertThrows(ValidationException.class, () -> {
+			shopService.updateShopPassword("evergreensupermarket@gmail.com", null);
+		});
+		String expectedMessage = "Password cannot be Null or Empty";
+		String actualMessage = exception.getMessage();
+		assertTrue(expectedMessage.equals(actualMessage));
+	}
+	@Test
+	public void testShopUpdateWithInvalidPassword() {
+		ShopService shopService = new ShopService();
+		
+		
+		Exception exception = assertThrows(ValidationException.class, () -> {
+			shopService.updateShopPassword("evergreensupermarket@gmail.com", "abcd");
+		});
+		String expectedMessage = "Password doesn't match the Pattern";
+		String actualMessage = exception.getMessage();
+		assertTrue(expectedMessage.equals(actualMessage));
+	}
+	
+	@Test
+	public void testShopUpdateWithEmailEmpty() {
+		ShopService shopService = new ShopService();
+		
+		
+		Exception exception = assertThrows(ValidationException.class, () -> {
+			shopService.updateShopPassword("", "Evt@1234");
+		});
+		String expectedMessage = "Shop Email cannot be Null or Empty";
+		String actualMessage = exception.getMessage();
+		assertTrue(expectedMessage.equals(actualMessage));
+	}
+	
+	@Test
+	public void testShopUpdateWithEmailNull() {
+		ShopService shopService = new ShopService();
+		
+		
+		Exception exception = assertThrows(ValidationException.class, () -> {
+			shopService.updateShopPassword(null, "Evt@1234");
+		});
+		String expectedMessage = "Shop Email cannot be Null or Empty";
+		String actualMessage = exception.getMessage();
+		assertTrue(expectedMessage.equals(actualMessage));
+	}
+	@Test
+	public void testShopUpdateWithInvalidEmail() {
+		ShopService shopService = new ShopService();
+		
+		
+		Exception exception = assertThrows(ValidationException.class, () -> {
+			shopService.updateShopPassword("evergreensupermarketgmailcom", "aBcd@123");
+		});
+		String expectedMessage = "Shop Email doesn't match the Pattern";
+		String actualMessage = exception.getMessage();
+		assertTrue(expectedMessage.equals(actualMessage));
+	}
 }

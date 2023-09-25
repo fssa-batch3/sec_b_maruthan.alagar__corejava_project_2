@@ -33,7 +33,6 @@ public class TestUpdateShop {
 		newShop.setAddress("789 Nheru St, Trichy");
 		newShop.setOwnerName("Rahu Raman");
 		newShop.setPrintName("Evergreen");
-		newShop.setPassword("Ever@1234");
 		newShop.setId(1);
 
 		assertDoesNotThrow(() -> {
@@ -66,7 +65,6 @@ public class TestUpdateShop {
 		newShop.setAddress("Sample Address");
 		newShop.setOwnerName("Maruthan");
 		newShop.setPrintName("Print Name");
-		newShop.setPassword("Evt@12345");
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			shopService.updateShop(newShop);
@@ -89,7 +87,6 @@ public class TestUpdateShop {
 		newShop.setAddress("Sample Address");
 		newShop.setOwnerName("Maruthan");
 		newShop.setPrintName("Print Name");
-		newShop.setPassword("Evt@12345");
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			shopService.updateShop(newShop);
@@ -112,7 +109,6 @@ public class TestUpdateShop {
 		newShop.setAddress("Sample Address");
 		newShop.setOwnerName("Maruthan");
 		newShop.setPrintName("Print Name");
-		newShop.setPassword("Evt@12345");
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			shopService.updateShop(newShop);
@@ -135,7 +131,6 @@ public class TestUpdateShop {
 		newShop.setAddress("Sample Address");
 		newShop.setOwnerName("Maruthan");
 		newShop.setPrintName("Print Name");
-		newShop.setPassword("Evt@12345");
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			shopService.updateShop(newShop);
@@ -158,7 +153,6 @@ public class TestUpdateShop {
 		newShop.setAddress("Sample Address");
 		newShop.setOwnerName("Maruthan");
 		newShop.setPrintName("Print Name");
-		newShop.setPassword("Evt@12345");
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			shopService.updateShop(newShop);
@@ -181,7 +175,6 @@ public class TestUpdateShop {
 		newShop.setAddress("Sample Address");
 		newShop.setOwnerName("Maruthan");
 		newShop.setPrintName("Print Name");
-		newShop.setPassword("Evt@12345");
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			shopService.updateShop(newShop);
@@ -204,7 +197,6 @@ public class TestUpdateShop {
 		newShop.setAddress("Sample Address");
 		newShop.setOwnerName("Maruthan");
 		newShop.setPrintName("Print Name");
-		newShop.setPassword("Evt@12345");
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			shopService.updateShop(newShop);
@@ -227,7 +219,6 @@ public class TestUpdateShop {
 		newShop.setAddress("Sample Address");
 		newShop.setOwnerName("Maruthan");
 		newShop.setPrintName("Print Name");
-		newShop.setPassword("Evt@12345");
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			shopService.updateShop(newShop);
@@ -250,7 +241,6 @@ public class TestUpdateShop {
 		newShop.setAddress("Sample Address");
 		newShop.setOwnerName("Maruthan");
 		newShop.setPrintName("Print Name");
-		newShop.setPassword("Evt@12345");
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			shopService.updateShop(newShop);
@@ -273,7 +263,6 @@ public class TestUpdateShop {
 		newShop.setAddress("Sample Address");
 		newShop.setOwnerName("Maruthan");
 		newShop.setPrintName("Print Name");
-		newShop.setPassword("Evt@12345");
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			shopService.updateShop(newShop);
@@ -296,7 +285,6 @@ public class TestUpdateShop {
 		newShop.setAddress("Sample Address");
 		newShop.setOwnerName("Maruthan");
 		newShop.setPrintName("Print Name");
-		newShop.setPassword("Evt@12345");
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			shopService.updateShop(newShop);
@@ -319,7 +307,6 @@ public class TestUpdateShop {
 		newShop.setAddress("Sample Address");
 		newShop.setOwnerName("Maruthan");
 		newShop.setPrintName("Print Name");
-		newShop.setPassword("Evt@12345");
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			shopService.updateShop(newShop);
@@ -342,7 +329,6 @@ public class TestUpdateShop {
 		newShop.setAddress("Sample Address");
 		newShop.setOwnerName("Maruthan");
 		newShop.setPrintName("Print Name");
-		newShop.setPassword("Evt@12345");
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			shopService.updateShop(newShop);
@@ -365,7 +351,7 @@ public class TestUpdateShop {
 		newShop.setEmail("example@gmail.com");
 		newShop.setOwnerName("Maruthan");
 		newShop.setPrintName("Print Name");
-		newShop.setPassword("Evt@12345");
+
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			shopService.updateShop(newShop);
@@ -388,7 +374,6 @@ public class TestUpdateShop {
 		newShop.setEmail("example@gmail.com");
 		newShop.setOwnerName("Maruthan");
 		newShop.setPrintName("Print Name");
-		newShop.setPassword("Evt@12345");
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			shopService.updateShop(newShop);
 		});
@@ -410,7 +395,6 @@ public class TestUpdateShop {
 		newShop.setLicenseNumber("23784894098987");
 		newShop.setEmail("example@gmail.com");
 		newShop.setPrintName("Print Name");
-		newShop.setPassword("Evt@12345");
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			shopService.updateShop(newShop);
@@ -433,7 +417,7 @@ public class TestUpdateShop {
 		newShop.setLicenseNumber("23784894098987");
 		newShop.setEmail("example@gmail.com");
 		newShop.setPrintName("Print Name");
-		newShop.setPassword("Evt@12345");
+
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			shopService.updateShop(newShop);
@@ -456,7 +440,6 @@ public class TestUpdateShop {
 		newShop.setLicenseNumber("23784894098987");
 		newShop.setEmail("example@gmail.com");
 		newShop.setPrintName("Print Name");
-		newShop.setPassword("Evt@12345");
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			shopService.updateShop(newShop);
@@ -479,7 +462,6 @@ public class TestUpdateShop {
 		newShop.setGSTNNumber("12ABCDE1234F1Z5");
 		newShop.setLicenseNumber("23784894098987");
 		newShop.setEmail("example@gmail.com");
-		newShop.setPassword("Evt@12345");
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			shopService.updateShop(newShop);
@@ -502,7 +484,6 @@ public class TestUpdateShop {
 		newShop.setLicenseNumber("23784894098987");
 		newShop.setEmail("example@gmail.com");
 		newShop.setPrintName(null);
-		newShop.setPassword("Evt@12345");
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			shopService.updateShop(newShop);
@@ -525,7 +506,6 @@ public class TestUpdateShop {
 		newShop.setGSTNNumber("12ABCDE1234F1Z5");
 		newShop.setLicenseNumber("23784894098987");
 		newShop.setEmail("example@gmail.com");
-		newShop.setPassword("Evt@12345");
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			shopService.updateShop(newShop);
@@ -535,72 +515,9 @@ public class TestUpdateShop {
 		assertTrue(expectedMessage.equals(actualMessage));
 	}
 
-	@Test
-	public void testUpdateShopWithInvalidPassword() {
-		ShopService shopService = new ShopService();
 
-		Shop newShop = new Shop();
-		newShop.setPrintName("Print Name");
-		newShop.setOwnerName("Maruthan");
-		newShop.setAddress("chennai");
-		newShop.setShopName("Example Shop");
-		newShop.setPhoneNumber(9234567890l);
-		newShop.setGSTNNumber("12ABCDE1234F1Z5");
-		newShop.setLicenseNumber("23784894098987");
-		newShop.setEmail("example@gmail.com");
-		newShop.setPassword("vsdwsd12345");
 
-		Exception exception = assertThrows(ValidationException.class, () -> {
-			shopService.updateShop(newShop);
-		});
-		String expectedMessage = "Password doesn't match the Pattern";
-		String actualMessage = exception.getMessage();
-		assertTrue(expectedMessage.equals(actualMessage));
-	}
 
-	@Test
-	public void testUpdateShopWithNullPassword() {
-		ShopService shopService = new ShopService();
 
-		Shop newShop = new Shop();
-		newShop.setPrintName("Print Name");
-		newShop.setOwnerName("Maruthan");
-		newShop.setAddress("chennai");
-		newShop.setShopName("Example Shop");
-		newShop.setPhoneNumber(9234567890l);
-		newShop.setGSTNNumber("12ABCDE1234F1Z5");
-		newShop.setLicenseNumber("23784894098987");
-		newShop.setEmail("example@gmail.com");
-		newShop.setPassword(null);
 
-		Exception exception = assertThrows(ValidationException.class, () -> {
-			shopService.updateShop(newShop);
-		});
-		String expectedMessage = "Password cannot be Null or Empty";
-		String actualMessage = exception.getMessage();
-		assertTrue(expectedMessage.equals(actualMessage));
-	}
-
-	@Test
-	public void testUpdateShopWithEmptyPassword() {
-		ShopService shopService = new ShopService();
-
-		Shop newShop = new Shop();
-		newShop.setPrintName("Print name");
-		newShop.setOwnerName("Maruthan");
-		newShop.setAddress("chennai");
-		newShop.setShopName("Example Shop");
-		newShop.setPhoneNumber(9234567890l);
-		newShop.setGSTNNumber("12ABCDE1234F1Z5");
-		newShop.setLicenseNumber("23784894098987");
-		newShop.setEmail("example@gmail.com");
-		newShop.setPassword("");
-
-		Exception exception = assertThrows(ValidationException.class, () -> {
-			shopService.updateShop(newShop);
-		});
-		String expectedMessage = "Password cannot be Null or Empty";
-		String actualMessage = exception.getMessage();
-		assertTrue(expectedMessage.equals(actualMessage));
-	}
 }

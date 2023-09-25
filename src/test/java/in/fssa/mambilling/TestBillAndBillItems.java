@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import in.fssa.mambilling.dao.GraphDAO;
 import in.fssa.mambilling.exception.ServiceException;
 import in.fssa.mambilling.exception.ValidationException;
+import in.fssa.mambilling.service.BillItemsService;
 import in.fssa.mambilling.service.BillService;
 
 public class TestBillAndBillItems {
@@ -73,5 +74,24 @@ public class TestBillAndBillItems {
 		});
 
 	}
+	
+	@Test
+	public void testAllbillItemsByBillId() {
+		BillItemsService bs = new BillItemsService();
+		assertDoesNotThrow(() -> {
+			bs.findByBillId(1);
+		});
 
+	}
+	@Test
+	public void testAllbillItemsByInvalidBillId() {
+		BillItemsService bs = new BillItemsService();
+		Exception exception = assertThrows(ValidationException.class, () -> {
+			bs.findByBillId(0);
+		});
+		String expectedMessage = "Invalid Bill ID";
+		String actualMessage = exception.getMessage();
+		assertTrue(expectedMessage.equals(actualMessage));
+
+	}
 }
