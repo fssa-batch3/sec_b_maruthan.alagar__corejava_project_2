@@ -223,7 +223,6 @@ public class ShopValidator {
 			isDetailsCorrect = false;
 		}
 
-//		System.out.println(userEmail +" == "+dbEmail+" "+dbPassword+" == "+userpassword);
 		if (dbEmail.equals(userEmail.trim()) && dbPassword.equals(userpassword.trim())) {
 			isDetailsCorrect = true;
 		}

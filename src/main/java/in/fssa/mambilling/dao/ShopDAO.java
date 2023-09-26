@@ -41,13 +41,11 @@ public class ShopDAO {
 
 			ps.executeUpdate();
 
-			System.out.println("Shop Successfully Created :)");
 
 		} catch (SQLException e) {
 			if (e.getMessage().contains("Duplicate entry")) {
 				throw new PersistanceException("Duplicate constraint");
 			} else {
-				System.out.println(e.getMessage());
 				throw new PersistanceException(e.getMessage());
 			}
 
@@ -88,10 +86,8 @@ public class ShopDAO {
 				throw new PersistanceException("Shop not found");
 			}
 
-			System.out.println("Shop Successfully Updated :)");
 
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
 			throw new PersistanceException(e.getMessage());
 		} finally {
 			ConnectionUtil.close(con, ps);
@@ -132,7 +128,6 @@ public class ShopDAO {
 			}
 
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
 			throw new PersistanceException(e.getMessage());
 		} finally {
 			ConnectionUtil.close(con, ps, rs);
@@ -158,8 +153,7 @@ public class ShopDAO {
 			ps = con.prepareStatement(query);
 
 			ps.executeUpdate();
-
-			System.out.println("Shop Successfully Deleted :)");
+;
 
 		} catch (SQLException e) {
 			throw new PersistanceException(e.getMessage());
@@ -197,7 +191,6 @@ public class ShopDAO {
 			}
 
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
 			throw new PersistanceException(e.getMessage());
 		} finally {
 			ConnectionUtil.close(con, ps, rs);
@@ -233,7 +226,6 @@ public class ShopDAO {
 	        }
 
 	    } catch (SQLException e) {
-	        System.out.println(e.getMessage());
 	        throw new PersistanceException(e.getMessage());
 	    } finally {
 	        ConnectionUtil.close(con, ps, null);

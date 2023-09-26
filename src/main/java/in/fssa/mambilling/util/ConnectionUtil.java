@@ -44,9 +44,10 @@ public class ConnectionUtil {
 			connection = DriverManager.getConnection(url, userName, passWord);
 
 		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
+			Logger.error(e);
 			throw new SQLException(e);
 		}
+		
 
 		return connection;
 
@@ -68,7 +69,7 @@ public class ConnectionUtil {
 			}
 
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			Logger.error(e);
 
 		}
 
@@ -94,7 +95,7 @@ public class ConnectionUtil {
 			}
 
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			Logger.error(e);
 		}
 
 	}

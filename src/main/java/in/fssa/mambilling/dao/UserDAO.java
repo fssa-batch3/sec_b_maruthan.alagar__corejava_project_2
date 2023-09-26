@@ -74,7 +74,6 @@ public class UserDAO {
 
 			ps.executeUpdate();
 
-			System.out.println("User Successfully Created :)");
 
 		} catch (SQLException e) {
 			if (e.getMessage().contains("Duplicate entry")) {
@@ -155,7 +154,6 @@ public class UserDAO {
 
 			ps.executeUpdate();
 
-			System.out.println("User Successfully Updated :)");
 
 		} catch (SQLException e) {
 

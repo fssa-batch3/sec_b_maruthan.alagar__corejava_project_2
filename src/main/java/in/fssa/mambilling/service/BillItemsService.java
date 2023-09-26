@@ -72,7 +72,6 @@ public class BillItemsService {
 	    try {
 	        BillValidator.validateBillId(billId);
 	        billitemsDAO.deleteBillItem(billId);
-	        System.out.println("Bill Items successfully Deleted.");
 	    } catch (PersistanceException e) {
 	        throw new ServiceException(e.getMessage());
 	    }

@@ -45,8 +45,6 @@ public class BillItemsDAO {
 				ps.executeUpdate();
 			}
 
-			System.out.println("Bill Items Successfully Created :)");
-
 		} catch (SQLException e) {
 
 			throw new PersistanceException(e.getMessage());
@@ -120,7 +118,6 @@ public class BillItemsDAO {
 	            throw new PersistanceException("Bill item not found .");
 	        }
 
-	        System.out.println("Bill item Successfully deleted :)");
 
 	    } catch (SQLException e) {
 	        throw new PersistanceException(e.getMessage());

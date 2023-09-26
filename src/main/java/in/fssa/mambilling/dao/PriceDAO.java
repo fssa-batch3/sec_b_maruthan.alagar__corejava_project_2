@@ -41,7 +41,6 @@ public class PriceDAO {
 			ps.setDouble(4, newPrice.getDiscount());
 			ps.executeUpdate();
 
-			System.out.println("Price Successfully Created :)");
 
 		} catch (SQLException e) {
 			throw new PersistanceException(e.getMessage());
@@ -76,7 +75,6 @@ public class PriceDAO {
 			ps.setInt(4, productID);
 			ps.executeUpdate();
 
-			System.out.println("Price Successfully Updated :)");
 
 		} catch (SQLException e) {
 			throw new PersistanceException(e.getMessage());

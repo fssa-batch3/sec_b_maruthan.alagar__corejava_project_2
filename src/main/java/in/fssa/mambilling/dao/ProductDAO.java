@@ -89,7 +89,6 @@ public class ProductDAO {
 				productId = rs.getInt(1);
 			}
 
-			System.out.println("Product Successfully Created :)");
 
 		} catch (SQLException e) {
 			if (e.getMessage().contains("Duplicate entry")) {
@@ -129,8 +128,7 @@ public class ProductDAO {
 			ps.setInt(5, id);
 
 			ps.executeUpdate();
-
-			System.out.println("Product Successfully Updated :)");
+;
 
 		} catch (SQLException e) {
 			throw new PersistanceException(e.getMessage());
@@ -305,7 +303,6 @@ public class ProductDAO {
 
 			ps.executeUpdate();
 
-			System.out.println("Product Successfully Deactivated :)");
 
 		} catch (SQLException e) {
 			throw new PersistanceException(e.getMessage());
@@ -335,7 +332,6 @@ public class ProductDAO {
 
 			ps.executeUpdate();
 
-			System.out.println("Product Successfully Deleted :)");
 
 		} catch (SQLException e) {
 			throw new PersistanceException(e.getMessage());

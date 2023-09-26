@@ -1,6 +1,5 @@
 package in.fssa.mambilling.service;
 
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -54,15 +53,10 @@ public class BillService {
 		}
 
 		try {
-			System.out.println(billId);
 			billitemsservice.createBillItems(billId, billItems);
-		} catch (ServiceException e) {
-			System.out.println(e.getMessage());
+		} catch (Exception e) {
 			removeRow(billId);
-
-		} catch (ValidationException e) {
-			System.out.println(e.getMessage());
-			removeRow(billId);
+			throw new ServiceException(e.getMessage());
 
 		}
 
@@ -82,7 +76,7 @@ public class BillService {
 			BillValidator.validateBillId(billId);
 			billDAO.dropRow(billId);
 		} catch (PersistanceException e) {
-			throw new ServiceException("Failed to create Bill Items");
+			throw new ServiceException(e.getMessage());
 		}
 
 	}
@@ -150,6 +144,7 @@ public class BillService {
 		}
 
 	}
+
 	/**
 	 * Removes a bill from the database.
 	 *
@@ -159,16 +154,14 @@ public class BillService {
 	 * @throws ValidationException If validation of input parameters fails.
 	 */
 	public void deleteBill(int billId) throws ServiceException, ValidationException {
-	    try {
-	        BillValidator.validateBillId(billId);
-	        billitemsservice.deleteBillItems(billId);
-	        billDAO.delete(billId);
-	        System.out.println("Bill and successfully Deleted.");
-	    } catch (PersistanceException e) {
-	        throw new ServiceException(e.getMessage());
-	    }
+		try {
+			BillValidator.validateBillId(billId);
+			billitemsservice.deleteBillItems(billId);
+			billDAO.delete(billId);
+		} catch (PersistanceException e) {
+			throw new ServiceException(e.getMessage());
+		}
 	}
-
 
 	/**
 	 * Retrieves and returns details of a graph as a mapping of node names to
@@ -187,30 +180,26 @@ public class BillService {
 
 			// Sort the list based on the date strings
 			Collections.sort(sortedDetails, (entry1, entry2) -> {
-			    // Parse the date strings and compare them
-			    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // Adjust the date format as needed
-			    try {
-			        Date date1 = dateFormat.parse(entry1.getKey());
-			        Date date2 = dateFormat.parse(entry2.getKey());
-			        return date1.compareTo(date2);
-			    } catch (ParseException e) {
-			        // Handle parsing errors here
-			        return 0; // You may want to handle this differently
-			    }
+				// Parse the date strings and compare them
+				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // Adjust the date format as needed
+				try {
+					Date date1 = dateFormat.parse(entry1.getKey());
+					Date date2 = dateFormat.parse(entry2.getKey());
+					return date1.compareTo(date2);
+				} catch (ParseException e) {
+					// Handle parsing errors here
+					return 0; // You may want to handle this differently
+				}
 			});
 
 			// Convert the sorted list back to a map
 			LinkedHashMap<String, Double> sortedDetailsMap = new LinkedHashMap<>();
 			for (Map.Entry<String, Double> entry : sortedDetails) {
-			    sortedDetailsMap.put(entry.getKey(), entry.getValue());
-			}
-
-			for (Map.Entry<String, Double> entry : sortedDetailsMap.entrySet()) {
-			    System.out.println("Date: " + entry.getKey() + ", Total Amount: " + entry.getValue());
+				sortedDetailsMap.put(entry.getKey(), entry.getValue());
 			}
 
 			return sortedDetailsMap;
-			
+
 		} catch (PersistanceException e) {
 			throw new ServiceException(e.getMessage());
 		}

@@ -42,7 +42,6 @@ public class ProductService {
 		try {
 			priceService.createPrice(newProduct.getPrice(), productId);
 		} catch (ServiceException e) {
-			System.out.println("Failed to create product price");
 			removeRow(productId);
 
 		} catch (ValidationException e) {
@@ -87,7 +86,6 @@ public class ProductService {
 		try {
 			return productDAO.findAll();
 		} catch (PersistanceException e) {
-			e.printStackTrace();
 			throw new ServiceException(e.getMessage());
 		}
 

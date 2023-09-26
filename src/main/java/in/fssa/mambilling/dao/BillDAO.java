@@ -19,7 +19,6 @@ import in.fssa.mambilling.util.ConnectionUtil;
  */
 public class BillDAO {
 
-	
 	/**
 	 * Retrieves a list of all bills from the database.
 	 *
@@ -40,13 +39,11 @@ public class BillDAO {
 			rs = ps.executeQuery();
 			billList = new ArrayList<>();
 			while (rs.next()) {
-				
-				System.out.println(rs.getTimestamp("timeStamp"));
 
 				Timestamp timestamp = rs.getTimestamp("timeStamp");
-                LocalDateTime localDateTime = timestamp.toLocalDateTime();	
-    
-				Bill newbill = new Bill(localDateTime, rs.getInt("id"),rs.getInt("user_id"));
+				LocalDateTime localDateTime = timestamp.toLocalDateTime();
+
+				Bill newbill = new Bill(localDateTime, rs.getInt("id"), rs.getInt("user_id"));
 				billList.add(newbill);
 			}
 		} catch (SQLException e) {
@@ -72,15 +69,14 @@ public class BillDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 
-		int billId = 0; 
-		
+		int billId = 0;
 
 		try {
 			String billquery = "INSERT INTO bills (user_id , timestamp) VALUES (? , ?);";
 			con = ConnectionUtil.getConnection();
 			ps = con.prepareStatement(billquery, java.sql.Statement.RETURN_GENERATED_KEYS);
 			ps.setInt(1, userId);
-			LocalDateTime localDateTime = LocalDateTime.now();	
+			LocalDateTime localDateTime = LocalDateTime.now();
 			java.sql.Timestamp billDateTime = java.sql.Timestamp.valueOf(localDateTime);
 			ps.setTimestamp(2, billDateTime);
 			ps.executeUpdate();
@@ -90,10 +86,8 @@ public class BillDAO {
 				billId = rs.getInt(1);
 			}
 
-			System.out.println("Bill Successfully Created :)");
-
 		} catch (SQLException e) {
-				throw new PersistanceException(e.getMessage());
+			throw new PersistanceException(e.getMessage());
 
 		} finally {
 			ConnectionUtil.close(con, ps, rs);
@@ -121,8 +115,6 @@ public class BillDAO {
 			ps.setInt(1, newId);
 
 			ps.executeUpdate();
-
-			System.out.println("Bill Successfully Deleted :)");
 
 		} catch (SQLException e) {
 			throw new PersistanceException(e.getMessage());
@@ -157,9 +149,9 @@ public class BillDAO {
 
 			while (rs.next()) {
 				Timestamp timestamp = rs.getTimestamp("timeStamp");
-                LocalDateTime localDateTime = timestamp.toLocalDateTime();
+				LocalDateTime localDateTime = timestamp.toLocalDateTime();
 
-				Bill newbill = new Bill(localDateTime, rs.getInt("id"),rs.getInt("user_id"));
+				Bill newbill = new Bill(localDateTime, rs.getInt("id"), rs.getInt("user_id"));
 				recentBillList.add(newbill);
 			}
 		} catch (SQLException e) {
@@ -197,10 +189,9 @@ public class BillDAO {
 
 			while (rs.next()) {
 				Timestamp timestamp = rs.getTimestamp("timeStamp");
-                LocalDateTime localDateTime = timestamp.toLocalDateTime();
+				LocalDateTime localDateTime = timestamp.toLocalDateTime();
 
-                System.out.print(localDateTime);
-				Bill newbill = new Bill(localDateTime, rs.getInt("id"),rs.getInt("user_id"));
+				Bill newbill = new Bill(localDateTime, rs.getInt("id"), rs.getInt("user_id"));
 				userBillList.add(newbill);
 			}
 
@@ -212,7 +203,7 @@ public class BillDAO {
 
 		return userBillList;
 	}
-	
+
 	/**
 	 * Marks a bill as inactive in the database.
 	 *
@@ -221,29 +212,26 @@ public class BillDAO {
 	 *                              or query execution.
 	 */
 	public void delete(int billId) throws PersistanceException {
-	    Connection con = null;
-	    PreparedStatement ps = null;
+		Connection con = null;
+		PreparedStatement ps = null;
 
-	    try {
-	        String deleteQuery = "DELETE FROM bills WHERE id = ?";
-	        con = ConnectionUtil.getConnection();
-	        ps = con.prepareStatement(deleteQuery);
-	        ps.setInt(1, billId);
-	        int rowsAffected = ps.executeUpdate();
+		try {
+			String deleteQuery = "DELETE FROM bills WHERE id = ?";
+			con = ConnectionUtil.getConnection();
+			ps = con.prepareStatement(deleteQuery);
+			ps.setInt(1, billId);
+			int rowsAffected = ps.executeUpdate();
 
-	        if (rowsAffected == 0) {
-	            throw new PersistanceException("Bill not found .");
-	        }
+			if (rowsAffected == 0) {
+				throw new PersistanceException("Bill not found .");
+			}
 
-	        System.out.println("Bill Successfully marked as inactive :)");
+		} catch (SQLException e) {
+			throw new PersistanceException(e.getMessage());
 
-	    } catch (SQLException e) {
-	        throw new PersistanceException(e.getMessage());
-
-	    } finally {
-	        ConnectionUtil.close(con, ps);
-	    }
+		} finally {
+			ConnectionUtil.close(con, ps);
+		}
 	}
-
 
 }
