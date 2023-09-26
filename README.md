@@ -659,5 +659,176 @@ D  -->  E[Bill Details Service: Display the Details ]
 
 C  -- No -->  F[Bill Details Service: Bills not found ]
 ```
+## Module: Shop (Milestone 2)
 
+
+### Feature 1: Shop Creation 
+#### User Story:
+create new shop via register .
+#### Prerequisites:
+- [ ] Create shop table
+- [ ] Implement shop model
+- [ ] Implement shop DAO (create)
+#### Validations:
+
+##### Form Validation:
+- [ ] Shop Name (Null , Pattern & Length)
+- [ ] License Number ( Pattern )
+- [ ] GSTIN Number ( Pattern )
+- [ ] Phone Number ( Pattern )
+- [ ] Email ( Null , Pattern) 
+- [ ] Address (Null , Empty , Length)
+- [ ] Owner Name (Null , Empty , Length)
+- [ ] Print Name (Null , Empty , Length , Pattern)
+- [ ]  Password (Pattern)
+
+#### Messages: 
+ -  Invalid Shop Input 
+ -  Shop Name Cannot be Null or Empty.
+ -  Print Name Cannot be Null or Empty.
+ -  Owner Name Cannot be Null or Empty.
+ -  Shop Email Cannot be Null or Empty.
+ -  Phone Number doesn't match the Pattern.
+ -  Email doesn't match the Pattern.
+ -  Password doesn't match the Pattern.
+ -  Address Cannot be Empty. 
+
+
+#### Flow: 
+
+```mermaid
+graph  TD;
+
+A[Shop Service: Create Shop]  -->  B[Form Validation]
+
+B  -- Yes -->  C{Business Validation}
+B -- No --> G[Throws Exception]
+
+C  -- Yes -->  D[Shop DAO: Create Shop]
+
+D  -->  E[Shop Service: Shop Created ]
+
+C  -- No -->  F[Shop Service: Unable to Create Shop ]
+```
+### Feature 2: Shop Update 
+#### User Story:
+ User Can Update shop details .
+#### Prerequisites:
+- [ ] Complete Shop Module 1 feature
+- [ ] Implement shop DAO (update)
+#### Validations:
+
+##### Form Validation:
+- [ ] Shop Name (Null , Pattern & Length)
+- [ ] License Number ( Pattern )
+- [ ] GSTIN Number ( Pattern )
+- [ ] Phone Number ( Pattern )
+- [ ] Email ( Null , Pattern) 
+- [ ] Address (Null , Empty , Length)
+- [ ] Owner Name (Null , Empty , Length)
+- [ ] Print Name (Null , Empty , Length , Pattern)
+
+#### Messages: 
+ -  Invalid Shop Input 
+ -  Shop Name Cannot be Null or Empty.
+ -  Print Name Cannot be Null or Empty.
+ -  Owner Name Cannot be Null or Empty.
+ -  Shop Email Cannot be Null or Empty.
+ -  Phone Number doesn't match the Pattern.
+ -  Email doesn't match the Pattern.
+ -  Address Cannot be Empty. 
+
+
+#### Flow: 
+
+```mermaid
+graph  TD;
+
+A[Shop Service: Update Shop]  -->  B[Form Validation]
+
+B  -- Yes -->  C{Business Validation}
+B -- No --> G[Throws Exception]
+
+C  -- Yes -->  D[Shop DAO: Update Shop]
+
+D  -->  E[Shop Service: Shop Update ]
+
+C  -- No -->  F[Shop Service: Unable to Update Shop ]
+```
+### Feature 3: Shop Login 
+#### User Story:
+ User Can Login with shop details .
+#### Prerequisites:
+- [ ] Complete Shop Module 1 feature
+- [ ] Implement shop DAO (Login)
+#### Validations:
+
+##### Form Validation:
+
+- [ ] Email ( Null , Pattern) 
+- [ ] Password (Pattern)
+##### Business Validation:
+- [ ] Check Email and Password are correct.
+#### Messages: 
+ -  Invalid Credentials 
+ -  Shop Email Cannot be Null or Empty.
+ -  Email doesn't match the Pattern.
+ -  Password doesn't match the Pattern.
+ -  Password Cannot be Empty. 
+
+
+#### Flow: 
+
+```mermaid
+graph  TD;
+
+A[Shop Service: Login Shop]  -->  B[Form Validation]
+
+B  -- Yes -->  C{Business Validation}
+B -- No --> G[Throws Exception]
+
+C  -- Yes -->  D[Shop DAO: Login Shop]
+
+D  -->  E[Shop Service: Shop Login ]
+
+C  -- No -->  F[Shop Service: Unable to login with Shop Details ]
+```
+### Feature 4: Update Shop Password 
+#### User Story:
+ User Can Update shop Password .
+#### Prerequisites:
+- [ ] Complete Shop Module 1 feature
+- [ ] Implement shop DAO (Change Password)
+#### Validations:
+
+##### Form Validation:
+
+- [ ] Email ( Null , Pattern) 
+- [ ] Password (Pattern)
+##### Form Validation:
+- [ ] Check Email and Password are correct.
+#### Messages: 
+ -  Invalid Credentials 
+ -  Shop Email Cannot be Null or Empty.
+ -  Email doesn't match the Pattern.
+ -  Password doesn't match the Pattern.
+ -  Password Cannot be Empty. 
+
+
+#### Flow: 
+
+```mermaid
+graph  TD;
+
+A[Shop Service: Update Shop Password]  -->  B[Form Validation]
+
+B  -- Yes -->  C{Business Validation}
+B -- No --> G[Throws Exception]
+
+C  -- Yes -->  D[Shop DAO: Update Shop Password]
+
+D  -->  E[Shop Service: Update Shop Password ]
+
+C  -- No -->  F[Shop Service: Unable to Change Shop Password ]
+```
 
