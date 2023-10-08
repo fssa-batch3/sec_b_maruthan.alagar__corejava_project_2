@@ -5,7 +5,7 @@ public class Logger {
 		e.printStackTrace();
 	}
 
-	public static void debug(Object e) {
+	public static void Sysout(Object e) {
 		System.out.println(e); 
 	}
 

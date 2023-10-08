@@ -156,7 +156,6 @@ public class BillService {
 	public void deleteBill(int billId) throws ServiceException, ValidationException {
 		try {
 			BillValidator.validateBillId(billId);
-			billitemsservice.deleteBillItems(billId);
 			billDAO.delete(billId);
 		} catch (PersistanceException e) {
 			throw new ServiceException(e.getMessage());

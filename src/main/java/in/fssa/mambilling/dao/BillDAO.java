@@ -33,7 +33,7 @@ public class BillDAO {
 
 		List<Bill> billList = null;
 		try {
-			String query = "SELECT timeStamp , id, user_id FROM bills";
+			String query = "SELECT timeStamp , id, user_id FROM bills WHERE is_active = true;";
 			con = ConnectionUtil.getConnection();
 			ps = con.prepareStatement(query);
 			rs = ps.executeQuery();
@@ -140,7 +140,7 @@ public class BillDAO {
 
 		try {
 
-			String query = "SELECT timeStamp ,id ,user_id FROM bills WHERE timestamp >= NOW() - INTERVAL 10 MINUTE ";
+			String query = "SELECT timeStamp ,id ,user_id FROM bills WHERE timestamp >= NOW() - INTERVAL 10 MINUTE AND is_active = true ";
 			con = ConnectionUtil.getConnection();
 			ps = con.prepareStatement(query);
 			rs = ps.executeQuery();
@@ -179,7 +179,7 @@ public class BillDAO {
 		List<Bill> userBillList = null;
 
 		try {
-			String query = "SELECT timeStamp, id ,user_id FROM bills  WHERE user_id = ? ";
+			String query = "SELECT timeStamp, id ,user_id FROM bills  WHERE user_id = ? AND is_active = true ";
 			con = ConnectionUtil.getConnection();
 			ps = con.prepareStatement(query);
 			ps.setInt(1, userId);
@@ -216,7 +216,7 @@ public class BillDAO {
 		PreparedStatement ps = null;
 
 		try {
-			String deleteQuery = "DELETE FROM bills WHERE id = ?";
+			String deleteQuery = "UPDATE bills SET is_active=false WHERE id = ?";
 			con = ConnectionUtil.getConnection();
 			ps = con.prepareStatement(deleteQuery);
 			ps.setInt(1, billId);
