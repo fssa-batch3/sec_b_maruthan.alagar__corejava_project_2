@@ -1,4 +1,7 @@
 
+SET time_zone = 'Asia/Kolkata';
+
+
 CREATE TABLE IF NOT EXISTS products (
 `id` int PRIMARY KEY auto_increment not null,
 product_name VARCHAR(100) not null ,
@@ -34,8 +37,9 @@ CREATE TABLE IF NOT EXISTS users (
 
 CREATE TABLE IF NOT EXISTS bills (
   `id` int PRIMARY KEY auto_increment not null,
-  `timestamp` timestamp DEFAULT current_timestamp not null,
+  `timestamp` timestamp  not null,
   user_id INT not null,
+  is_active tinyint default true,
   FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
@@ -65,13 +69,13 @@ CREATE TABLE shop (
 );
 
 
-
 Select * from users;
 Select * from products;
 Select * from price;
 Select * from bills;
 Select * from bill_items;
 Select * from shop;
+
 
 
 
