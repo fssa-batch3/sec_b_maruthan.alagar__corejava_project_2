@@ -216,10 +216,10 @@ public class ShopValidator {
 
 		validateEmail(userEmail, "User Email");
 
-		if (dbEmail != userEmail.trim()) {
+		if (!dbEmail.equals(userEmail.trim()) ) {
 			isDetailsCorrect = false;
 		}
-		if (dbPassword != userpassword.trim()) {
+		if (!dbPassword.equals(userpassword.trim())) {
 			isDetailsCorrect = false;
 		}
 
