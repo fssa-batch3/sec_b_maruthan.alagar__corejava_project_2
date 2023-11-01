@@ -55,6 +55,9 @@ public class GraphDAO {
                             double taxAmount = (mrp * tax / 100.0);
                             double discountAmount = (mrp * discount / 100.0);
                             double price = (mrp + taxAmount - discountAmount) * quantity;
+                            if (price % 1 >= 0.4) {
+                            	price = Math.ceil(price);
+                				}
                             totalAmount += price;
                         }
                     }

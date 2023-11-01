@@ -48,7 +48,6 @@ public class ProductDAO {
 				productList.add(newProduct);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new PersistanceException(e.getMessage());
 		} finally {
 			ConnectionUtil.close(con, ps, rs);
